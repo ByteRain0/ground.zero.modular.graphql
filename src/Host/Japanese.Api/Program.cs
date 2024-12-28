@@ -1,13 +1,13 @@
 using Core.Background;
 using Core.Environment;
-using Core.Otel;
 using Hangfire;
 using Japanese.Api.Infrastructure;
 using Japanese.Api.Migrations;
 
 var builder = WebApplication
-    .CreateBuilder(args)
-    .AddTelemetry();
+    .CreateBuilder(args);
+
+builder.AddServiceDefaults();
 
 builder.Services
     .AddApplicationServices(builder.Configuration)
@@ -21,6 +21,8 @@ if (AppHost.IsDevelopment())
     app.ApplyAnimeMigrations();
     app.ApplyMangaMigrations();
 }
+
+app.MapDefaultEndpoints();
 
 app.MapGraphQL();
 app.MapHangfireDashboard(options: new DashboardOptions()

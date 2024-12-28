@@ -126,7 +126,7 @@ exporters:
   debug:
     verbosity: detailed
   otlp/aspire:
-    endpoint: $ASPIRE_ENDPOINT
+    endpoint: "http://localhost:18888"
     tls:
       insecure: true
 

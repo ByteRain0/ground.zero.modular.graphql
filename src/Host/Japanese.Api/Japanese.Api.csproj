@@ -19,6 +19,7 @@
       <ProjectReference Include="..\..\Modules\Manga\Manga.GraphQL\Manga.GraphQL.csproj" />
       <ProjectReference Include="..\..\Modules\Manga\Manga.Service\Manga.Service.csproj" />
       <ProjectReference Include="..\..\Utils\Core\Core.csproj" />
+      <ProjectReference Include="..\..\Utils\ServiceDefaults\ServiceDefaults.csproj" />
     </ItemGroup>
 
 </Project>
