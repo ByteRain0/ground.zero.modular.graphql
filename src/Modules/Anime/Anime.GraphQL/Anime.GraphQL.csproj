@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="HotChocolate.AspNetCore" />
+      <PackageReference Include="HotChocolate.Data.EntityFramework" />
+      <PackageReference Include="HotChocolate.Pagination.EntityFramework" />
+      <PackageReference Include="HotChocolate.Types.Analyzers" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Utils\Core\Core.csproj" />
+      <ProjectReference Include="..\Anime.Contracts\Anime.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>

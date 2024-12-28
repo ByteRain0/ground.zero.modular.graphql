@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <Folder Include="Application\Anime\CommandHandlers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="HotChocolate.Data" />
+    <PackageReference Include="HotChocolate.Pagination.Core" />
+    <PackageReference Include="HotChocolate.Pagination.EntityFramework" />
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="HotChocolate.Types.Analyzers" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Utils\Core\Core.csproj" />
+    <ProjectReference Include="..\Anime.Contracts\Anime.Contracts.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="HotChocolate.Pagination.Primitives" />
+    <PackageReference Include="HotChocolate.Types.CursorPagination" />
+    <PackageReference Include="MediatR.Contracts" />
+    <PackageReference Include="HotChocolate.Types.CursorPagination" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Utils\Common\Common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Events\Integrations\" />
+  </ItemGroup>
+</Project>

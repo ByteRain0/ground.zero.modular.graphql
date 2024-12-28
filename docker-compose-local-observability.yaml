@@ -1,0 +1,21 @@
+version: '3.4'
+name: japanese_culture
+services:
+  aspire-dashboard:
+    container_name: dashboard
+    image: mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0
+    environment:
+      - DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS=true
+    ports:
+      - "18888:18888"
+
+  otel-collector:
+    container_name: otel-collector
+    image: otel/opentelemetry-collector-contrib:latest
+    depends_on:
+      - aspire-dashboard
+    volumes:
+      - ./configurations/otel-collector-local/otel-config.yaml:/etc/otelcol-contrib/config.yaml
+    ports:
+      - "4317:4317"
+      - "4318:4318"

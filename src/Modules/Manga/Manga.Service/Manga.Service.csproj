@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="HotChocolate.Data" />
+    <PackageReference Include="HotChocolate.Pagination.Core" />
+    <PackageReference Include="HotChocolate.Pagination.EntityFramework" />
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="MediatR.Extensions.FluentValidation.AspNetCore" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="HotChocolate.Types.Analyzers" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Manga.Contracts\Manga.Contracts.csproj" />
+  </ItemGroup>
+</Project>
