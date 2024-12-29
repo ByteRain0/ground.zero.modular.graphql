@@ -60,7 +60,7 @@ public static class OpenTelemetryWebApplicationBuilderExtensions
                     .AddHttpClientInstrumentation()
                     .AddHotChocolateInstrumentation()
                     .AddEntityFrameworkCoreInstrumentation()
-                    .AddProcessor(new BatchActivityExportProcessor(new SimpleLinkExporter()))
+                    //.AddProcessor(new BatchActivityExportProcessor(new SimpleLinkExporter()))
                     .AddOtlpExporter(options =>
                     {
                         options.Endpoint = telemetrySettings.TracesEndpoint;
