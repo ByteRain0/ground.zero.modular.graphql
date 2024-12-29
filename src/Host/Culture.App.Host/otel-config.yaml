@@ -8,10 +8,10 @@ receivers:
 
 processors:
   batch:
-  filter/healthcheck:
-    traces:
-      span:
-        - 'attributes["http.target"] == "/healthcheck"'
+  attributes/db-connection:
+    actions:
+      - key: db.connection_string
+        action: delete
   redaction/creditcard:
     allow_all_keys: true
     blocked_values:
@@ -31,7 +31,111 @@ processors:
       - context: resource
         statements:
           - set(attributes["environment"], "development")
-
+  tail_sampling:
+    decision_wait: 5s
+    # Evaluates the following policies in case any match we sample the traces
+    policies:
+      [
+        {
+          # Rule: low sampling for readiness/liveness probes from dotnet-api
+          name: sample-partial-health-probes,
+          type: and,
+          and:
+            {
+              and_sub_policy:
+                [
+                  {
+                    # filter by service name
+                    name: service-name-policy,
+                    type: string_attribute,
+                    string_attribute:
+                      {
+                        key: service.name,
+                        values: [ dotnet-api ],
+                      },
+                  },
+                  {
+                    # filter by route
+                    name: route-live-ready-policy,
+                    type: string_attribute,
+                    string_attribute:
+                      {
+                        key: http.route,
+                        values: [ /live, /ready, /healthcheck ],
+                        enabled_regex_matching: true,
+                      },
+                  },
+                  {
+                    # apply probabilistic sampling
+                    name: probabilistic-policy,
+                    type: probabilistic,
+                    probabilistic: { sampling_percentage: 0.1 },
+                  },
+                ],
+            },
+        },
+        {
+          # Rule: Sample all errors from dotnet-api
+          name: sample-all-errors,
+          type: and,
+          and:
+            {
+              and_sub_policy:
+                [
+                  {
+                    # filter by service name
+                    name: service-name-policy,
+                    type: string_attribute,
+                    string_attribute:
+                      {
+                        key: service.name,
+                        values: [ dotnet-api ],
+                      },
+                  },
+                  {
+                    name: error-check-policy,
+                    type: status_code,
+                    status_code: { status_codes: [ ERROR ] }
+                  }
+                ]
+            }
+        },
+        {
+          # Rule: low sampling for hangfire probes from dotnet-api 
+          name: sample-partial-hangfire-probes,
+          type: and,
+          and:
+            {
+              and_sub_policy:
+                [
+                  {
+                    name: service-name-policy,
+                    type: string_attribute,
+                    string_attribute:
+                      {
+                        key: service.name,
+                        values: [ dotnet-api ],
+                      },
+                  },
+                  {
+                    name: check-db-command-policy,
+                    type: string_attribute,
+                    string_attribute: { key: db.statement, values: [ ".*hangfire.*" ], enabled_regex_matching: true, cache_max_size: 10 }
+                  },
+                  {
+                    name: probabilistic-policy,
+                    type: probabilistic,
+                    probabilistic: { sampling_percentage: 0.1 },
+                  },
+                ]
+            }
+        },
+        {
+          name: sample-long-running-requests,
+          type: latency,
+          latency: { threshold_ms: 100 }
+        }
+      ]
 
 exporters:
   otlp/aspire:
@@ -47,9 +151,10 @@ service:
       receivers: [otlp]
       processors:
         - batch
-        - filter/healthcheck
+        - attributes/db-connection
         - redaction/creditcard
         - transform/environment
+        - tail_sampling
       exporters: [otlp/aspire]
     metrics:
       receivers: [otlp]
