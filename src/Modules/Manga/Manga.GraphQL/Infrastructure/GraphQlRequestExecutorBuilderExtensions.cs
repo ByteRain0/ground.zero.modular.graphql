@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Manga.GraphQL.Infrastructure;
 
-public static class MangaGraphqlInstaller
+public static class GraphQlRequestExecutorBuilderExtensions
 {
     public static IRequestExecutorBuilder AddMangaGraphql(this IRequestExecutorBuilder builder)
     {

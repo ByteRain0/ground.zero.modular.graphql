@@ -1,4 +1,3 @@
-using Core.Environment;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Hangfire.PostgreSql.Factories;
@@ -13,7 +12,8 @@ public static class BackgroundJobsServiceCollectionExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("Background-jobs");
+        return services;
+        var connectionString = configuration.GetConnectionString("jobs-db");
         var connectionFactory = new NpgsqlConnectionFactory(connectionString, new PostgreSqlStorageOptions());
 
         services.AddHangfire(hangfireConfiguration =>

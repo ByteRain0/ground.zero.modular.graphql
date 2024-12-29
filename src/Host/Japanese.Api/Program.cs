@@ -7,12 +7,12 @@ using Japanese.Api.Migrations;
 var builder = WebApplication
     .CreateBuilder(args);
 
-builder.AddServiceDefaults();
-
-builder.Services
-    .AddApplicationServices(builder.Configuration)
-    .AddBackgroundJobs(builder.Configuration) // Set only in the Program.cs to make testing easier
-    .AddGraphQLInfrastructure();
+builder
+    .AddServiceDefaults()
+    .AddApplicationServices()
+        .Services
+            .AddBackgroundJobs(builder.Configuration)
+            .AddGraphQLInfrastructure();
 
 var app = builder.Build();
 
@@ -25,9 +25,9 @@ if (AppHost.IsDevelopment())
 app.MapDefaultEndpoints();
 
 app.MapGraphQL();
-app.MapHangfireDashboard(options: new DashboardOptions()
-{
-    StatsPollingInterval = 60000
-});
+// app.MapHangfireDashboard(options: new DashboardOptions()
+// {
+//     StatsPollingInterval = 60000
+// });
 
 app.RunWithGraphQLCommands(args);

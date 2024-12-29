@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Anime.GraphQL.Infrastructure;
 
-public static class ServiceCollectionExtensions
+public static class GraphQlRequestExecutorBuilderExtensions
 {
     public static IRequestExecutorBuilder AddAnimeGraphql(this IRequestExecutorBuilder builder)
     {

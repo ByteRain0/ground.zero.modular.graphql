@@ -14,6 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
       <PackageReference Include="FairyBread" />
       <PackageReference Include="Hangfire.AspNetCore" />
       <PackageReference Include="Hangfire.PostgreSql" />
