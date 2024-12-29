@@ -126,7 +126,9 @@ exporters:
   debug:
     verbosity: detailed
   otlp/aspire:
-    endpoint: "http://localhost:18888"
+    endpoint: ${env:ASPIRE_ENDPOINT}
+    headers:
+      x-otlp-api-key: ${env:ASPIRE_API_KEY}
     tls:
       insecure: true
 
@@ -140,9 +142,9 @@ service:
       receivers: [ otlp ]
       processors:
         - batch
-        - attributes/environment-setup
-        - attributes/PII-data-cleanup
-        - tail_sampling
+#        - attributes/environment-setup
+#        - attributes/PII-data-cleanup
+#        - tail_sampling
       exporters:
         - otlp/aspire
         - debug
