@@ -9,5 +9,4 @@ builder
 builder
     .AddProject<Japanese_Api>("dotnet-api");
 
-
 builder.Build().Run();
