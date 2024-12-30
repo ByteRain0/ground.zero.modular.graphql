@@ -1,6 +1,6 @@
 namespace Anime.Contracts.Exceptions;
 
-public class AnimeNotFoundException : Exception, IAnimeBasedException
+public class AnimeNotFoundException : Exception
 {
     public static string ErrorMessage => "Anime not found";
 
