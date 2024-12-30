@@ -9,6 +9,7 @@ builder
 
 var postgres = builder
     .AddPostgres("postgres")
+    //.WithImage("ankane/pgvector")
     .WithPgAdmin()
     .WithDataVolume()
     .WithLifetime(ContainerLifetime.Persistent);
