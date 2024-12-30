@@ -1,4 +1,3 @@
-using Anime.GraphQL.Infrastructure;
 using Anime.Service.Infrastructure;
 using Core.Auth;
 using Core.Behaviors;
@@ -7,7 +6,6 @@ using Core.QueryFilters;
 using Core.Validation;
 using HotChocolate.Data;
 using HotChocolate.Execution.Configuration;
-using Manga.GraphQL.Infrastructure;
 using Manga.Service.Infrastructure;
 using MediatR;
 
@@ -26,10 +24,10 @@ public static class WebApplicationBuilderExtensions
             .AddMediatRBehaviorPipeline()
             .AddHttpContextAccessor()
             .AddSingleton(TimeProvider.System);
-
+        
         return builder;
     }
-    
+
     public static IRequestExecutorBuilder AddGraphQLInfrastructure(
         this IServiceCollection services)
     {
@@ -40,8 +38,8 @@ public static class WebApplicationBuilderExtensions
                 options.DefaultBindingBehavior = BindingBehavior.Explicit;
                 options.EnsureAllNodesCanBeResolved = true;
             })
-            .AddAnimeGraphql()
-            .AddMangaGraphql()
+            .AddAnimeGraphqlTypes()
+            .AddMangaGraphqlTypes()
             .AddGraphQlConventions();
     }
 

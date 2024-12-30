@@ -14,12 +14,10 @@ var postgres = builder
     .WithDataVolume()
     .WithLifetime(ContainerLifetime.Persistent);
 
-var database = postgres.AddDatabase("default-db");
+var defaultDb = postgres.AddDatabase("default-db");
 
 builder
     .AddProject<Japanese_Api>("dotnet-api")
-    .WithReference(database)
-    .WaitFor(postgres)
-    .WaitFor(database);
+    .WithReference(defaultDb).WaitFor(defaultDb);
 
 builder.Build().Run();

@@ -21,8 +21,7 @@ public class SchemaTests
 
        var schema = await builder
             .AddApplicationServices()
-            .Services
-            .AddGraphQLInfrastructure()
+            .Services.AddGraphQLInfrastructure()
             .BuildSchemaAsync();
        
         schema.MatchSnapshot();
