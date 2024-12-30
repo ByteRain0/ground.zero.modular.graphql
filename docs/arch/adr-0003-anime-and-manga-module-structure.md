@@ -1,32 +1,59 @@
-# 0003. Anime & Manga module structures
+# 0003. Anime & Manga Module Structures
 
 **Date:** 2024-12-25
 
 ## Problem
 
-Explain why Anime & Manga modules are implemented in a different way.
+Explain the rationale behind implementing the Anime and Manga modules in different ways and their respective design decisions.
 
 ## Decision
 
-Anime module is going to resemble a more 'traditional', albeit simplified, Onion-Architecture template with GraphQL mostly acting at the API layer. </br>
-Manga module is going to resemble a GraphQL over Database (EfCore) structure, with direct exposure of IQueryables for clients to allow them to build their queries. </br>
-A bridge module will be in place that will unite the public API's of both modules at graphql level.
+- The **Anime module** will follow a more traditional, albeit simplified, Onion Architecture template. In this setup, GraphQL will primarily act at the API layer.
+- The **Manga module** will adopt a **GraphQL over Database** (EF Core) approach, directly exposing `IQueryables` to clients, allowing them to build their queries dynamically.
+- A **Bridge module** will be introduced to unify the public APIs of both modules at the GraphQL level.
+
+---
 
 ## Consequences
 
-Anime module:
-1. Is going to be more complex.
-2. Require more boilerplate code.
-3. To mitigate the need for boilerplate code we will do the following:
-   * Treat Contracts class library as Domain layer.
-   * Domain models (i.e. entities) will be r-used in EfCore DbContext.
-   * EfCore will use Configurations to map domain models to the database more efficiently.
-   * GraphQl nodes will be also based on the domain models and use configurations to fine tune what data and what operations we expose.
-4. This will allow us more fine-grained control over how our schema will look like.
-5. Contracts library will expose a set of events for client subscriptions (notifications) and other modules consumption (integrations).
+### Anime Module
 
+1. **Complexity**:  
+   The Anime module will be more complex due to the layered Onion Architecture design.
 
-Manga module:
-1. Is going to be simpler for BE developers.
-2. Is going to require more effort from FE developers to build their queries from the exposed Nodes.
-3. Allows more usage 'freedom' for clients of the API.
+2. **Boilerplate Code**:  
+   Requires more boilerplate code to ensure a clean separation of concerns.
+
+3. **Boilerplate Mitigation**:  
+   To reduce redundancy:
+   - **Contracts Library as Domain Layer**: The Contracts library will act as the Domain layer, housing domain models.
+   - **Domain Models Reuse**: Domain models will be reused in the EF Core `DbContext`.
+   - **EF Core Configurations**: Mappings will be handled via configurations to efficiently map domain models to the database.
+   - **GraphQL Nodes**: Nodes will also be based on domain models, with configurations used to fine-tune the exposed data and operations.
+
+4. **Schema Control**:  
+   This approach provides finer control over the GraphQL schema, ensuring it aligns with business requirements.
+
+5. **Contracts Library**:  
+   The Contracts library will expose:
+   - Events for **client subscriptions** (notifications).
+   - Events for **module integrations** (integrations).
+
+---
+
+### Manga Module
+
+1. **Simplified Backend Development**:  
+   The Manga module will have a simpler structure, making it easier for backend developers to work with.
+
+2. **Increased Frontend Responsibility**:  
+   Frontend developers will need to invest more effort into building queries dynamically from the exposed GraphQL nodes.
+
+3. **Greater API Freedom**:  
+   Clients will have more flexibility in how they query and interact with the API, enabling a broader range of use cases.
+
+---
+
+## Summary
+
+The Anime module prioritizes control and structure, making it ideal for scenarios requiring a tightly managed schema and event-driven integrations. The Manga module prioritizes simplicity and flexibility, better suited for client-driven query-building use cases. The Bridge module ensures that both approaches coexist seamlessly within the same GraphQL endpoint.  

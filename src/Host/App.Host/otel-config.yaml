@@ -2,19 +2,35 @@ receivers:
   otlp:
     protocols:
       grpc:
+        endpoint: 0.0.0.0:4317
       http:
+        endpoint: 0.0.0.0:4318
 
 processors:
   batch:
-  attributes/PII-data-cleanup:
+  attributes/db-connection:
     actions:
-      - key: sureName
+      - key: db.connection_string
         action: delete
-  attributes/environment-setup:
-    actions:
-      - key: environment
-        value: development
-        action: upsert
+  redaction/creditcard:
+    allow_all_keys: true
+    blocked_values:
+      - "4[0-9]{12}(?:[0-9]{3})?" ## Visa credit card number
+      - "(5[1-5][0-9]{14})"       ## MasterCard number
+  transform/environment:
+    error_mode: ignore
+    trace_statements:
+      - context: resource
+        statements:
+          - set(attributes["environment"], "development")
+    log_statements:
+      - context: resource
+        statements:
+          - set(attributes["environment"], "development")
+    metric_statements:
+      - context: resource
+        statements:
+          - set(attributes["environment"], "development")
   tail_sampling:
     decision_wait: 5s
     # Evaluates the following policies in case any match we sample the traces
@@ -121,30 +137,34 @@ processors:
         }
       ]
 
-
 exporters:
-  otlp:
-    endpoint: "aspire-dashboard:18889"
+  otlp/aspire:
+    endpoint: ${env:ASPIRE_ENDPOINT}
+    headers:
+      x-otlp-api-key: ${env:ASPIRE_API_KEY}
     tls:
       insecure: true
 
 service:
   pipelines:
-    logs:
-      receivers: [ otlp ]
-      processors: [ batch ]
-      exporters: [ otlp ]
     traces:
-      receivers: [ otlp ]
+      receivers: [otlp]
       processors:
         - batch
-        - attributes/environment-setup
-        - attributes/PII-data-cleanup
+        - attributes/db-connection
+        - redaction/creditcard
+        - transform/environment
         - tail_sampling
-      exporters:
-        - otlp
+      exporters: [otlp/aspire]
     metrics:
-      receivers: [ otlp ]
-      processors: [ batch ]
-      exporters:
-        - otlp
+      receivers: [otlp]
+      processors:
+        - batch
+        - transform/environment
+      exporters: [otlp/aspire]
+    logs:
+      receivers: [otlp]
+      processors:
+        - batch
+        - transform/environment
+      exporters: [otlp/aspire]

@@ -1,3 +1,4 @@
+using Anime.Contracts.Exceptions;
 using Anime.Contracts.Services.Anime.Commands;
 using Anime.Contracts.Services.Anime.Queries;
 using Core.Clasifiers;
@@ -8,6 +9,7 @@ namespace Anime.GraphQL.Anime.Mutations;
 [MutationType]
 public static class UpdateAnimeMutation
 {
+    [Error<AnimeNotFoundException>]
     public static async Task<Contracts.Models.Anime?> UpdateAnimeAsync(
         UpdateAnime command,
         IMediator mediator,

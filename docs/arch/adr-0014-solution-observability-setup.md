@@ -1,59 +1,66 @@
-# 0014. Observability setup
+# 0014. Observability Setup
 
 **Date:** 2024-12-26
 
 ## Problem
 
-The solution is in need of a robust observability setup.
+The solution requires a robust observability setup to ensure effective monitoring, debugging, and performance tracking.
 
 ## Decision
 
-We will use the OpenTelemetry observability stack to gather signals (logs, spans, metrics) from the system. </br>
-Signals will be pushed from the api to a OTel collector towards the observability backends. </br>
+We will adopt the OpenTelemetry observability stack to gather signals (logs, spans, metrics) from the system.  
+Signals will be pushed from the API to an OTel collector, which will forward them to the observability backends.
 
 ## Consequences
 
-### Architecture setup
+### Architecture Setup
 
-In the current setup we will have the api push signals to a pre-configured OTel collector.
-For local development we will use Aspire Dashboard as an aggregation solution.
-For live we will create a more extensive setup consisting of:
-1. OTel collector
-2. Loki - log aggregation solution.
-3. Prometheus - metrics & monitoring solution.
-4. Tempo - tracing backend solution.
-5. Grafana - observability platform.
+- **Current Setup**:  
+  The API will push signals to a pre-configured OTel collector.  
+  For local development, we will utilize Aspire Dashboard as an aggregation solution.
 
-For both setups a specific docker-compose file will be created. </br>
-Configurations will be held in a ./configurations folder.
+- **Live Environment**:  
+  The live setup will be more comprehensive and will include:
+   1. OTel Collector
+   2. Loki - Log aggregation solution
+   3. Prometheus - Metrics and monitoring solution
+   4. Tempo - Tracing backend solution
+   5. Grafana - Observability platform
+
+- **Local Development**:  
+  The OTel collector instance will run as part of the Aspire app host.
+
+- **Configuration Management**:  
+  Live environment configurations for the collector and services will be stored in the `./configurations` folder.
 
 ### Configurations
 
-For the api the OTel configurations will be held inside the Core class library. </br>
-The RunTimeDiagnosticConfig will be used to create custom spans and metrics throughout the solution. </br>
-MediatR behaviors will be leveraged to generate additional logs/spans in regards to current request execution. </br>
-Additional instrumentation libraries will be installed to increase the amount of signals we can gather. </br>
-Libraries:
-1. HotChocolate.Diagnostics - GraphQl instrumentation.
-2. Npgsql.OpenTelemetry - Postgresql instrumentation.
-3. OpenTelemetry.Instrumentation.EntityFrameworkCore 
-4. Masstransit - instrumentation
+- **API Configuration**:  
+  OTel configurations will be maintained in the Core class library.  
+  The `RunTimeDiagnosticConfig` will be used to create custom spans and metrics across the solution.  
+  `MediatR` behaviors will be utilized to generate additional logs and spans related to request execution.  
+  Additional instrumentation libraries will be included to increase the volume and granularity of signals collected:
+   1. HotChocolate.Diagnostics
+   2. Npgsql.OpenTelemetry
+   3. OpenTelemetry.Instrumentation.EntityFrameworkCore
+   4. etc. 
 
-#### Additional configuration links
-1. https://opentelemetry.io/docs/collector/configuration
-2. https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/README.md
+#### Useful Configuration Links:
+1. [OpenTelemetry Collector Configuration](https://opentelemetry.io/docs/collector/configuration)
+2. [OpenTelemetry Tail Sampling Processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/README.md)
 
-### Observability strategy
+### Observability Strategy
 
 1. Treat logs as human-readable audit events.
-2. Treat spans as additional information that enhances the logs to better understand what went on during a specific event.
-3. Use metrics to capture relevant usage data about the application.
-4. Use signals to set up alerting in case something goes wrong.
-5. Trace processing strategy:
-   * Add filter to remove PII data.
-   * Add rule to sample only 10% of the health checks.
-   * Add rule to sample only 10% of the hangfire probes.
-   * Add rule to sample all traces in case there was an error.
-   * Add rule to sample all traces in case the request took longer than expected NFR (±500ms). 
-   * 
-6. Use Unit tests to ensure that the expected signal formats are maintained.
+2. Use spans to provide additional context that complements the logs, offering a clearer understanding of events.
+3. Collect metrics to capture relevant usage data about the application.
+4. Leverage signals for setting up alerts in case of issues.
+5. **Trace Processing Strategy**:
+   - Filter out PII data.
+   - Sample only 10% of health checks.
+   - Sample only 10% of Hangfire probes.
+   - Sample all traces for requests with errors.
+   - Sample all traces for requests exceeding the expected NFR (±500ms).
+   - ...
+
+6. Use unit tests to validate that the expected signal formats are consistently maintained.

@@ -44,6 +44,11 @@ type AnimeEdge {
   node: Anime!
 }
 
+type AnimeNotFoundError implements Error {
+  message: String!
+  idOrTitle: String
+}
+
 type Author {
   name: String!
 }
@@ -148,6 +153,7 @@ type Subscription {
 
 type UpdateAnimePayload {
   anime: Anime
+  errors: [UpdateAnimeError!]
 }
 
 union AnimeByIdResult = Anime | ForbiddenError
@@ -155,6 +161,8 @@ union AnimeByIdResult = Anime | ForbiddenError
 union CreateAnimeError = ForbiddenError
 
 union StudioResult = Studio | ForbiddenError
+
+union UpdateAnimeError = AnimeNotFoundError
 
 input AnimeSortInput {
   title: SortEnumType @cost(weight: "10")

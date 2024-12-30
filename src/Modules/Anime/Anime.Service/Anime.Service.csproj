@@ -3,6 +3,7 @@
     <Folder Include="Application\Anime\CommandHandlers\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
     <PackageReference Include="HotChocolate.Data" />
     <PackageReference Include="HotChocolate.Pagination.Core" />
     <PackageReference Include="HotChocolate.Pagination.EntityFramework" />

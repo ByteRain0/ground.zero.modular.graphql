@@ -1,4 +1,3 @@
-using Anime.GraphQL.Infrastructure;
 using Anime.Service.Infrastructure;
 using Core.Auth;
 using Core.Behaviors;
@@ -7,24 +6,28 @@ using Core.QueryFilters;
 using Core.Validation;
 using HotChocolate.Data;
 using HotChocolate.Execution.Configuration;
-using Manga.GraphQL.Infrastructure;
 using Manga.Service.Infrastructure;
 using MediatR;
 
 namespace Japanese.Api.Infrastructure;
 
-public static class ServiceCollectionExtensions
+public static class WebApplicationBuilderExtensions
 {
-    public static IServiceCollection AddApplicationServices(
-        this IServiceCollection services,
-        IConfiguration configuration) =>
-        services
-            .AddAnime(configuration)
-            .AddManga(configuration)
+    public static IHostApplicationBuilder AddApplicationServices(
+        this IHostApplicationBuilder builder)
+    {
+        builder
+            .AddAnimeServices()
+            .AddMangaServices();
+
+        builder.Services
             .AddMediatRBehaviorPipeline()
             .AddHttpContextAccessor()
             .AddSingleton(TimeProvider.System);
-    
+        
+        return builder;
+    }
+
     public static IRequestExecutorBuilder AddGraphQLInfrastructure(
         this IServiceCollection services)
     {
@@ -35,11 +38,11 @@ public static class ServiceCollectionExtensions
                 options.DefaultBindingBehavior = BindingBehavior.Explicit;
                 options.EnsureAllNodesCanBeResolved = true;
             })
-            .AddAnimeGraphql()
-            .AddMangaGraphql()
+            .AddAnimeGraphqlTypes()
+            .AddMangaGraphqlTypes()
             .AddGraphQlConventions();
     }
-    
+
     private static IRequestExecutorBuilder AddGraphQlConventions(
         this IRequestExecutorBuilder builder)
     {
@@ -55,21 +58,18 @@ public static class ServiceCollectionExtensions
             .AddQueryConventions()
             .AddMutationConventions()
             .AddInMemorySubscriptions()
-            .AddFairyBread(opts =>
-            {
-                opts.ThrowIfNoValidatorsFound = true;
-            })
+            .AddFairyBread(opts => { opts.ThrowIfNoValidatorsFound = true; })
             .AddErrorFilter<GraphQLAuthExceptionFilter>()
             .AddErrorFilter<BusinessValidationErrorFilter>()
             .InitializeOnStartup()
             .AddInstrumentation();
-        
+
         builder.ModifyPagingOptions(cfg =>
         {
             cfg.DefaultPageSize = 10;
             cfg.MaxPageSize = 50;
         });
-        
+
         if (AppHost.IsDevelopment())
         {
             builder.ModifyRequestOptions(cfg =>
@@ -78,7 +78,7 @@ public static class ServiceCollectionExtensions
                 cfg.IncludeExceptionDetails = true;
             });
         }
-        
+
         return builder;
     }
 

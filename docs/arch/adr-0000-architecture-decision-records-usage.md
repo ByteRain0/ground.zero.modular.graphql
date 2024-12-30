@@ -4,15 +4,21 @@
 
 ## Problem
 
-We need to record the architectural decisions made on this project and store them as close to the code as possible.
+To maintain a clear and traceable history of architectural decisions, we need a standardized way to document them and store them as close to the codebase as possible.
 
 ## Decision
 
-We will use the concept of Architecture Decision Records, as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions).
+We will adopt the concept of Architecture Decision Records (ADRs), as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions).  
+These records will serve as a structured and lightweight mechanism for documenting decisions.
 
 ## Consequences
 
-- Every time a new architecture decision is made, it is required to add a new Architecture Decision Record.
-- Existing Architecture Decision Records are immutable. Whenever there is a need to update an old record, a new one is created.
+- **New Decisions**:  
+  Whenever a new architectural decision is made, a corresponding ADR must be created.
+- **Immutability**:  
+  Existing ADRs will remain immutable. If a previous decision needs revisiting or updating, a new ADR will be created to reflect the change while preserving historical context.
 
-See Michael Nygard's article, linked above. For a lightweight ADR toolset, see Nat Pryce's [adr-tools](https://github.com/npryce/adr-tools).
+### Additional Resources
+
+- Michael Nygard's article: [Documenting Architecture Decisions](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions)
+- Lightweight ADR toolset: [adr-tools by Nat Pryce](https://github.com/npryce/adr-tools)
