@@ -12,9 +12,10 @@ public static class ApplicationBuilderExtensions
 {
     public static IHostApplicationBuilder AddMangaServices(this IHostApplicationBuilder builder)
     {
+        //TODO: uncomment once issue https://github.com/dotnet/aspire/issues/6852 is fixed
         //builder.AddNpgsqlDbContext<MangaDbContext>("manga-db");
 
-        var connectionString = builder.Configuration.GetConnectionString("manga-db");
+        var connectionString = builder.Configuration.GetConnectionString("default-db");
         builder.Services.AddDbContext<MangaDbContext>(
             opts => opts.UseNpgsql(connectionString));
         

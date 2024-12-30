@@ -12,9 +12,10 @@ public static class ApplicationBuilderExtensions
 {
     public static IHostApplicationBuilder AddAnimeServices(this IHostApplicationBuilder builder)
     {
-        //builder.AddNpgsqlDbContext<AnimeDbContext>("anime-db");
+        //TODO: uncomment once issue https://github.com/dotnet/aspire/issues/6852 is fixed
+        //builder.AddNpgsqlDbContext<AnimeDbContext>("default-db");
         
-        var connectionString = builder.Configuration.GetConnectionString("anime-db");
+        var connectionString = builder.Configuration.GetConnectionString("default-db");
         builder.Services.AddDbContext<AnimeDbContext>(
             opts => opts.UseNpgsql(connectionString));
         

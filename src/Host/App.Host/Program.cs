@@ -13,15 +13,12 @@ var postgres = builder
     .WithDataVolume()
     .WithLifetime(ContainerLifetime.Persistent);
 
-var mangaDatabase = postgres.AddDatabase("manga-db");
-var animeDatabase = postgres.AddDatabase("anime-db");
-var jobsDatabase = postgres.AddDatabase("jobs-db");
+var database = postgres.AddDatabase("default-db");
 
 builder
     .AddProject<Japanese_Api>("dotnet-api")
-    .WithReference(mangaDatabase)
-    .WithReference(animeDatabase)
-    .WithReference(jobsDatabase)
-    .WaitFor(postgres);
+    .WithReference(database)
+    .WaitFor(postgres)
+    .WaitFor(database);
 
 builder.Build().Run();

@@ -25,9 +25,9 @@ if (AppHost.IsDevelopment())
 app.MapDefaultEndpoints();
 
 app.MapGraphQL();
-// app.MapHangfireDashboard(options: new DashboardOptions()
-// {
-//     StatsPollingInterval = 60000
-// });
+app.MapHangfireDashboard(options: new DashboardOptions()
+{
+    StatsPollingInterval = 60000
+});
 
 app.RunWithGraphQLCommands(args);
