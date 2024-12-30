@@ -1,142 +1,131 @@
-# 0001. Title: Solution structure
+# 0001. Solution Structure
 
 **Date:** 2024-12-23
 
-# Problem
+## Problem
 
-Define the structure both logical and physical of the project.
+Define both the logical and physical structure of the project to ensure consistency, scalability, and maintainability.
 
-# Decision
+## Decision
 
-The solution is going to use a modular-monolith structure.
-Every module is going to be composed of:
-* Contracts class library. 
-* Service class library. 
-* GraphQL class library.
-* (Optional) Bridge class library.
+The solution will follow a **modular-monolith architecture**. Each module will consist of:
+- **Contracts** class library
+- **Service** class library
+- **GraphQL** class library
+- (Optional) **Bridge** class library
 
-General solution class libraries:
-* Common. 
-* Core. 
-* Japanese.Api.
+### General Solution Class Libraries:
+- **Common**: Shared domain elements across modules.
+- **Core**: Shared infrastructure elements such as authentication, behaviors, and configurations.
+- **Japanese.Api**: The API application responsible for dependency injection (DI), configurations, and running the app.
+- **App.Host**: Aspire host application responsible for infrastructure setup.
+- **ServiceDefaults**: Aspire base service defaults.
 
-Additional elements to take into account:
-* Directory.Build.props - centralised project configurations.
-* Directory.Packages.props - centralised NuGet management.
-* docker-compose.yaml - local development infrastructure provisioning.
+### Additional Elements:
+- **Directory.Build.props**: Centralized project configurations.
+- **Directory.Packages.props**: Centralized NuGet dependency management.
 
-## Contracts
+---
 
-Each module will expose a Public API for integration.
-Modules inside the system will work with the contracts library whenever they need to consume or send information to the module.
-Here we will keep Interfaces, Models, Events and Validators for each module.
+## Module Structure
 
-This is the desired structure of the contracts class library:
-* Exceptions -- contains a list of exceptions that the module can throw.
-* Models -- contains a list of domain models and integration events specific to the module.
-  * Events
-    * Notifications -- contains events the clients can subscribe to.
-      * Event1.cs
-      * ..
-    * Integrations -- contains events other systems components can subscribe to.
-      * Event2.cs
-      * ..
-  * Model1.cs
-  * ..
-* Services
-  * Node1 -- contains all commands / queries / metrics specific to a Node (domain entity) in the module. 
-    * Commands
-      * Command1.cs + Command1Validator.cs
-      * ..
-    * Queries
-      * Query1.cs + Query1Validator.cs + Query1Filters.cs
-    * Metrics
-      * NodeMetrics.cs
-    * Telemetry -- contains telemetry tags specific for to a Node.
-      * NodeTelemetryTags.cs
-  * Node2
-    * ..
+### **Contracts**
+Defines the module's public API for integration, ensuring clear boundaries and communication protocols between modules.
 
-## Service
-Every module will have an implementation class library. Here is where most of the business operations will be handled.
-Each module can have a unique structure in order to cater to the specific needs of the business.
-The following description is the standard structure of a service class library.
+#### Desired Contracts Library Structure:
+- **Exceptions**: Lists exceptions specific to the module.
+- **Models**: Contains domain models and integration events.
+  - **Events**
+    - **Notifications**: Events for client subscriptions.
+    - **Integrations**: Events for inter-module or system-wide subscriptions.
+- **Services**
+  - Organized by **Node** (domain entities), containing commands, queries, metrics, and telemetry tags.
+    - **Commands**: Command definitions and validators.
+    - **Queries**: Query definitions, validators, and filters.
+    - **Metrics**: Metrics for the node.
+    - **Telemetry**: Tags specific to the node for observability.
 
-* Application
-  * Node1
-    * CommandHandlers
-      * Command1
-        * Command1Handler.cs
-        * Event1NotificationHandler.cs -- 'NotificationHandler' denotes that this class pushes real-time notifications as SSE to clients.
-        * .. additional internal models if required
-    * QueryHandlers
-      * Query1
-        * QueryHandler1.cs
-        * .. additional internal models if required
-    * EventHandlers
-      * Event1
-        * EventHandler1.cs -- traditional cross module async event handler.
-  * Node2
-  * ..
-* Infrastructure
-  * Data
-    * Configurations  
-      * Model1Configuration.cs -- EFCore configuration of the model.
-    * DataLoaders
-      * Node1DataLoader.cs -- Data loader that integrates with EFCore for easier data extraction.
-    * Migrations
-      * ..
-    * Seed
-      * Model1Seed.cs
-      * Model2Seed.cs
-      * ..
-    * ModuleDbContext.cs
-  * ModuleInfo.cs -- Information for the source generation engine of HotChocolate
-  * ServiceCollectionExtensions.cs -- DI extension for Program.cs
+---
 
-## GraphQL
-* Node1
-  * Mutations
-    * Mutation1.cs + CommandInputType.cs + (optionaly) CommandResponseType.cs
-  * Queries
-    * Query1.cs
-  * Nodes
-    * ModelNode1.cs -- Representation of a specific Node in GraphQl.
-    * .. - additioanl GraphQl specific types like constraints.cs enums etc.
-* Node2
-  * ..
-* Infrastructure
-  * 
+### **Service**
+Contains business logic and implementation details for each module.
 
-## Bridge
-A class library meant for merging the query functionalities of 2 or more modules at GraphQL level.
+#### Standard Service Structure:
+- **Application**
+  - **CommandHandlers**: Handles business operations for commands.
+  - **QueryHandlers**: Handles business operations for queries.
+  - **EventHandlers**: Handles async cross-module events.
+- **Infrastructure**
+  - **Data**
+    - **Configurations**: EF Core model configurations.
+    - **DataLoaders**: Integrates EF Core for streamlined data access.
+    - **Migrations**: Database migrations.
+    - **Seed**: Data seeding classes.
+    - **ModuleDbContext**: Database context for the module.
+  - **ModuleInfo.cs**: Metadata for HotChocolate source generation.
+  - **ServiceCollectionExtensions.cs**: Dependency Injection setup.
 
-## Common
-A class library used for common module domain elements.
+---
 
-## Core
-A class library used for common infrastructure elements. Like:
-* Auth
-* Behaviors
-* Configurations
-* Exceptions
-* Pagination
-* Messaging
-* QueryFilters
-* etc.
+### **GraphQL**
+Defines GraphQL types, queries, and mutations for each module.
+
+#### Structure:
+- **Nodes**: Represents domain entities as GraphQL types.
+- **Mutations**: Command inputs and (optional) response types.
+- **Queries**: Query types.
+- Additional GraphQL-specific definitions like constraints and enums.
+
+---
+
+### **Bridge**
+Facilitates the merging of GraphQL query functionalities across multiple modules.
+
+---
+
+## Shared Libraries
+
+### **Common**
+Houses shared domain elements used across modules.
+
+### **Core**
+Houses shared infrastructure elements, such as:
+- Authentication
+- Behaviors
+- Configurations
+- Exceptions
+- Pagination
+- Messaging
+- Query Filters
+
+### **ServiceDefaults**
+Houses shared configurations for Aspire based applications(building blocks).
+
+---
 
 ## Japanese.Api
+The api application responsible for:
+- Dependency Injection (DI).
+- Centralized configurations.
+- Running the application.
 
-Host app for the functionality. Is responsible for DI, Configurations and running the app.
+---
 
-# Consequences
+## App.Host
+The Host application responsible for:
+- Infrastructure pre-provisioning
+- Environment configurations
 
-Positive:
-* Well-defined structure and boundaries for the project.
-* Easier maintenance due to decoupling of the modules.
-* Structure can be enforced with Architecture tests later on.
+---
 
-Negative:
-* Increased difficulty in developing the system.
-* A steeper learning curve.
-* Additional boilerplate code.
+## Consequences
+
+### Positive:
+- Provides a clear and well-defined structure with module boundaries.
+- Simplifies maintenance through decoupling.
+- Supports enforcement of the architecture via automated tests.
+
+### Negative:
+- Increased complexity in development.
+- Steeper learning curve for new team members.
+- Additional boilerplate code required.

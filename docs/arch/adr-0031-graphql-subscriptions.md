@@ -1,33 +1,37 @@
-# 0031. Notifying clients about occured events
+# 0031. Notifying Clients About Occurred Events
 
 **Date:** 2024-12-24
 
 ## Problem
 
-The clients want to subscribe to real time notifications about newly added anime.
+Clients require the ability to subscribe to real-time notifications for newly added anime.
+
+---
 
 ## Options
 
-Following options have been considered:
-1. SignalR
-2. GraphQL subscriptions (ServerSideEvents (SSE) and WS websockets)
+The following options were considered:  
+1. **SignalR**  
+2. **GraphQL Subscriptions** using Server-Sent Events (SSE) or WebSockets  
+
+---
 
 ## Decision
 
-Use GraphQL subscriptions (SSE) with the Hotchocoloate.Subscriptions.* NuGet packages and InMemory subscription provider.
-Unlike WebSockets, SSE is a half-duplex communication channel, which means the server can send messages to the client, but not the other way around. This makes it a good fit for one-way real-time data like updates or notifications.
-SignalR is a valid alternative which is based around the .NET ecosystem but we are looking a more universal solution.
+We will implement **GraphQL subscriptions (SSE)** using the **HotChocolate.Subscriptions.* NuGet packages** and the **InMemory subscription provider**. </br>  
+SSE offers a half-duplex communication channel where the server can send messages to the client but not vice versa, making it ideal for one-way real-time data such as updates or notifications. </br>  
+While SignalR is a viable alternative and well-integrated into the .NET ecosystem, we opted for a more universal solution provided by HotChocolate.
 
+---
 
 ## Consequences
 
-Positive:
-1. Will allow clients to subscribe to specific events.
-2. In the code we can use ITopicEventSender to send events from anywhere in the system.
-3. HotChocolate has an abstraction that will allow us to change the implementation details of the subscription provider in the future. 
-4. Current subscription provider options that we have are : InMemory, Redis & RabbitMq.
+### Positive:
+1. Enables clients to subscribe to specific events for real-time updates.  
+2. Supports the use of **`ITopicEventSender`**, allowing events to be triggered from anywhere in the system.  
+3. HotChocolate provides an abstraction layer, making it easier to change the subscription provider implementation in the future.  
+4. Available subscription providers include: **InMemory**, **Redis**, and **RabbitMQ**.  
 
-Negative:
-1. We are going to couple to HotChocolate abstractions.
-2. No duplex communication.
-
+### Negative:
+1. Introduces coupling to HotChocolate abstractions.  
+2. Does not support duplex communication (client-to-server messages).  
