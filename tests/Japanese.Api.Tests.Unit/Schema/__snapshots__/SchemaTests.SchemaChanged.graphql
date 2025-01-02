@@ -55,7 +55,6 @@ type Author {
 
 type CreateAnimePayload {
   anime: Anime
-  errors: [CreateAnimeError!]
 }
 
 type ForbiddenError implements Error {
@@ -157,8 +156,6 @@ type UpdateAnimePayload {
 }
 
 union AnimeByIdResult = Anime | ForbiddenError
-
-union CreateAnimeError = ForbiddenError
 
 union StudioResult = Studio | ForbiddenError
 
