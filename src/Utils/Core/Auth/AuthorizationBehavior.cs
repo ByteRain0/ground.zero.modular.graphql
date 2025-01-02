@@ -1,7 +1,9 @@
+using System.Diagnostics;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text.Json;
 using Core.Auth.Keycloack;
+using Core.Otel;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 
@@ -22,6 +24,9 @@ public class AuthorizationBehavior<TRequest, TResponse>
         RequestHandlerDelegate<TResponse> next,
         CancellationToken cancellationToken)
     {
+        using var evaluateAuthActivity = 
+            RunTimeDiagnosticConfig.Source.StartActivity("Evaluating user entitlements.");
+        
         var attribute = request!.GetType().GetCustomAttribute<AuthorizeRolesAttribute>();
         
         if (attribute == null)
@@ -30,6 +35,9 @@ public class AuthorizationBehavior<TRequest, TResponse>
         }
         
         var roles = attribute.Roles;
+        
+        evaluateAuthActivity?.SetTag("required_roles", roles);
+        
         var httpContext = _httpContextAccessor.HttpContext;
 
         if (httpContext?.User?.Identity is not ClaimsIdentity identity || !identity.IsAuthenticated)
@@ -38,24 +46,33 @@ public class AuthorizationBehavior<TRequest, TResponse>
         }
         
         var resourceAccesses = identity.Claims
-            .FirstOrDefault(c => c.Type == AuthorizationConstants.RolesClaimTypeName)?
+            .FirstOrDefault(c => c.Type == AuthorizationConstants.IDPRolesClaimTypeName)?
             .Value;
 
         if (string.IsNullOrEmpty(resourceAccesses))
         {
-            throw new ForbiddenException("User is not authorized to this applicaion.");
+            throw new ForbiddenException("User is not authorized to this application.");
         }
-        
-        var appUserRoles = JsonSerializer.Deserialize<Dictionary<string, ClientRoles>>(resourceAccesses)!
-            .FirstOrDefault(x => x.Key == AuthorizationConstants.ApplicationName)
-            .Value
-            .Roles;
-        
-        if (!roles.Any(appUserRoles.Contains))
+
+        var appUserRolesList = JsonSerializer.Deserialize<Dictionary<string, ClientRoles>>(resourceAccesses);
+
+        if (appUserRolesList is null)
         {
-            throw new ForbiddenException("User does not have the required claims.");
+            evaluateAuthActivity?.AddEvent(new ActivityEvent("No application and roles bundle was found"));
+        }
+        else
+        {
+            var appUserRoles = appUserRolesList
+                .FirstOrDefault(x => x.Key == AuthorizationConstants.ApplicationName)
+                .Value
+                .Roles;
+        
+            if (roles.Any(appUserRoles.Contains))
+            {
+                return await next();
+            }
         }
         
-        return await next();
+        throw new ForbiddenException("User does not have the required claims.");
     }
 }
