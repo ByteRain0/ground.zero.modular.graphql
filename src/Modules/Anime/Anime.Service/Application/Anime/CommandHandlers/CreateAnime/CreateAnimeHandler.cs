@@ -1,9 +1,7 @@
 using System.Diagnostics;
 using Anime.Contracts.Models.Events.Notifications;
 using Anime.Service.Infrastructure.Data;
-using Core.Auth;
 using Core.Otel;
-using Core.Validation;
 using FluentValidation;
 using FluentValidation.Results;
 using HotChocolate.Subscriptions;
