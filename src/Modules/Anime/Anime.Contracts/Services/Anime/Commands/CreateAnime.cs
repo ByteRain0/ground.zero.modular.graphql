@@ -1,3 +1,4 @@
+using Core.Auth;
 using Core.Clasifiers;
 using FluentValidation;
 using MediatR;
@@ -14,6 +15,7 @@ namespace Anime.Contracts.Services.Anime.Commands;
 /// <param name="Synopsis"></param>
 /// <param name="Demographics"></param>
 /// <param name="TotalEpisodes"></param>
+[AuthorizeRoles("app-admin")]
 public record CreateAnime(
     string Title,
     int StudioId,
@@ -21,7 +23,7 @@ public record CreateAnime(
     string Synopsis,
     Demographics Demographics,
     int TotalEpisodes) : IRequest;
-    
+
 public class CreateAnimeValidator : AbstractValidator<CreateAnime>
 {
     public CreateAnimeValidator()

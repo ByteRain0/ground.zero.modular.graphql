@@ -1,20 +1,17 @@
 using System.Reflection;
 using System.Security.Claims;
+using System.Text.Json;
+using Core.Auth.Keycloack;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 
 namespace Core.Auth;
 
-/// <summary>
-/// MediatR based auth pipeline behavior.
-/// </summary>
-/// <typeparam name="TRequest"></typeparam>
-/// <typeparam name="TResponse"></typeparam>
 public class AuthorizationBehavior<TRequest, TResponse> 
     : IPipelineBehavior<TRequest, TResponse>
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
-
+    
     public AuthorizationBehavior(IHttpContextAccessor httpContextAccessor)
     {
         _httpContextAccessor = httpContextAccessor;
@@ -39,16 +36,26 @@ public class AuthorizationBehavior<TRequest, TResponse>
         {
             throw new ForbiddenException("User is not authenticated.");
         }
+        
+        var resourceAccesses = identity.Claims
+            .FirstOrDefault(c => c.Type == AuthorizationConstants.RolesClaimTypeName)?
+            .Value;
 
-        var userRoles = identity.Claims
-            .Where(c => c.Type == ClaimTypes.Role)
-            .Select(c => c.Value);
-
-        if (!roles.Any(userRoles.Contains))
+        if (string.IsNullOrEmpty(resourceAccesses))
+        {
+            throw new ForbiddenException("User is not authorized to this applicaion.");
+        }
+        
+        var appUserRoles = JsonSerializer.Deserialize<Dictionary<string, ClientRoles>>(resourceAccesses)!
+            .FirstOrDefault(x => x.Key == AuthorizationConstants.ApplicationName)
+            .Value
+            .Roles;
+        
+        if (!roles.Any(appUserRoles.Contains))
         {
             throw new ForbiddenException("User does not have the required claims.");
         }
-
+        
         return await next();
     }
 }

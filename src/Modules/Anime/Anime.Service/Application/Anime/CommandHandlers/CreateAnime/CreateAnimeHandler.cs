@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Anime.Contracts.Models.Events.Notifications;
 using Anime.Service.Infrastructure.Data;
+using Core.Auth;
 using Core.Otel;
 using Core.Validation;
 using FluentValidation;
@@ -31,6 +32,7 @@ internal class CreateAnimeHandler
         _logger = logger;
         _mediator = mediator;
     }
+
 
     public async Task Handle(
         Contracts.Services.Anime.Commands.CreateAnime request,

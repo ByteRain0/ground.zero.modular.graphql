@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Aspire.Keycloak.Authentication" />
       <PackageReference Include="HotChocolate.AspNetCore" />
       <PackageReference Include="HotChocolate.AspNetCore.CommandLine" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design">

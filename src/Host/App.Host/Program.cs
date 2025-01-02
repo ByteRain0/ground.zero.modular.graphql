@@ -16,8 +16,18 @@ var postgres = builder
 
 var defaultDb = postgres.AddDatabase("default-db");
 
+var keycloack = builder
+    .AddKeycloak(name: "keycloack", port: 8080)
+    .WithDataVolume()
+    .WithRealmImport("../../../configurations/keycloack")
+    .WithExternalHttpEndpoints()
+    .WithLifetime(ContainerLifetime.Persistent);
+
 builder
     .AddProject<Japanese_Api>("dotnet-api")
-    .WithReference(defaultDb).WaitFor(defaultDb);
+    .WithReference(defaultDb).WaitFor(defaultDb)
+    .WithReference(keycloack).WaitFor(keycloack);
 
-builder.Build().Run();
+builder
+    .Build()
+    .Run();
