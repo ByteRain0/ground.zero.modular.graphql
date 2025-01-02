@@ -16,7 +16,7 @@ public class ActivityTracingBehavior<TRequest, TResponse>
         RequestHandlerDelegate<TResponse> next, 
         CancellationToken cancellationToken)
     { 
-        using var activity = RunTimeDiagnosticConfig.Source.StartActivity(typeof(TRequest).Name);
+        using var activity = RunTimeDiagnosticConfig.Source.StartActivity($"Handling MediatR request: {typeof(TRequest).Name}");
         return await next(); 
     }
 }

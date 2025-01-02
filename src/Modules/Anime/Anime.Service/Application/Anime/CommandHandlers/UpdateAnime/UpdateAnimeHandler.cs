@@ -3,6 +3,7 @@ using Anime.Contracts.Exceptions;
 using Anime.Contracts.Services.Anime.Telemetry;
 using Anime.Service.Infrastructure.Data;
 using Core.Extensions;
+using Core.Otel;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,21 +23,28 @@ internal class UpdateAnimeHandler
         Contracts.Services.Anime.Commands.UpdateAnime request, 
         CancellationToken cancellationToken)
     {
-        Activity.Current?.SetTag(AnimeTelemetryTags.AnimeIdOrTitle, request.Id);
-
+        Activity.Current?.SetTag(AnimeTelemetryTags.AnimeId, request.Id);
+        
+        using var searchActivity =
+            RunTimeDiagnosticConfig.Source.StartActivity("Check if anime with provided Id exists");
+        
         var anime = await _animeDbContext
             .Animes
             .FirstOrDefaultAsync(
                 x => x.Id == request.Id,
                 cancellationToken);
-
+        
         if (anime is null)
         {
             var exception = new AnimeNotFoundException(request.Id.ToString());
-            Activity.Current?.AddException(exception);
-            Activity.Current?.SetStatus(ActivityStatusCode.Error);
+            Activity.Current?.AddExceptionAndFail(exception);
             throw exception;
         }
+        
+        searchActivity?.Stop();
+        Activity.Current?.SetTag(AnimeTelemetryTags.AnimeTitle, anime.Title);
+
+        using var updateAnimeActivity = RunTimeDiagnosticConfig.Source.StartActivity("Update anime using new values");
         
         anime.Title.UpdateIfHasValue(
             request.Title,

@@ -24,7 +24,7 @@ public class AuthorizationBehavior<TRequest, TResponse>
         RequestHandlerDelegate<TResponse> next,
         CancellationToken cancellationToken)
     {
-        using var evaluateAuthActivity = RunTimeDiagnosticConfig.Source.StartActivity("Evaluating user entitlements.");
+        using var evaluateAuthActivity = RunTimeDiagnosticConfig.Source.StartActivity("Evaluate user entitlements");
         var attribute = GetAuthorizeRolesAttribute(request);
         if (attribute == null)
         {
@@ -37,12 +37,13 @@ public class AuthorizationBehavior<TRequest, TResponse>
         var identity = GetAuthenticatedUserIdentity();
         var resourceAccesses = GetResourceAccesses(identity);
         
-        
         var appUserRolesList = ParseRetrievedUserRoles(resourceAccesses);
         if (appUserRolesList == null)
         {
-            evaluateAuthActivity?.AddEvent(new ActivityEvent("No application and roles bundle was found"));
-            throw new ForbiddenException("User is not authorized to this application.");
+            evaluateAuthActivity?.AddEvent(new ActivityEvent("No application and roles bundle was found."));
+            var exception = new ForbiddenException("User is not authorized to this application.");
+            evaluateAuthActivity?.AddExceptionAndFail(exception);
+            throw exception;
         }
 
         if (CheckIfUserHasRequiredRoles(appUserRolesList, roles))
@@ -51,6 +52,7 @@ public class AuthorizationBehavior<TRequest, TResponse>
             return await next();
         }
 
+        evaluateAuthActivity?.SetStatus(ActivityStatusCode.Error);
         throw new ForbiddenException("User does not have the required claims.");
     }
     
@@ -66,8 +68,11 @@ public class AuthorizationBehavior<TRequest, TResponse>
         var httpContext = _httpContextAccessor.HttpContext;
         if (httpContext?.User?.Identity is not ClaimsIdentity identity || !identity.IsAuthenticated)
         {
-            throw new ForbiddenException("User is not authenticated.");
+            var exception = new ForbiddenException("User is not authenticated.");
+            activity?.AddExceptionAndFail(exception);
+            throw exception;
         }
+        
         return identity;
     }
 
@@ -80,7 +85,9 @@ public class AuthorizationBehavior<TRequest, TResponse>
 
         if (string.IsNullOrEmpty(resourceAccesses))
         {
-            throw new ForbiddenException("User is not authorized to this application.");
+            var exception = new ForbiddenException("User is not authorized to this application.");
+            activity?.AddExceptionAndFail(exception);
+            throw exception;
         }
 
         return resourceAccesses;

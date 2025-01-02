@@ -12,7 +12,7 @@ internal class GetAnimeByTitleHandler(IAnimeByTitleDataLoader dataLoader)
         Contracts.Services.Anime.Queries.GetAnimeByTitle request,
         CancellationToken cancellationToken)
     {
-        Activity.Current?.SetTag(AnimeTelemetryTags.AnimeIdOrTitle,request.Title);
+        Activity.Current?.SetTag(AnimeTelemetryTags.AnimeTitle,request.Title);
         return await dataLoader.LoadAsync(request.Title, cancellationToken);
     }
 }

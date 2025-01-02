@@ -1,6 +1,6 @@
-using System.Diagnostics;
 using Anime.Contracts.Models.Events.Notifications;
 using Anime.Contracts.Services.Anime.Events;
+using Anime.Contracts.Services.Anime.Telemetry;
 using Core.Otel;
 using HotChocolate.Subscriptions;
 using MediatR;
@@ -26,7 +26,10 @@ public class AnimeWasCreateNotificationHandler : INotificationHandler<AnimeWasCr
 
     public async Task Handle(AnimeWasCreated notification, CancellationToken cancellationToken)
     {
-        using var notificationActivity = RunTimeDiagnosticConfig.Source.StartActivity();
+        using var notificationActivity = RunTimeDiagnosticConfig.Source.StartActivity("Push notification to topic");
+        notificationActivity?.AddTag(AnimeTelemetryTags.Topic, AnimeTopicNames.AnimeAddedTopicName);
+        notificationActivity?.AddTag(AnimeTelemetryTags.AnimeId, notification.Id);
+        
         try
         {
             await _topicEventSender.SendAsync(
@@ -38,13 +41,15 @@ public class AnimeWasCreateNotificationHandler : INotificationHandler<AnimeWasCr
         // In case of repeated failures consider implementing an outbox setup.
         catch (Exception ex)
         {
-            Activity.Current?.AddException(ex);
-            Activity.Current?.SetStatus(ActivityStatusCode.Error);
+            notificationActivity?.AddExceptionAndFail(ex);
             
             _logger.LogError(
                 exception: ex, 
                 message: "Issue sending notification. {NotificationType} {AnimeId}", 
                 typeof(AnimeWasCreated), notification.Id);
+            
+            // TODO: decide if we want to stop the flow in case of failure or continue.
+            // throw;
         }
     }
 }

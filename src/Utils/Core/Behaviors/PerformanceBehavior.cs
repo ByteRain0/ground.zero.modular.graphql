@@ -29,7 +29,7 @@ public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequ
         {
             var requestName = typeof(TRequest).Name;
             
-            _logger.LogWarning("Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}",
+            _logger.LogWarning("Long running MediatR request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}",
                 requestName, elapsedMilliseconds, request);
         }
 

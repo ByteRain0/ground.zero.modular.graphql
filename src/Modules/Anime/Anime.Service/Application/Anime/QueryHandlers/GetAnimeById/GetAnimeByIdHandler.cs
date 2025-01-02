@@ -13,7 +13,7 @@ internal class GetAnimeByIdHandler(IAnimeByIdDataLoader dataLoader)
         Contracts.Services.Anime.Queries.GetAnimeById request,
         CancellationToken cancellationToken)
     {
-        Activity.Current?.SetTag(AnimeTelemetryTags.AnimeIdOrTitle,request.Id);
+        Activity.Current?.SetTag(AnimeTelemetryTags.AnimeId,request.Id);
         return await dataLoader.LoadAsync(request.Id, cancellationToken);
         
         // In case we want to return exact errors we can use Error patterns :

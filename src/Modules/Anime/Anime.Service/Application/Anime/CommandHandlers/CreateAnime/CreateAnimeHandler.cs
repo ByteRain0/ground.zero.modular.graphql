@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Anime.Contracts.Models.Events.Notifications;
+using Anime.Contracts.Services.Anime.Telemetry;
 using Anime.Service.Infrastructure.Data;
 using Core.Otel;
 using FluentValidation;
@@ -30,29 +31,32 @@ internal class CreateAnimeHandler
         _logger = logger;
         _mediator = mediator;
     }
-
-
+    
     public async Task Handle(
         Contracts.Services.Anime.Commands.CreateAnime request,
         CancellationToken cancellationToken)
     {
         using (RunTimeDiagnosticConfig.Source.StartActivity("Check if anime with provided title exists"))
         {
+            Activity.Current?.SetTag(AnimeTelemetryTags.AnimeTitle, request.Title);
+            
             var animeExists = await _animeDbContext.Animes.AnyAsync(
                 x => x.Title.ToLower() == request.Title.ToLower(), cancellationToken);
 
             if (animeExists)
             {
-                Activity.Current?.SetTag("AnimeTitle", request.Title);
-
                 var failure = new ValidationFailure(
                     propertyName: nameof(Contracts.Services.Anime.Commands.CreateAnime.Title),
                     errorMessage: "An entity with the provided title already exists",
                     attemptedValue: request.Title);
 
-                throw new ValidationException([failure]);
+                var validationException = new ValidationException([failure]);
+                Activity.Current?.AddExceptionAndFail(validationException);
+                throw validationException;
             }
         }
+
+        using var saveAnimeToDbActivity = RunTimeDiagnosticConfig.Source.StartActivity("Save anime to database");
 
         var anime = new Contracts.Models.Anime
         {
@@ -65,15 +69,26 @@ internal class CreateAnimeHandler
             IsCompleted = false,
             IsAiring = false
         };
-
-        using (RunTimeDiagnosticConfig.Source.StartActivity("Save anime to database"))
+        await _animeDbContext.Animes.AddAsync(anime, cancellationToken);
+        
+        try
         {
-            await _animeDbContext.Animes.AddAsync(anime, cancellationToken);
             await _animeDbContext.SaveChangesAsync(cancellationToken);
         }
+        catch (Exception exception)
+        {
+            saveAnimeToDbActivity?.AddExceptionAndFail(exception);
+            throw;
+        }
+        saveAnimeToDbActivity?.Stop();
 
         _logger.LogInformation("New anime created. Title {Title}", anime.Title);
-
+        
+        using var publishNotificationActivity =
+            RunTimeDiagnosticConfig.Source.StartActivity("Publish notification to graphql subscribers.");
+        
+        Activity.Current?.SetTag(AnimeTelemetryTags.AnimeId, anime.Id);
+        
         await _mediator.Publish(new AnimeWasCreated(
             anime.Id,
             anime.Demographics,
