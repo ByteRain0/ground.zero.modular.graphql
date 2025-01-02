@@ -1,6 +1,5 @@
 using Anime.Contracts.Services.Anime.Commands;
 using Anime.Contracts.Services.Anime.Queries;
-using Core.Auth;
 using MediatR;
 
 namespace Anime.GraphQL.Anime.Mutations;
@@ -8,7 +7,6 @@ namespace Anime.GraphQL.Anime.Mutations;
 [MutationType]
 public static class CreateAnimeMutation
 {
-    [Error<ForbiddenException>]
     public static async Task<Contracts.Models.Anime?> CreateAnimeAsync(
         CreateAnime command,
         IMediator mediator,

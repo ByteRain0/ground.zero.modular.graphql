@@ -12,7 +12,9 @@ builder
     .AddApplicationServices()
         .Services
             .AddBackgroundJobs(builder.Configuration)
+            .AddKeyCloackBasedAuth()
             .AddGraphQLInfrastructure();
+
 
 var app = builder.Build();
 

@@ -2,7 +2,6 @@ using System.Diagnostics;
 using Anime.Contracts.Models.Events.Notifications;
 using Anime.Service.Infrastructure.Data;
 using Core.Otel;
-using Core.Validation;
 using FluentValidation;
 using FluentValidation.Results;
 using HotChocolate.Subscriptions;
@@ -31,6 +30,7 @@ internal class CreateAnimeHandler
         _logger = logger;
         _mediator = mediator;
     }
+
 
     public async Task Handle(
         Contracts.Services.Anime.Commands.CreateAnime request,

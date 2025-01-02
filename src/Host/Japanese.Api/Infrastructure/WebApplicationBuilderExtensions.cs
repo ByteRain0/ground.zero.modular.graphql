@@ -24,14 +24,13 @@ public static class WebApplicationBuilderExtensions
             .AddMediatRBehaviorPipeline()
             .AddHttpContextAccessor()
             .AddSingleton(TimeProvider.System);
-        
+
         return builder;
     }
 
     public static IRequestExecutorBuilder AddGraphQLInfrastructure(
-        this IServiceCollection services)
-    {
-        return services
+        this IServiceCollection services) =>
+        services
             .AddGraphQLServer()
             .ModifyOptions(options =>
             {
@@ -41,6 +40,25 @@ public static class WebApplicationBuilderExtensions
             .AddAnimeGraphqlTypes()
             .AddMangaGraphqlTypes()
             .AddGraphQlConventions();
+
+    public static IServiceCollection AddKeyCloackBasedAuth(this IServiceCollection services)
+    {
+        services.AddAuthorization();
+        services.AddAuthentication()
+            .AddKeycloakJwtBearer(
+                serviceName: "keycloack",
+                realm: "japanese-culture",
+                configureOptions: bearerOptions =>
+                {
+                    if (AppHost.IsDevelopment())
+                    {
+                        bearerOptions.RequireHttpsMetadata = false;
+                    }
+
+                    bearerOptions.Audience = "account";
+                });
+
+        return services;
     }
 
     private static IRequestExecutorBuilder AddGraphQlConventions(
@@ -58,9 +76,9 @@ public static class WebApplicationBuilderExtensions
             .AddQueryConventions()
             .AddMutationConventions()
             .AddInMemorySubscriptions()
-            .AddFairyBread(opts => { opts.ThrowIfNoValidatorsFound = true; })
             .AddErrorFilter<GraphQLAuthExceptionFilter>()
             .AddErrorFilter<BusinessValidationErrorFilter>()
+            .AddFairyBread(opts => { opts.ThrowIfNoValidatorsFound = true; })
             .InitializeOnStartup()
             .AddInstrumentation();
 

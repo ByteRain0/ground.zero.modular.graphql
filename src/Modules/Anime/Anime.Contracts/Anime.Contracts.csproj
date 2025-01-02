@@ -8,6 +8,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Utils\Common\Common.csproj" />
+    <ProjectReference Include="..\..\..\Utils\Core\Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Events\Integrations\" />
