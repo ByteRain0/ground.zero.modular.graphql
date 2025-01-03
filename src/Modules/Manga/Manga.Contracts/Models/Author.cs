@@ -7,4 +7,6 @@ public class Author
     public string Name { get; set; }
 
     public ICollection<Manga> Mangas { get; set; }
+
+    public string? Settings { get; set; }
 }
