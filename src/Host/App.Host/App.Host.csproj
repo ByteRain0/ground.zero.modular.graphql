@@ -1,11 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <Sdk Name="Aspire.AppHost.Sdk" 
-         Version="9.0.0"/>
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0"/>
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <IsAspireHost>true</IsAspireHost>
+        <IsPackable>false</IsPackable>
         <UserSecretsId>179b230b-d4be-4e70-877f-a43a1ab29d1e</UserSecretsId>
     </PropertyGroup>
 
