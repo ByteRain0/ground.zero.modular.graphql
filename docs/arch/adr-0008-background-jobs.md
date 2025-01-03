@@ -6,6 +6,8 @@
 
 The system requires the ability to execute specific operations in the background, ensuring that these tasks do not block the main application flow.
 
+---
+
 ## Decision
 
 We will utilize **Hangfire** to manage and execute asynchronous operations in the background. </br>  

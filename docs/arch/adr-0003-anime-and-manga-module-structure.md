@@ -6,6 +6,8 @@
 
 Explain the rationale behind implementing the Anime and Manga modules in different ways and their respective design decisions.
 
+---
+
 ## Decision
 
 - The **Anime module** will follow a more traditional, albeit simplified, Onion Architecture template. In this setup, GraphQL will primarily act at the API layer.

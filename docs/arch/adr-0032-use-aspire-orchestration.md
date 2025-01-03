@@ -6,13 +6,19 @@
 
 We need to simplify the local development experience to improve developer productivity and reduce setup time.
 
+---
+
 ## Decision
 
 We will use `.NET Aspire` to enhance the local development environment, as it provides integrated tools and capabilities tailored for .NET applications.
 
+---
+
 ## Alternatives
 
 - **Docker Compose**: While Docker Compose provides a robust way to orchestrate containers, it requires additional configuration and maintenance overhead, which may complicate the development process for this specific use case.
+
+---
 
 ## Consequences
 

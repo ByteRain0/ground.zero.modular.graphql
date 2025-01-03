@@ -6,6 +6,8 @@
 
 Define both the logical and physical structure of the project to ensure consistency, scalability, and maintainability.
 
+---
+
 ## Decision
 
 The solution will follow a **modular-monolith architecture**. Each module will consist of:

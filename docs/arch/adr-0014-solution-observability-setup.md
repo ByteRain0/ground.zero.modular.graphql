@@ -6,10 +6,14 @@
 
 The solution requires a robust observability setup to ensure effective monitoring, debugging, and performance tracking.
 
+---
+
 ## Decision
 
 We will adopt the OpenTelemetry observability stack to gather signals (logs, spans, metrics) from the system.  
 Signals will be pushed from the API to an OTel collector, which will forward them to the observability backends.
+
+---
 
 ## Consequences
 
