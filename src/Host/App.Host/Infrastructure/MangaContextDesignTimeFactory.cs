@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace App.Host.Infrastructure;
 
-public sealed class DataContextDesignTimeFactory :
+public sealed class MangaContextDesignTimeFactory :
     IDesignTimeDbContextFactory<MangaDbContext>
 {
     public MangaDbContext CreateDbContext(string[] args)
