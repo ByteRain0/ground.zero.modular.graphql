@@ -1,64 +1,65 @@
 <Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+    <HotChocolateVersion>14.3.0</HotChocolateVersion>
+    <OTelVersion>1.10.0</OTelVersion>
+  </PropertyGroup>
   <ItemGroup>
+    <!-- Aspire -->
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.0.0" />
     <PackageVersion Include="Aspire.Hosting.Keycloak" Version="9.0.0-preview.5.24551.3" />
     <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.0.0" />
     <PackageVersion Include="Aspire.Keycloak.Authentication" Version="9.0.0-preview.5.24551.3" />
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0" />
-    <PackageVersion Include="AutoMapper" Version="13.0.1" />
-    <PackageVersion Include="CookieCrumble" Version="14.3.0" />
-    <PackageVersion Include="FairyBread" Version="11.0.0" />
-    <PackageVersion Include="FluentValidation" Version="11.11.0" />
-    <PackageVersion Include="Hangfire.AspNetCore" Version="1.8.17" />
-    <PackageVersion Include="Hangfire.PostgreSql" Version="1.20.10" />
-    <PackageVersion Include="HotChocolate.Abstractions" Version="14.1.0" />
-    <PackageVersion Include="HotChocolate.AspNetCore" Version="14.3.0" />
-    <PackageVersion Include="HotChocolate.Data.AutoMapper" Version="14.1.0" />
-    <PackageVersion Include="HotChocolate.AspNetCore.CommandLine" Version="14.3.0" />
-    <PackageVersion Include="HotChocolate.Data" Version="14.3.0" />
-    <PackageVersion Include="HotChocolate.Data.EntityFramework" Version="14.3.0" />
-    <PackageVersion Include="HotChocolate.Data.Filters.Extensions" Version="0.8.0" />
-    <PackageVersion Include="HotChocolate.Diagnostics" Version="14.3.0" />
-    <PackageVersion Include="HotChocolate.Execution.Abstractions" Version="14.1.0" />
-    <PackageVersion Include="HotChocolate.Pagination.Core" Version="14.3.0" />
-    <!--<PackageVersion Include="Hotchocolate.Data.EntityFramework.Helpers" Version="14.0.0-p.72" />-->
-    <!-- Pagination is now done via the following HotChocolate.Pagination packages -->
-    <PackageVersion Include="HotChocolate.Pagination.EntityFramework" Version="14.3.0" />
-    <PackageVersion Include="HotChocolate.Pagination.Primitives" Version="14.3.0" />
-    <PackageVersion Include="HotChocolate.Subscriptions" Version="14.3.0" />
-    <PackageVersion Include="HotChocolate.Subscriptions.InMemory" Version="14.3.0" />
-    <PackageVersion Include="HotChocolate.Types" Version="14.1.0" />
-    <PackageVersion Include="HotChocolate.Types.Analyzers" Version="14.3.0">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageVersion>
-    <PackageVersion Include="MediatR" Version="12.4.1" />
-    <PackageVersion Include="MediatR.Contracts" Version="2.0.1" />
-    <PackageVersion Include="MediatR.Extensions.FluentValidation.AspNetCore" Version="5.1.0" />
-    <PackageVersion Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageVersion Include="Microsoft.Extensions.Options" Version="9.0.0" />
+    <!-- Open Telemetry -->
+    <PackageVersion Include="Npgsql.OpenTelemetry" Version="9.0.2" />
+    <PackageVersion Include="OpenTelemetry" Version="$(OTelVersion)" />
+    <PackageVersion Include="OpenTelemetry.Exporter.Console" Version="$(OTelVersion)" />
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="$(OTelVersion)" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="$(OTelVersion)" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.10.1" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.10.0-beta.1" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="$(OTelVersion)" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="$(OTelVersion)" />
+    <PackageVersion Include="PracticalOtel.OtelCollector.Aspire" Version="0.9.6-rc" />
+    <!-- EF Core -->
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.0.0" />
-    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="Hotchocolate.Data.EntityFramework" Version="14.0.0-p.72" />
-    <PackageVersion Include="HotChocolate.Types.CursorPagination" Version="14.3.0" />
-    <PackageVersion Include="Npgsql.OpenTelemetry" Version="9.0.2" />
-    <PackageVersion Include="OpenTelemetry" Version="1.10.0" />
-    <PackageVersion Include="OpenTelemetry.Exporter.Console" Version="1.10.0" />
-    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.10.0" />
-    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.10.0" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.10.1" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.10.0-beta.1" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.10.0" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.10.0" />
-    <PackageVersion Include="PracticalOtel.OtelCollector.Aspire" Version="0.9.6-rc" />
-    <PackageVersion Update="Aspire.Hosting.AppHost" Version="9.0.0" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
+    <!-- Hot Chocolate -->
+    <PackageVersion Include="CookieCrumble" Version="14.3.0" />
+    <PackageVersion Include="FairyBread" Version="11.0.0" />
+    <PackageVersion Include="HotChocolate.Abstractions" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.AspNetCore" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.AspNetCore.CommandLine" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Data" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Data.AutoMapper" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Data.EntityFramework" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Data.Filters.Extensions" Version="0.8.0" />
+    <PackageVersion Include="HotChocolate.Diagnostics" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Execution.Abstractions" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Pagination.Core" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Pagination.EntityFramework" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Pagination.Primitives" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Subscriptions" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Subscriptions.InMemory" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Types" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Types.Analyzers" Version="$(HotChocolateVersion)">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageVersion>
+    <PackageVersion Include="HotChocolate.Types.CursorPagination" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Types.Json" Version="$(HotChocolateVersion)" />
+    <!-- Testing -->
     <PackageVersion Include="coverlet.collector" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -69,5 +70,21 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
+    <!-- Validation -->
+    <PackageVersion Include="FluentValidation" Version="11.11.0" />
+    <PackageVersion Include="MediatR.Extensions.FluentValidation.AspNetCore" Version="5.1.0" />
+    <!-- Dependency Injection & Mediation -->
+    <PackageVersion Include="MediatR" Version="12.4.1" />
+    <PackageVersion Include="MediatR.Contracts" Version="2.0.1" />
+    <!-- Automapper -->
+    <PackageVersion Include="AutoMapper" Version="13.0.1" />
+    <!-- Background Jobs -->
+    <PackageVersion Include="Hangfire.AspNetCore" Version="1.8.17" />
+    <PackageVersion Include="Hangfire.PostgreSql" Version="1.20.10" />
+    <!-- ASP.NET Core -->
+    <PackageVersion Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <!-- Resilience & Service Discovery -->
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.0.0" />
   </ItemGroup>
 </Project>
