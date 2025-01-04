@@ -64,7 +64,7 @@ public static class WebApplicationBuilderExtensions
     public static WebApplicationBuilder AddDynamicEntitiesConfigurations(this WebApplicationBuilder builder)
     {
         builder.Configuration.AddJsonFile(
-            path:"MangaDynamicEntitiesConfigurations.json", 
+            path:"appsettings.DynamicEntities.json", 
             optional: false, 
             reloadOnChange: true);
 
