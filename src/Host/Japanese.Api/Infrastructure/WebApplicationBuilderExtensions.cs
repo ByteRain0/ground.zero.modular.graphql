@@ -61,6 +61,16 @@ public static class WebApplicationBuilderExtensions
         return services;
     }
 
+    public static WebApplicationBuilder AddDynamicEntitiesConfigurations(this WebApplicationBuilder builder)
+    {
+        builder.Configuration.AddJsonFile(
+            path:"MangaDynamicEntitiesConfigurations.json", 
+            optional: false, 
+            reloadOnChange: true);
+
+        return builder;
+    }
+    
     private static IRequestExecutorBuilder AddGraphQlConventions(
         this IRequestExecutorBuilder builder)
     {

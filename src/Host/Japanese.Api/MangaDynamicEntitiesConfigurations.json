@@ -1,0 +1,17 @@
+{
+  "AuthorSettings": [
+    {
+      "name": "AuthorSettings",
+      "fields": [
+        {
+          "name": "NotificationsEnabled",
+          "type": "Boolean"
+        },
+        {
+          "name": "EmailAddress",
+          "type": "String"
+        }
+      ]
+    }
+  ]
+}

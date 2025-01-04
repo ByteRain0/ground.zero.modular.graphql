@@ -1,5 +1,6 @@
 using Manga.Contracts.Services.Manga.Queries;
 using Manga.Service.Infrastructure.Data;
+using Manga.Service.Infrastructure.Data.DynamicTypes.AuthorSettings;
 using MediatR.Extensions.FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,9 +29,10 @@ public static class ApplicationBuilderExtensions
         });
 
         builder.Services.AddFluentValidation([serviceAssembly, contractAssembly]);
-
-        builder.AddGraphQL();
-
+        
+        builder.AddGraphQL()
+            .AddTypeModule<AuthorSettingsModule>(_ => new AuthorSettingsModule(builder.Configuration));
+        
         return builder;
     }
 }

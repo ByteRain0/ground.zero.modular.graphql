@@ -5,7 +5,8 @@ using Japanese.Api.Infrastructure;
 using Japanese.Api.Migrations;
 
 var builder = WebApplication
-    .CreateBuilder(args);
+    .CreateBuilder(args)
+    .AddDynamicEntitiesConfigurations();
 
 builder
     .AddServiceDefaults()
