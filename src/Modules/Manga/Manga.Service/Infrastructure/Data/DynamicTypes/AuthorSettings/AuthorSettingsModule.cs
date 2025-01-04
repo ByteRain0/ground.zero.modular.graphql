@@ -28,7 +28,7 @@ public class AuthorSettingsModule : ITypeModule
 
     public event EventHandler<EventArgs>? TypesChanged;
 
-    public async ValueTask<IReadOnlyCollection<ITypeSystemMember>> CreateTypesAsync(
+    public ValueTask<IReadOnlyCollection<ITypeSystemMember>> CreateTypesAsync(
         IDescriptorContext context,
         CancellationToken cancellationToken)
     {
@@ -83,6 +83,6 @@ public class AuthorSettingsModule : ITypeModule
         
         types.Add(author);
 
-        return types;
+        return new ValueTask<IReadOnlyCollection<ITypeSystemMember>>(types);
     }
 }
