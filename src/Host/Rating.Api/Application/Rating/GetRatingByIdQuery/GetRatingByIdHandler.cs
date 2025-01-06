@@ -20,18 +20,21 @@ public class GetRatingByIdHandler : IRequestHandler<GetRatingById, double>
 
     public async Task<double> Handle(GetRatingById request, CancellationToken cancellationToken)
     {
+        using var retrieveFromCacheActivity = RunTimeDiagnosticConfig.Source.StartActivity("Retrieve rating from cache");
         var cacheKey = $"{request.EntityType}:{request.Id}";
+        retrieveFromCacheActivity?.SetTag("cache-key", cacheKey);
+        
         var db = _connectionMux.GetDatabase();
-
-        // Try to retrieve the average rating from the cache
         var cachedValue = await db.StringGetAsync(cacheKey);
+        
         if (cachedValue.HasValue)
         {
-            // If found in cache, return the cached value
-            return double.Parse(cachedValue!);
+            return double.Parse(cachedValue!, CultureInfo.InvariantCulture);
         }
         
-        // If not found in cache, calculate the average rating from the database
+        retrieveFromCacheActivity?.Stop();
+        
+        using var retrieveFromDatabaseActivity = RunTimeDiagnosticConfig.Source.StartActivity("Retrieve rating from database");
         var averageRating = _dbContext
             .Ratings
             .Where(x =>
@@ -41,14 +44,17 @@ public class GetRatingByIdHandler : IRequestHandler<GetRatingById, double>
 
         //Emulate a call to the DB
         Thread.Sleep(500);
-
+        retrieveFromDatabaseActivity?.Stop();
         
-        // Cache the calculated average rating with a sliding expiration of 1 hour
+        using var setRatingToCacheActivity = RunTimeDiagnosticConfig.Source.StartActivity("Set rating to cache");
+        setRatingToCacheActivity?.SetTag("cache-key", cacheKey);
+        setRatingToCacheActivity?.SetTag("cache-value", averageRating.ToString(CultureInfo.InvariantCulture));
+
         await db.StringSetAsync(
             cacheKey,
-            averageRating.ToString(CultureInfo.InvariantCulture),
+            averageRating,
             TimeSpan.FromHours(1));
-
+        
         return averageRating;
     }
 }

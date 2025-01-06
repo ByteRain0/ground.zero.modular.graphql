@@ -37,7 +37,7 @@ processors:
     policies:
       [
         {
-          # Rule: low sampling for readiness/liveness probes from manga-api
+          # Rule: low sampling for readiness/liveness probes from manga-api, rating-api
           name: sample-partial-health-probes,
           type: and,
           and:
@@ -51,7 +51,7 @@ processors:
                     string_attribute:
                       {
                         key: service.name,
-                        values: [ manga-api ],
+                        values: [ manga-api, rating-api ],
                       },
                   },
                   {
@@ -75,7 +75,7 @@ processors:
             },
         },
         {
-          # Rule: Sample all errors from manga-api
+          # Rule: Sample all errors from manga-api, rating-api
           name: sample-all-errors,
           type: and,
           and:
@@ -89,7 +89,7 @@ processors:
                     string_attribute:
                       {
                         key: service.name,
-                        values: [ manga-api ],
+                        values: [ manga-api, rating-api ],
                       },
                   },
                   {

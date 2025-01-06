@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
-namespace Rating.Api.Infrastructure;
+namespace Rating.Api;
 
 public static class RunTimeDiagnosticConfig
 {
