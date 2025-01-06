@@ -1,13 +1,13 @@
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
-namespace Core.Otel;
+namespace Rating.Api.Infrastructure;
 
 public static class RunTimeDiagnosticConfig
 {
-    public const string ServiceName = "manga-api";
+    public const string ServiceName = "rating-api";
 
-    public static string ServiceVersion = typeof(OpenTelemetryWebApplicationBuilderExtensions).Assembly.GetName().Version?.ToString() ?? "unknown";
+    public static string ServiceVersion = typeof(RunTimeDiagnosticConfig).Assembly.GetName().Version?.ToString() ?? "unknown";
     
     public static ActivitySource Source = new(ServiceName);
     

@@ -23,10 +23,19 @@ var keycloack = builder
     .WithExternalHttpEndpoints()
     .WithLifetime(ContainerLifetime.Persistent);
 
+var cache = builder.AddRedis("cache", port: 6379)
+    .WithDataVolume()
+    .WithLifetime(ContainerLifetime.Persistent)
+    .WithRedisInsight();
+
 builder
-    .AddProject<Japanese_Api>("dotnet-api")
+    .AddProject<Japanese_Api>("manga-api")
     .WithReference(defaultDb).WaitFor(defaultDb)
     .WithReference(keycloack).WaitFor(keycloack);
+
+builder
+    .AddProject<Rating_Api>("rating-api")
+    .WithReference(cache).WaitFor(cache);
 
 builder
     .Build()

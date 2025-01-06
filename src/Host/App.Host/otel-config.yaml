@@ -37,7 +37,7 @@ processors:
     policies:
       [
         {
-          # Rule: low sampling for readiness/liveness probes from dotnet-api
+          # Rule: low sampling for readiness/liveness probes from manga-api
           name: sample-partial-health-probes,
           type: and,
           and:
@@ -51,7 +51,7 @@ processors:
                     string_attribute:
                       {
                         key: service.name,
-                        values: [ dotnet-api ],
+                        values: [ manga-api ],
                       },
                   },
                   {
@@ -75,7 +75,7 @@ processors:
             },
         },
         {
-          # Rule: Sample all errors from dotnet-api
+          # Rule: Sample all errors from manga-api
           name: sample-all-errors,
           type: and,
           and:
@@ -89,7 +89,7 @@ processors:
                     string_attribute:
                       {
                         key: service.name,
-                        values: [ dotnet-api ],
+                        values: [ manga-api ],
                       },
                   },
                   {
@@ -101,7 +101,7 @@ processors:
             }
         },
         {
-          # Rule: low sampling for hangfire probes from dotnet-api 
+          # Rule: low sampling for hangfire probes from manga-api 
           name: sample-partial-hangfire-probes,
           type: and,
           and:
@@ -114,7 +114,7 @@ processors:
                     string_attribute:
                       {
                         key: service.name,
-                        values: [ dotnet-api ],
+                        values: [ manga-api ],
                       },
                   },
                   {
