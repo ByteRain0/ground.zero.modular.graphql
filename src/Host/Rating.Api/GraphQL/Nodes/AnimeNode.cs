@@ -10,12 +10,7 @@ public static partial class AnimeNode
     static partial void Configure(IObjectTypeDescriptor<Anime> descriptor)
     {
         descriptor.BindFieldsImplicitly();
-
-        descriptor.Field(x => x.Id)
-            .ID<int>();
     }
-
-    public static string EntityType() => "Anime";
     
     public static async Task<double> GetTotalRating(
         [Parent] Anime parent,

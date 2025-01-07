@@ -10,9 +10,6 @@ public static partial  class MangaNode
     static partial void Configure(IObjectTypeDescriptor<Manga> descriptor)
     {
         descriptor.BindFieldsImplicitly();
-        
-        // descriptor.Field(x => x.Id)
-        //     .ID<int>();
     }
     
     public static async Task<double> GetTotalRating(

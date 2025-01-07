@@ -20,7 +20,8 @@ builder
     })
     .AddRatingTypes()
     .AddQueryConventions()
-    .AddInstrumentation();
+    .AddInstrumentation()
+    .AddGlobalObjectIdentification();
 
 var app = builder.Build();
 

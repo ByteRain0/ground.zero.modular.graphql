@@ -7,8 +7,9 @@ namespace Rating.Api.GraphQL.Queries;
 public static class AnimeQuery
 {
     [Lookup]
+    [NodeResolver]
     [Internal]
-    public static Anime GetAnimeById([ID<int>] int id)
+    public static Anime GetAnimeById(int id)
     {
         return new()
         {
