@@ -19,18 +19,18 @@ builder
 
 var app = builder.Build();
 
-if (AppHost.IsDevelopment())
-{
-    app.ApplyAnimeMigrations();
-    app.ApplyMangaMigrations();
-}
+// if (AppHost.IsDevelopment())
+// {
+//     app.ApplyAnimeMigrations();
+//     app.ApplyMangaMigrations();
+// }
 
 app.MapDefaultEndpoints();
 
 app.MapGraphQL();
-app.MapHangfireDashboard(options: new DashboardOptions()
-{
-    StatsPollingInterval = 60000
-});
+// app.MapHangfireDashboard(options: new DashboardOptions()
+// {
+//     StatsPollingInterval = 60000
+// });
 
 app.RunWithGraphQLCommands(args);

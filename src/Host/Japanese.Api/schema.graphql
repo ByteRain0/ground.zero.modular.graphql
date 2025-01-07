@@ -1,0 +1,277 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+interface Error {
+  message: String!
+}
+
+"The node interface is implemented by entities that have a global unique identifier."
+interface Node {
+  id: ID!
+}
+
+type Anime implements Node {
+  internalId: Int!
+  studio: StudioResult! @cost(weight: "10")
+  id: ID!
+  title: String!
+  releaseDate: DateTime!
+  synopsis: String!
+  demographics: Demographics!
+  totalEpisodes: Int!
+  isCompleted: Boolean!
+  isAiring: Boolean!
+}
+
+"A connection to a list of items."
+type AnimeConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [AnimeEdge!]
+  "A flattened list of the nodes."
+  nodes: [Anime!]
+}
+
+"An edge in a connection."
+type AnimeEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Anime!
+}
+
+type AnimeNotFoundError implements Error {
+  message: String!
+  idOrTitle: String
+}
+
+type Author {
+  name: String!
+  settings: AuthorSettings @cost(weight: "10")
+}
+
+type AuthorSettings {
+  notificationsEnabled: Boolean @cost(weight: "10")
+  emailAddress: String @cost(weight: "10")
+}
+
+type CreateAnimePayload {
+  anime: Anime
+}
+
+type ForbiddenError implements Error {
+  message: String!
+}
+
+type Manga {
+  id: Int!
+  title(where: RestrictedStringOperationFilterInput @cost(weight: "10")): String!
+  releaseDate: DateTime!
+  synopsis: String!
+  totalChapters: Int!
+  isCompleted: Boolean!
+  isAiring: Boolean!
+  author: Author!
+}
+
+"A connection to a list of items."
+type MangaConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [MangaEdge!]
+  "A flattened list of the nodes."
+  nodes: [Manga!]
+}
+
+"An edge in a connection."
+type MangaEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Manga!
+}
+
+type Mutation {
+  createAnime(command: CreateAnimeInput!): CreateAnimePayload! @cost(weight: "10")
+  updateAnime(command: UpdateAnimeInput!): UpdateAnimePayload! @cost(weight: "10")
+}
+
+"Information about pagination in a connection."
+type PageInfo {
+  "Indicates whether more edges exist following the set defined by the clients arguments."
+  hasNextPage: Boolean!
+  "Indicates whether more edges exist prior the set defined by the clients arguments."
+  hasPreviousPage: Boolean!
+  "When paginating backwards, the cursor to continue."
+  startCursor: String
+  "When paginating forwards, the cursor to continue."
+  endCursor: String
+}
+
+type Query {
+  "Fetches an object given its ID."
+  node("ID of the object." id: ID!): Node @cost(weight: "10")
+  "Lookup nodes by a list of IDs."
+  nodes("The list of node IDs." ids: [ID!]!): [Node]! @cost(weight: "10")
+  animeById(id: ID!): Anime @cost(weight: "10")
+  animeByTitle(title: String!): Anime @cost(weight: "10")
+  anime("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): AnimeConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  studio("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): StudioConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  studioById(id: ID!): Studio @cost(weight: "10")
+  manga("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: MangaFilterInput @cost(weight: "10") order: [MangaSortInput!] @cost(weight: "10")): MangaConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  mangaById(id: Int!): Manga @cost(weight: "10")
+}
+
+type Studio implements Node {
+  anime("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): AnimeConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  id(where: IntOperationFilterInput @cost(weight: "10")): ID!
+  name(where: RestrictedStringOperationFilterInput @cost(weight: "10")): String!
+  animes: [Anime!]!
+}
+
+"A connection to a list of items."
+type StudioConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [StudioEdge!]
+  "A flattened list of the nodes."
+  nodes: [Studio!]
+}
+
+"An edge in a connection."
+type StudioEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Studio!
+}
+
+type Subscription {
+  onAnimeAdded(interestedDemographics: [Demographics!]): Anime @cost(weight: "10")
+}
+
+type UpdateAnimePayload {
+  anime: Anime
+  errors: [UpdateAnimeError!]
+}
+
+union StudioResult = Studio | ForbiddenError
+
+union UpdateAnimeError = AnimeNotFoundError
+
+input AnimeSortInput {
+  title: SortEnumType @cost(weight: "10")
+  totalEpisodes: SortEnumType @cost(weight: "10")
+  releaseDate: SortEnumType @cost(weight: "10")
+  studio: StudioSortInput @cost(weight: "10")
+}
+
+input AuthorFilterInput {
+  and: [AuthorFilterInput!]
+  or: [AuthorFilterInput!]
+  name: SearchStringOperationFilterInput
+}
+
+input AuthorSortInput {
+  name: SortEnumType @cost(weight: "10")
+}
+
+input CreateAnimeInput {
+  studioId: ID!
+  title: String!
+  releaseDate: DateTime!
+  synopsis: String!
+  demographics: Demographics!
+  totalEpisodes: Int!
+}
+
+input IntOperationFilterInput {
+  eq: Int @cost(weight: "10")
+  neq: Int @cost(weight: "10")
+  in: [Int] @cost(weight: "10")
+  nin: [Int] @cost(weight: "10")
+  gt: Int @cost(weight: "10")
+  ngt: Int @cost(weight: "10")
+  gte: Int @cost(weight: "10")
+  ngte: Int @cost(weight: "10")
+  lt: Int @cost(weight: "10")
+  nlt: Int @cost(weight: "10")
+  lte: Int @cost(weight: "10")
+  nlte: Int @cost(weight: "10")
+}
+
+input MangaFilterInput {
+  and: [MangaFilterInput!]
+  or: [MangaFilterInput!]
+  title: SearchStringOperationFilterInput
+}
+
+input MangaSortInput {
+  title: SortEnumType @cost(weight: "10")
+  releaseDate: SortEnumType @cost(weight: "10")
+}
+
+input RestrictedStringOperationFilterInput {
+  and: [RestrictedStringOperationFilterInput!]
+  or: [RestrictedStringOperationFilterInput!]
+  eq: String @cost(weight: "10")
+  neq: String @cost(weight: "10")
+}
+
+input SearchStringOperationFilterInput {
+  and: [SearchStringOperationFilterInput!]
+  or: [SearchStringOperationFilterInput!]
+  contains: String @cost(weight: "10")
+  eq: String @cost(weight: "10")
+  in: String @cost(weight: "10")
+}
+
+input StudioFilterInput {
+  and: [StudioFilterInput!]
+  or: [StudioFilterInput!]
+  name: SearchStringOperationFilterInput
+}
+
+input StudioSortInput {
+  name: SortEnumType @cost(weight: "10")
+}
+
+input UpdateAnimeInput {
+  id: ID!
+  title: String = ""
+  studioId: Int! = 0
+  releaseDate: DateTime! = "0001-01-01T00:00:00.000Z"
+  synopsis: String = ""
+  demographics: Demographics! = SHOUNEN
+  totalEpisodes: Int! = 12
+}
+
+enum Demographics {
+  SHOUNEN
+  SHOUJO
+  SEINEN
+  JOSEI
+}
+
+enum SortEnumType {
+  ASC
+  DESC
+}
+
+"The purpose of the `cost` directive is to define a `weight` for GraphQL types, fields, and arguments. Static analysis can use these weights when calculating the overall cost of a query or response."
+directive @cost("The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc." weight: String!) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION
+
+"The purpose of the `@listSize` directive is to either inform the static analysis about the size of returned lists (if that information is statically available), or to point the analysis to where to find that information."
+directive @listSize("The `assumedSize` argument can be used to statically define the maximum length of a list returned by a field." assumedSize: Int "The `slicingArguments` argument can be used to define which of the field's arguments with numeric type are slicing arguments, so that their value determines the size of the list returned by that field. It may specify a list of multiple slicing arguments." slicingArguments: [String!] "The `slicingArgumentDefaultValue` argument can be used to define a default value for a slicing argument, which is used if the argument is not present in a query." slicingArgumentDefaultValue: Int "The `sizedFields` argument can be used to define that the value of the `assumedSize` argument or of a slicing argument does not affect the size of a list returned by a field itself, but that of a list returned by one of its sub-fields." sizedFields: [String!] "The `requireOneSlicingArgument` argument can be used to inform the static analysis that it should expect that exactly one of the defined slicing arguments is present in a query. If that is not the case (i.e., if none or multiple slicing arguments are present), the static analysis may throw an error." requireOneSlicingArgument: Boolean! = true) on FIELD_DEFINITION
+
+"The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
+directive @specifiedBy("The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types." url: String!) on SCALAR
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime @specifiedBy(url: "https:\/\/www.graphql-scalars.com\/date-time")

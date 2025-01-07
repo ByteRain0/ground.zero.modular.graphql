@@ -16,7 +16,7 @@ builder
     .ModifyOptions(options =>
     {
         options.DefaultBindingBehavior = BindingBehavior.Explicit;
-        options.EnsureAllNodesCanBeResolved = true;
+        options.EnsureAllNodesCanBeResolved = false;
     })
     .AddRatingTypes()
     .AddQueryConventions()

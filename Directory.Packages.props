@@ -14,6 +14,9 @@
     <PackageVersion Include="Aspire.Keycloak.Authentication" Version="9.0.0-preview.5.24551.3" />
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0" />
     <PackageVersion Include="Aspire.StackExchange.Redis" Version="9.0.0" />
+    <PackageVersion Include="HotChocolate.Fusion.Aspire" Version="14.3.0" />
+    <PackageVersion Include="HotChocolate.Fusion.SourceSchema" Version="14.3.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.HeaderPropagation" Version="8.0.8" />
     <!-- Open Telemetry -->
     <PackageVersion Include="Npgsql.OpenTelemetry" Version="9.0.2" />
     <PackageVersion Include="OpenTelemetry" Version="$(OTelVersion)" />
@@ -60,6 +63,8 @@
     </PackageVersion>
     <PackageVersion Include="HotChocolate.Types.CursorPagination" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Types.Json" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="ChilliCream.Nitro" Version="14.0.0-preview.10" />
+    <PackageVersion Include="HotChocolate.Fusion" Version="$(HotChocolateVersion)" />
     <!-- Testing -->
     <PackageVersion Include="coverlet.collector" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>

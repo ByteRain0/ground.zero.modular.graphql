@@ -28,15 +28,20 @@ var cache = builder.AddRedis("cache", port: 6379)
     .WithLifetime(ContainerLifetime.Persistent)
     .WithRedisInsight();
 
-builder
-    .AddProject<Japanese_Api>("manga-api")
+var japaneseApi = builder
+    .AddProject<Projects.Japanese_Api>("manga-api")
     .WithReference(defaultDb).WaitFor(defaultDb)
     .WithReference(keycloack).WaitFor(keycloack);
 
-builder
-    .AddProject<Rating_Api>("rating-api")
+var ratingApi = builder
+    .AddProject<Projects.Rating_Api>("rating-api")
     .WithReference(cache).WaitFor(cache);
+
+builder.AddFusionGateway<Projects.Gateway>("fusion-gateway")
+    .WithSubgraph(japaneseApi)
+    .WithSubgraph(ratingApi);
 
 builder
     .Build()
+    .Compose()
     .Run();

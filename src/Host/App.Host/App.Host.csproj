@@ -13,6 +13,7 @@
         <PackageReference Include="Aspire.Hosting.Keycloak"/>
         <PackageReference Include="Aspire.Hosting.PostgreSQL"/>
         <PackageReference Include="Aspire.Hosting.Redis" />
+        <PackageReference Include="HotChocolate.Fusion.Aspire" />
         <PackageReference Include="Microsoft.EntityFrameworkCore"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
             <PrivateAssets>all</PrivateAssets>
@@ -26,6 +27,7 @@
                           IsAspireProjectResource="false"/>
         <ProjectReference Include="..\..\Modules\Manga\Manga.Service\Manga.Service.csproj"
                           IsAspireProjectResource="false"/>
+        <ProjectReference Include="..\Gateway\Gateway.csproj" />
         <ProjectReference Include="..\Japanese.Api\Japanese.Api.csproj"/>
         <ProjectReference Include="..\Rating.Api\Rating.Api.csproj" />
     </ItemGroup>

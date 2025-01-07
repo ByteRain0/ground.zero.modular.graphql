@@ -1,7 +1,7 @@
 using MediatR;
 using Rating.Api.Application.Rating.GetRatingByIdQuery;
 
-namespace Rating.Api.GraphQL;
+namespace Rating.Api.GraphQL.Queries;
 
 [QueryType]
 public static class RatingQuery
