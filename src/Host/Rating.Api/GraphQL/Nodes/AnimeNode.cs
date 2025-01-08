@@ -1,6 +1,6 @@
 using MediatR;
 using Rating.Api.Application.Rating.GetRatingByIdQuery;
-using Rating.Api.Models;
+using Rating.Api.Domain;
 
 namespace Rating.Api.GraphQL.Nodes;
 
@@ -12,7 +12,7 @@ public static partial class AnimeNode
         descriptor.BindFieldsImplicitly();
     }
     
-    public static async Task<double> GetTotalRating(
+    public static async Task<double?> GetTotalRating(
         [Parent] Anime parent,
         IMediator mediator, 
         CancellationToken cancellationToken) 

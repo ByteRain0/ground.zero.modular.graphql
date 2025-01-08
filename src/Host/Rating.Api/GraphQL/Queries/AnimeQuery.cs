@@ -1,5 +1,5 @@
 using HotChocolate.Fusion.SourceSchema.Types;
-using Rating.Api.Models;
+using Rating.Api.Domain;
 
 namespace Rating.Api.GraphQL.Queries;
 

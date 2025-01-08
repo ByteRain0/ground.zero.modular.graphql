@@ -1,4 +1,4 @@
-namespace Rating.Api.Models;
+namespace Rating.Api.Domain;
 
 public class Rating
 {

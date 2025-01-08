@@ -1,9 +1,9 @@
-namespace Rating.Api.Models;
+namespace Rating.Api.Domain;
 
 /// <summary>
 /// Serves as extension for Fusion Gateway.
 /// </summary>
-public class Manga
+public class Anime
 {
     public int Id { get; set; }
 }

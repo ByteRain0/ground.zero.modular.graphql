@@ -29,6 +29,7 @@ public class AuthorizationBehavior<TRequest, TResponse>
         var attribute = GetAuthorizeRolesAttribute(request);
         if (attribute == null)
         {
+            evaluateAuthActivity?.Stop();
             return await next();
         }
         

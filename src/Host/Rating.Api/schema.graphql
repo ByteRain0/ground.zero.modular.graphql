@@ -12,12 +12,12 @@ interface Node {
 }
 
 type Anime implements Node {
-  totalRating: Float! @cost(weight: "10")
+  totalRating: Float @cost(weight: "10")
   id: ID!
 }
 
 type Manga {
-  totalRating: Float! @cost(weight: "10")
+  totalRating: Float @cost(weight: "10")
   id: Int!
 }
 

@@ -20,7 +20,7 @@ These records will serve as a structured and lightweight mechanism for documenti
 - **New Decisions**:  
   Whenever a new architectural decision is made, a corresponding ADR must be created.
 - **Immutability**:  
-  Existing ADRs will remain immutable. If a previous decision needs revisiting or updating, a new ADR will be created to reflect the change while preserving historical context.
+  Immutability of ADR's will be achieved via Git history. Updated ADR's need to have a corresponding tag added.
 
 ### Additional Resources
 

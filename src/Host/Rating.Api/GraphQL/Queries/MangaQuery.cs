@@ -1,5 +1,5 @@
 using HotChocolate.Fusion.SourceSchema.Types;
-using Rating.Api.Models;
+using Rating.Api.Domain;
 
 namespace Rating.Api.GraphQL.Queries;
 
@@ -10,7 +10,7 @@ public static class MangaQuery
     [Internal]
     public static Manga GetMangaById(int id)
     {
-        return new ()
+        return new()
         {
             Id = id
         };
