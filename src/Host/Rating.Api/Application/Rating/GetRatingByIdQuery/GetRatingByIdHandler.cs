@@ -20,7 +20,7 @@ public class GetRatingByIdHandler : IRequestHandler<GetRatingById, double>
 
     public async Task<double> Handle(GetRatingById request, CancellationToken cancellationToken)
     {
-        using var retrieveFromCacheActivity = RunTimeDiagnosticConfig.Source.StartActivity("Retrieve rating from cache");
+        using var retrieveFromCacheActivity = RatingApiRunTimeDiagnosticConfig.Source.StartActivity("Retrieve rating from cache");
         var cacheKey = $"{request.EntityType}:{request.Id}";
         retrieveFromCacheActivity?.SetTag("cache-key", cacheKey);
         
@@ -34,7 +34,7 @@ public class GetRatingByIdHandler : IRequestHandler<GetRatingById, double>
         
         retrieveFromCacheActivity?.Stop();
         
-        using var retrieveFromDatabaseActivity = RunTimeDiagnosticConfig.Source.StartActivity("Retrieve rating from database");
+        using var retrieveFromDatabaseActivity = RatingApiRunTimeDiagnosticConfig.Source.StartActivity("Retrieve rating from database");
         var averageRating = _dbContext
             .Ratings
             .Where(x =>
@@ -46,7 +46,7 @@ public class GetRatingByIdHandler : IRequestHandler<GetRatingById, double>
         Thread.Sleep(500);
         retrieveFromDatabaseActivity?.Stop();
         
-        using var setRatingToCacheActivity = RunTimeDiagnosticConfig.Source.StartActivity("Set rating to cache");
+        using var setRatingToCacheActivity = RatingApiRunTimeDiagnosticConfig.Source.StartActivity("Set rating to cache");
         setRatingToCacheActivity?.SetTag("cache-key", cacheKey);
         setRatingToCacheActivity?.SetTag("cache-value", averageRating.ToString(CultureInfo.InvariantCulture));
 

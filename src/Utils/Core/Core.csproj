@@ -8,39 +8,41 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Configurations\" />
-      <Folder Include="Exceptions\" />
-      <Folder Include="Messaging\" />
+        <Folder Include="Configurations\"/>
+        <Folder Include="Exceptions\"/>
+        <Folder Include="Messaging\"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
-      <PackageReference Include="FairyBread" />
-      <PackageReference Include="Hangfire.AspNetCore" />
-      <PackageReference Include="Hangfire.PostgreSql" />
-      <PackageReference Include="HotChocolate.Data.Filters.Extensions" />
-      <PackageReference Include="HotChocolate.Diagnostics" />
-      <PackageReference Include="HotChocolate.Pagination.Primitives" />
-      <PackageReference Include="HotChocolate.Subscriptions" />
-      <PackageReference Include="HotChocolate.Subscriptions.InMemory" />
-      <PackageReference Include="MediatR" />
-      <PackageReference Include="MediatR.Extensions.FluentValidation.AspNetCore" />
-      <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
-      <PackageReference Include="Npgsql.OpenTelemetry" />
-      <PackageReference Include="OpenTelemetry" />
-      <PackageReference Include="OpenTelemetry.Exporter.Console" />
-      <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
-      <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
-      <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
-      <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" />
-      <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
-      <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
+        <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL"/>
+        <PackageReference Include="FairyBread"/>
+        <PackageReference Include="Hangfire.AspNetCore"/>
+        <PackageReference Include="Hangfire.PostgreSql"/>
+        <PackageReference Include="HotChocolate.Data.Filters.Extensions"/>
+        <PackageReference Include="HotChocolate.Diagnostics"/>
+        <PackageReference Include="HotChocolate.Pagination.Primitives"/>
+        <PackageReference Include="HotChocolate.Subscriptions"/>
+        <PackageReference Include="HotChocolate.Subscriptions.InMemory"/>
+        <PackageReference Include="MediatR"/>
+        <PackageReference Include="MediatR.Extensions.FluentValidation.AspNetCore"/>
+        <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions"/>
+        <PackageReference Include="Npgsql.OpenTelemetry"/>
+        <PackageReference Include="OpenTelemetry"/>
+        <PackageReference Include="OpenTelemetry.Exporter.Console"/>
+        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol"/>
+        <PackageReference Include="OpenTelemetry.Extensions.Hosting"/>
+        <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore"/>
+        <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore"/>
+        <PackageReference Include="OpenTelemetry.Instrumentation.Http"/>
+        <PackageReference Include="OpenTelemetry.Instrumentation.Runtime"/>
+        <PackageReference Include="Microsoft.Extensions.Http.Resilience"/>
+        <PackageReference Include="Microsoft.Extensions.ServiceDiscovery"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
-        <HintPath>..\..\..\..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\8.0.8\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
-      </Reference>
+        <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
+            <HintPath>..\..\..\..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\8.0.8\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 </Project>

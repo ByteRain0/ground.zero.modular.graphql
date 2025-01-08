@@ -1,4 +1,5 @@
 using Core.Otel;
+using Core.Otel.Sources;
 using MediatR;
 
 namespace Core.Behaviors;
@@ -16,7 +17,7 @@ public class ActivityTracingBehavior<TRequest, TResponse>
         RequestHandlerDelegate<TResponse> next, 
         CancellationToken cancellationToken)
     { 
-        using var activity = RunTimeDiagnosticConfig.Source.StartActivity($"Handling MediatR request: {typeof(TRequest).Name}");
+        using var activity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity($"Handling MediatR request: {typeof(TRequest).Name}");
         return await next(); 
     }
 }

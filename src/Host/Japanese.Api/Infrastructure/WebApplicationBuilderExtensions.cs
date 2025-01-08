@@ -2,6 +2,7 @@ using Anime.Service.Infrastructure;
 using Core.Auth;
 using Core.Behaviors;
 using Core.Environment;
+using Core.Otel.Sources;
 using Core.QueryFilters;
 using Core.Validation;
 using HotChocolate.Data;
@@ -16,6 +17,12 @@ public static class WebApplicationBuilderExtensions
     public static IHostApplicationBuilder AddApplicationServices(
         this IHostApplicationBuilder builder)
     {
+        builder.Services.AddOpenTelemetry()
+            .WithTracing(tracing => 
+                tracing.AddSource(JapaneseApiRunTimeDiagnosticConfig.Source.Name))
+            .WithMetrics(metrics => 
+                metrics.AddMeter(JapaneseApiRunTimeDiagnosticConfig.Meter.Name));
+
         builder
             .AddAnimeServices()
             .AddMangaServices();

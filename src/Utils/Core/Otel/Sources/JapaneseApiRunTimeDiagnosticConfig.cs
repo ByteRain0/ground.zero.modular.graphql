@@ -1,9 +1,9 @@
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
-namespace Core.Otel;
+namespace Core.Otel.Sources;
 
-public static class RunTimeDiagnosticConfig
+public static class JapaneseApiRunTimeDiagnosticConfig
 {
     public const string ServiceName = "manga-api";
 

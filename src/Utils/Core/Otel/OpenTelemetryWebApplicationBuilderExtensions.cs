@@ -40,8 +40,7 @@ public static class OpenTelemetryWebApplicationBuilderExtensions
             .AddOpenTelemetry()
             .WithTracing(traceProviderBuilder =>
                 traceProviderBuilder
-                    .AddNpgsql() // Uncomment in case you need to see db requests. Warning generates plethora of spans.
-                    .AddSource(RunTimeDiagnosticConfig.Source.Name)
+                    .AddNpgsql()
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
                     .AddHotChocolateInstrumentation()
@@ -64,8 +63,7 @@ public static class OpenTelemetryWebApplicationBuilderExtensions
                     .AddMeter(
                         "System.Runtime",
                         "Microsoft.AspNetCore.Hosting",
-                        "Microsoft.AspNetCore.Server.Kestrel",
-                        RunTimeDiagnosticConfig.Meter.Name
+                        "Microsoft.AspNetCore.Server.Kestrel"
                     ));
 
         return builder;

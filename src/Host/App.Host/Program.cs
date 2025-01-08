@@ -16,6 +16,9 @@ var postgres = builder
 
 var defaultDb = postgres.AddDatabase("default-db");
 
+var migrationService = builder.AddProject<Projects.Japanese_Api_MigrationService>("migration-service")
+    .WithReference(defaultDb);
+
 var keycloack = builder
     .AddKeycloak(name: "keycloack", port: 8080)
     .WithDataVolume()
@@ -31,7 +34,8 @@ var cache = builder.AddRedis("cache", port: 6379)
 var japaneseApi = builder
     .AddProject<Projects.Japanese_Api>("manga-api")
     .WithReference(defaultDb).WaitFor(defaultDb)
-    .WithReference(keycloack).WaitFor(keycloack);
+    .WithReference(keycloack).WaitFor(keycloack)
+    .WithReference(migrationService).WaitFor(migrationService);
 
 var ratingApi = builder
     .AddProject<Projects.Rating_Api>("rating-api")

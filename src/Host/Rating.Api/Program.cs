@@ -1,8 +1,14 @@
+using Core.Aspire;
+using Rating.Api;
 using Rating.Api.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
+
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracing => 
+        tracing.AddSource(RatingApiRunTimeDiagnosticConfig.Source.Name));
 
 builder.AddRedisClient(connectionName: "cache");
 

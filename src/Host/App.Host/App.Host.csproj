@@ -28,6 +28,7 @@
         <ProjectReference Include="..\..\Modules\Manga\Manga.Service\Manga.Service.csproj"
                           IsAspireProjectResource="false"/>
         <ProjectReference Include="..\Gateway\Gateway.csproj" />
+        <ProjectReference Include="..\Japanese.Api.MigrationService\Japanese.Api.MigrationService.csproj" />
         <ProjectReference Include="..\Japanese.Api\Japanese.Api.csproj"/>
         <ProjectReference Include="..\Rating.Api\Rating.Api.csproj" />
     </ItemGroup>

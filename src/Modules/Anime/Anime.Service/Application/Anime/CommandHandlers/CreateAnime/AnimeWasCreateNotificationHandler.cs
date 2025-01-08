@@ -2,6 +2,7 @@ using Anime.Contracts.Models.Events.Notifications;
 using Anime.Contracts.Services.Anime.Events;
 using Anime.Contracts.Services.Anime.Telemetry;
 using Core.Otel;
+using Core.Otel.Sources;
 using HotChocolate.Subscriptions;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -26,7 +27,7 @@ public class AnimeWasCreateNotificationHandler : INotificationHandler<AnimeWasCr
 
     public async Task Handle(AnimeWasCreated notification, CancellationToken cancellationToken)
     {
-        using var notificationActivity = RunTimeDiagnosticConfig.Source.StartActivity("Push notification to topic");
+        using var notificationActivity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Push notification to topic");
         notificationActivity?.AddTag(AnimeTelemetryTags.Topic, AnimeTopicNames.AnimeAddedTopicName);
         notificationActivity?.AddTag(AnimeTelemetryTags.AnimeId, notification.Id);
         

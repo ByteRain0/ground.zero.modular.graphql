@@ -23,4 +23,7 @@
         <PackageReference Include="OpenTelemetry.Instrumentation.Runtime"/>
         <PackageReference Include="HotChocolate.Diagnostics"/>
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\Utils\Core\Core.csproj" />
+    </ItemGroup>
 </Project>

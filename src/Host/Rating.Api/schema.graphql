@@ -26,7 +26,7 @@ type Query {
   node("ID of the object." id: ID!): Node @cost(weight: "10")
   "Lookup nodes by a list of IDs."
   nodes("The list of node IDs." ids: [ID!]!): [Node]! @cost(weight: "10")
-  animeById(id: ID!): Anime! @lookup @cost(weight: "10")
+  animeById(id: ID!): Anime! @lookup @internal @cost(weight: "10")
   mangaById(id: Int!): Manga! @lookup @internal @cost(weight: "10")
   rating(id: Int! entityType: String!): Float! @cost(weight: "10")
 }

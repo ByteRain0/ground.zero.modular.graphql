@@ -1,8 +1,13 @@
+using Core.Aspire;
 using Gateway;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
+
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracing => 
+        tracing.AddSource(GatewayRunTimeDiagnosticConfig.Source.Name));
 
 builder.Services
     .AddCors()
