@@ -14,7 +14,6 @@ builder
             .AddKeyCloackBasedAuth()
             .AddGraphQLInfrastructure();
 
-
 var app = builder.Build();
 
 app.MapDefaultEndpoints();

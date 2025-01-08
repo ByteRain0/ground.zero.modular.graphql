@@ -1,14 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
-
-  <PropertyGroup>
-    <UserSecretsId>dotnet-Japanese.Api.MigrationService-1b30d5d7-ced9-4980-8bc3-0843a3857a36</UserSecretsId>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
     <PackageReference Include="Microsoft.Extensions.Hosting" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\Modules\Anime\Anime.Service\Anime.Service.csproj" />
     <ProjectReference Include="..\..\Modules\Manga\Manga.Service\Manga.Service.csproj" />
