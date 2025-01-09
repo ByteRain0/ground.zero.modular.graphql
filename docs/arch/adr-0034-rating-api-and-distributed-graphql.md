@@ -21,6 +21,8 @@ To simplify integration for front-end and other consumers, a **Fusion Gateway** 
 2. The initial implementation will utilize an in-memory database seeded with ratings via migrations. </br>
 3. A **Fusion Gateway** built using Fusion and Aspire will enable a distributed GraphQL schema. </br>
 4. **Rating.Api** will introduce an internal `LookUp` method and extend the **Anime** and **Manga** nodes with an additional `TotalRating` property. </br>
+5. The **Fusion Gateway** is not designed to handle auth by itself. It is the responsibility of the sub-graphs to do that.
+6. The **Fusion Gateway** will forward the Auth request headers to the sub-graphs for them to handle auth.
 
 ---
 
