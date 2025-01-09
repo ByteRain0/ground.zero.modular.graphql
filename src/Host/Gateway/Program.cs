@@ -1,13 +1,25 @@
 using Core.Aspire;
 using Gateway;
+using Microsoft.Extensions.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
 builder.Services.AddOpenTelemetry()
-    .WithTracing(tracing => 
+    .WithTracing(tracing =>
         tracing.AddSource(GatewayRunTimeDiagnosticConfig.Source.Name));
+
+builder.Services
+    .AddHttpContextAccessor()
+    .AddScoped<AuthenticationMiddleware>()
+    .ConfigureAll<HttpClientFactoryOptions>(opt =>
+    {
+        opt.HttpMessageHandlerBuilderActions.Add(builder =>
+        {
+            builder.AdditionalHandlers.Add(builder.Services.GetRequiredService<AuthenticationMiddleware>());
+        });
+    });
 
 builder.Services
     .AddCors()

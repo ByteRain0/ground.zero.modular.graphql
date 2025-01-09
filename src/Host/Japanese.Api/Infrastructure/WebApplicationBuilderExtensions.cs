@@ -18,10 +18,8 @@ public static class WebApplicationBuilderExtensions
         this IHostApplicationBuilder builder)
     {
         builder.Services.AddOpenTelemetry()
-            .WithTracing(tracing => 
-                tracing.AddSource(JapaneseApiRunTimeDiagnosticConfig.Source.Name))
-            .WithMetrics(metrics => 
-                metrics.AddMeter(JapaneseApiRunTimeDiagnosticConfig.Meter.Name));
+            .WithTracing(tracing => tracing.AddSource(JapaneseApiRunTimeDiagnosticConfig.Source.Name))
+            .WithMetrics(metrics => metrics.AddMeter(JapaneseApiRunTimeDiagnosticConfig.Meter.Name));
 
         builder
             .AddAnimeServices()
@@ -57,11 +55,7 @@ public static class WebApplicationBuilderExtensions
                 realm: "japanese-culture",
                 configureOptions: bearerOptions =>
                 {
-                    if (AppHost.IsDevelopment())
-                    {
-                        bearerOptions.RequireHttpsMetadata = false;
-                    }
-
+                    if (AppHost.IsDevelopment()) bearerOptions.RequireHttpsMetadata = false;
                     bearerOptions.Audience = "account";
                 });
 
