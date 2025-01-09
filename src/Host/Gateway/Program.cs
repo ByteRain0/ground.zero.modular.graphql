@@ -1,5 +1,6 @@
 using Core.Aspire;
 using Gateway;
+using Gateway.Infrastructure;
 using Microsoft.Extensions.Http;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,8 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
 builder.Services.AddOpenTelemetry()
-    .WithTracing(tracing =>
-        tracing.AddSource(GatewayRunTimeDiagnosticConfig.Source.Name));
+    .WithTracing(tracing => tracing.AddSource(GatewayRunTimeDiagnosticConfig.Source.Name));
 
 builder.Services
     .AddHttpContextAccessor()

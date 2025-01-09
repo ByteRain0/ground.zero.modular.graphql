@@ -12,12 +12,8 @@ public static class ApplicationBuilderExtensions
 {
     public static IHostApplicationBuilder AddAnimeServices(this IHostApplicationBuilder builder)
     {
-        //TODO: uncomment once issue https://github.com/dotnet/aspire/issues/6852 is fixed
+        //TODO: track https://github.com/dotnet/aspire/issues/6852 for OTel setup.
         builder.AddNpgsqlDbContext<AnimeDbContext>("default-db", c => c.DisableTracing = true);
-        
-        // var connectionString = builder.Configuration.GetConnectionString("default-db");
-        // builder.Services.AddDbContext<AnimeDbContext>(
-        //     opts => opts.UseNpgsql(connectionString));
         
         var serviceAssembly = typeof(ApplicationBuilderExtensions).Assembly;
         var contractAssembly = typeof(CreateAnime).Assembly;
@@ -29,9 +25,7 @@ public static class ApplicationBuilderExtensions
 
         builder.Services.AddFluentValidation([serviceAssembly, contractAssembly]);
 
-        builder
-            .AddGraphQL()
-            .AddAnimeServiceTypes();
+        builder.AddGraphQL().AddAnimeServiceTypes();
         
         return builder;
     }

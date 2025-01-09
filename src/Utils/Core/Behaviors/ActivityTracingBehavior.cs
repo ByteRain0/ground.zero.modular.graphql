@@ -1,4 +1,3 @@
-using Core.Otel;
 using Core.Otel.Sources;
 using MediatR;
 

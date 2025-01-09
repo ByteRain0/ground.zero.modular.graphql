@@ -6,9 +6,3 @@ public class TypeConfig
     public string Name { get; set; } = string.Empty;
     public List<FieldConfig> Fields { get; set; } = new();
 }
-
-public class FieldConfig
-{
-    public string Name { get; set; } = string.Empty;
-    public string Type { get; set; } = string.Empty;
-}

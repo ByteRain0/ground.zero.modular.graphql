@@ -1,6 +1,6 @@
 using System.Net.Http.Headers;
 
-namespace Gateway;
+namespace Gateway.Infrastructure;
 
 public sealed class AuthenticationMiddleware(IHttpContextAccessor accessor) : DelegatingHandler
 {
