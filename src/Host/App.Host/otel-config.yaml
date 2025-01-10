@@ -131,7 +131,7 @@ processors:
             }
         },
         {
-          # Rule: low sampling for 
+          # Rule: low sampling for chillicream cdn for Nitro UI
           name: sample-partial-cdn-chillicream-com,
           type: and,
           and:

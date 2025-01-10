@@ -10,6 +10,12 @@ using Microsoft.AspNetCore.Http;
 
 namespace Core.Auth;
 
+/// <summary>
+/// NOTE: since this behavior is run for every MediatR request execution it will become a hot path.
+/// TODO: add performance tests so in time we keep track of this specific hot path.
+/// </summary>
+/// <typeparam name="TRequest"></typeparam>
+/// <typeparam name="TResponse"></typeparam>
 public class AuthorizationBehavior<TRequest, TResponse> 
     : IPipelineBehavior<TRequest, TResponse>
 {
