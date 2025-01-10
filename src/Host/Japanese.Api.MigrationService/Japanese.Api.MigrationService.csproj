@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+  <ItemGroup>
+    <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modules\Anime\Anime.Service\Anime.Service.csproj" />
+    <ProjectReference Include="..\..\Modules\Manga\Manga.Service\Manga.Service.csproj" />
+  </ItemGroup>
+</Project>

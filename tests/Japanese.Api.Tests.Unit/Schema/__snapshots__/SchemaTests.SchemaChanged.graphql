@@ -51,6 +51,12 @@ type AnimeNotFoundError implements Error {
 
 type Author {
   name: String!
+  settings: AuthorSettings @cost(weight: "10")
+}
+
+type AuthorSettings {
+  notificationsEnabled: Boolean @cost(weight: "10")
+  emailAddress: String @cost(weight: "10")
 }
 
 type CreateAnimePayload {
@@ -62,7 +68,7 @@ type ForbiddenError implements Error {
 }
 
 type Manga {
-  id(where: IntOperationFilterInput @cost(weight: "10")): Int!
+  id: Int!
   title(where: RestrictedStringOperationFilterInput @cost(weight: "10")): String!
   releaseDate: DateTime!
   synopsis: String!
@@ -112,7 +118,7 @@ type Query {
   node("ID of the object." id: ID!): Node @cost(weight: "10")
   "Lookup nodes by a list of IDs."
   nodes("The list of node IDs." ids: [ID!]!): [Node]! @cost(weight: "10")
-  animeById(id: ID!): AnimeByIdResult! @cost(weight: "10")
+  animeById(id: ID!): Anime @cost(weight: "10")
   animeByTitle(title: String!): Anime @cost(weight: "10")
   anime("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): AnimeConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
   studio("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): StudioConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
@@ -154,8 +160,6 @@ type UpdateAnimePayload {
   anime: Anime
   errors: [UpdateAnimeError!]
 }
-
-union AnimeByIdResult = Anime | ForbiddenError
 
 union StudioResult = Studio | ForbiddenError
 

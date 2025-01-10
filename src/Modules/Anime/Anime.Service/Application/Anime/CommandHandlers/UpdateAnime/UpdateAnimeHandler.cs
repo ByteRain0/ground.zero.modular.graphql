@@ -4,6 +4,7 @@ using Anime.Contracts.Services.Anime.Telemetry;
 using Anime.Service.Infrastructure.Data;
 using Core.Extensions;
 using Core.Otel;
+using Core.Otel.Sources;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,7 +27,7 @@ internal class UpdateAnimeHandler
         Activity.Current?.SetTag(AnimeTelemetryTags.AnimeId, request.Id);
         
         using var searchActivity =
-            RunTimeDiagnosticConfig.Source.StartActivity("Check if anime with provided Id exists");
+            JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Check if anime with provided Id exists");
         
         var anime = await _animeDbContext
             .Animes
@@ -44,7 +45,7 @@ internal class UpdateAnimeHandler
         searchActivity?.Stop();
         Activity.Current?.SetTag(AnimeTelemetryTags.AnimeTitle, anime.Title);
 
-        using var updateAnimeActivity = RunTimeDiagnosticConfig.Source.StartActivity("Update anime using new values");
+        using var updateAnimeActivity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Update anime using new values");
         
         anime.Title.UpdateIfHasValue(
             request.Title,

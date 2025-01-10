@@ -4,11 +4,18 @@ using System.Security.Claims;
 using System.Text.Json;
 using Core.Auth.Keycloack;
 using Core.Otel;
+using Core.Otel.Sources;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 
 namespace Core.Auth;
 
+/// <summary>
+/// NOTE: since this behavior is run for every MediatR request execution it will become a hot path.
+/// TODO: add performance tests so in time we keep track of this specific hot path.
+/// </summary>
+/// <typeparam name="TRequest"></typeparam>
+/// <typeparam name="TResponse"></typeparam>
 public class AuthorizationBehavior<TRequest, TResponse> 
     : IPipelineBehavior<TRequest, TResponse>
 {
@@ -24,10 +31,11 @@ public class AuthorizationBehavior<TRequest, TResponse>
         RequestHandlerDelegate<TResponse> next,
         CancellationToken cancellationToken)
     {
-        using var evaluateAuthActivity = RunTimeDiagnosticConfig.Source.StartActivity("Evaluate user entitlements");
+        using var evaluateAuthActivity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Evaluate user entitlements");
         var attribute = GetAuthorizeRolesAttribute(request);
         if (attribute == null)
         {
+            evaluateAuthActivity?.Stop();
             return await next();
         }
         
@@ -58,13 +66,13 @@ public class AuthorizationBehavior<TRequest, TResponse>
     
     private AuthorizeRolesAttribute? GetAuthorizeRolesAttribute(TRequest request)
     {
-        using var activity = RunTimeDiagnosticConfig.Source?.StartActivity();
+        using var activity = JapaneseApiRunTimeDiagnosticConfig.Source?.StartActivity();
         return request!.GetType().GetCustomAttribute<AuthorizeRolesAttribute>();
     }
     
     private ClaimsIdentity GetAuthenticatedUserIdentity()
     {
-        using var activity = RunTimeDiagnosticConfig.Source?.StartActivity();
+        using var activity = JapaneseApiRunTimeDiagnosticConfig.Source?.StartActivity();
         var httpContext = _httpContextAccessor.HttpContext;
         if (httpContext?.User?.Identity is not ClaimsIdentity identity || !identity.IsAuthenticated)
         {
@@ -78,7 +86,7 @@ public class AuthorizationBehavior<TRequest, TResponse>
 
     private string GetResourceAccesses(ClaimsIdentity identity)
     {
-        using var activity = RunTimeDiagnosticConfig.Source?.StartActivity();
+        using var activity = JapaneseApiRunTimeDiagnosticConfig.Source?.StartActivity();
         var resourceAccesses = identity.Claims
             .FirstOrDefault(c => c.Type == AuthorizationConstants.IDPRolesClaimTypeName)?
             .Value;
@@ -95,13 +103,13 @@ public class AuthorizationBehavior<TRequest, TResponse>
 
     private Dictionary<string, ClientRoles>? ParseRetrievedUserRoles(string resourceAccesses)
     {
-        using var activity = RunTimeDiagnosticConfig.Source?.StartActivity();
+        using var activity = JapaneseApiRunTimeDiagnosticConfig.Source?.StartActivity();
         return JsonSerializer.Deserialize<Dictionary<string, ClientRoles>>(resourceAccesses);
     }
 
     private bool CheckIfUserHasRequiredRoles(Dictionary<string, ClientRoles> appUserRolesList, IEnumerable<string> requiredRoles)
     {
-        using var activity = RunTimeDiagnosticConfig.Source?.StartActivity();
+        using var activity = JapaneseApiRunTimeDiagnosticConfig.Source?.StartActivity();
         var appUserRoles = appUserRolesList
             .FirstOrDefault(x => x.Key == AuthorizationConstants.ApplicationName)
             .Value

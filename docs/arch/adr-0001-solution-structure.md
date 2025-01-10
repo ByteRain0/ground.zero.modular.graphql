@@ -1,6 +1,7 @@
 # 0001. Solution Structure
 
-**Date:** 2024-12-23
+**Date:** 2024-12-23 </br>
+**Last-Updated:** 2025-01-08
 
 ## Problem
 
@@ -99,9 +100,7 @@ Houses shared infrastructure elements, such as:
 - Pagination
 - Messaging
 - Query Filters
-
-### **ServiceDefaults**
-Houses shared configurations for Aspire based applications(building blocks).
+- Aspire Service Defaults
 
 ---
 
@@ -113,10 +112,32 @@ The api application responsible for:
 
 ---
 
+## Japanese.Api.MigrationService
+Worker responsible for running migrations for:
+- AnimeDbContext
+- MangaDbContext
+
+---
+
+## Rating.Api
+The api application responsible for:
+- Storing ratings for anime and manga.
+
+---
+
+## Gateway
+
+Fusion based api gateway, responsible for:
+- Creating a single entry point for the graph.
+- Merging the sub-schemas of Japanese.Api and Rating.Api into one single schema.
+
+---
+
 ## App.Host
 The Host application responsible for:
 - Infrastructure pre-provisioning
 - Environment configurations
+- Running the system locally
 
 ---
 

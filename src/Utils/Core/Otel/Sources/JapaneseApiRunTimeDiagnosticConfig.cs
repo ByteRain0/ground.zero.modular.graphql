@@ -1,11 +1,11 @@
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
-namespace Core.Otel;
+namespace Core.Otel.Sources;
 
-public static class RunTimeDiagnosticConfig
+public static class JapaneseApiRunTimeDiagnosticConfig
 {
-    public const string ServiceName = "dotnet-api";
+    public const string ServiceName = "manga-api";
 
     public static string ServiceVersion = typeof(OpenTelemetryWebApplicationBuilderExtensions).Assembly.GetName().Version?.ToString() ?? "unknown";
     

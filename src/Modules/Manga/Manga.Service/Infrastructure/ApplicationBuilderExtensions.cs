@@ -13,12 +13,8 @@ public static class ApplicationBuilderExtensions
 {
     public static IHostApplicationBuilder AddMangaServices(this IHostApplicationBuilder builder)
     {
-        //TODO: uncomment once issue https://github.com/dotnet/aspire/issues/6852 is fixed
-        //builder.AddNpgsqlDbContext<MangaDbContext>("manga-db");
-
-        var connectionString = builder.Configuration.GetConnectionString("default-db");
-        builder.Services.AddDbContext<MangaDbContext>(
-            opts => opts.UseNpgsql(connectionString));
+        //TODO: track https://github.com/dotnet/aspire/issues/6852 for OTel setup.
+        builder.AddNpgsqlDbContext<MangaDbContext>("default-db", c => c.DisableTracing = true);
         
         var serviceAssembly = typeof(ApplicationBuilderExtensions).Assembly;
         var contractAssembly = typeof(GetManga).Assembly;
@@ -30,8 +26,7 @@ public static class ApplicationBuilderExtensions
 
         builder.Services.AddFluentValidation([serviceAssembly, contractAssembly]);
         
-        builder.AddGraphQL()
-            .AddTypeModule<AuthorSettingsModule>(_ => new AuthorSettingsModule(builder.Configuration));
+        builder.AddGraphQL().AddTypeModule<AuthorSettingsModule>(_ => new AuthorSettingsModule(builder.Configuration));
         
         return builder;
     }

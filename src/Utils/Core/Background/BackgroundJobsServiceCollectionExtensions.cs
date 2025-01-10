@@ -13,6 +13,12 @@ public static class BackgroundJobsServiceCollectionExtensions
         IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("default-db");
+
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            return services;
+        }
+        
         var connectionFactory = new NpgsqlConnectionFactory(connectionString, new PostgreSqlStorageOptions());
 
         services.AddHangfire(hangfireConfiguration =>

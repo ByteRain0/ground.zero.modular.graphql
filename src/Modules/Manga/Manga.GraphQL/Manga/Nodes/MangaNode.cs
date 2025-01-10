@@ -8,8 +8,7 @@ public static partial class MangaNode
         descriptor.BindFieldsImplicitly();
 
         descriptor
-            .Field(x => x.Id)
-            .UseFiltering();
+            .Field(x => x.Id);
 
         descriptor
             .Field(x => x.Title)

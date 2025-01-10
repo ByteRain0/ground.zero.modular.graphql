@@ -1,10 +1,8 @@
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Npgsql;
-using OpenTelemetry;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
@@ -28,20 +26,9 @@ public static class OpenTelemetryWebApplicationBuilderExtensions
             return builder;
         }
 
-        // Action<ResourceBuilder> configureResource = resourceBuilder =>
-        // {
-        //     resourceBuilder.AddService(
-        //         serviceName: RunTimeDiagnosticConfig.ServiceName,
-        //         serviceVersion: RunTimeDiagnosticConfig.ServiceVersion,
-        //         serviceInstanceId: System.Environment.MachineName);
-        //     resourceBuilder.AddAttributes(telemetrySettings.GetOtelAttributes());
-        //     resourceBuilder.AddAttributes(telemetrySettings.GetOtelAttributes());
-        // };
-
         builder.Logging.AddOpenTelemetry(config =>
         {
             var resourceBuilder = ResourceBuilder.CreateDefault();
-            //configureResource(resourceBuilder);
             config.SetResourceBuilder(resourceBuilder);
             config.IncludeScopes = true;
             config.IncludeFormattedMessage = true;
@@ -51,16 +38,13 @@ public static class OpenTelemetryWebApplicationBuilderExtensions
 
         builder.Services
             .AddOpenTelemetry()
-            //.ConfigureResource(configureResource)
             .WithTracing(traceProviderBuilder =>
                 traceProviderBuilder
-                    .AddNpgsql() // Uncomment in case you need to see db requests. Warning generates plethora of spans.
-                    .AddSource(RunTimeDiagnosticConfig.Source.Name)
+                    .AddNpgsql()
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
                     .AddHotChocolateInstrumentation()
                     .AddEntityFrameworkCoreInstrumentation()
-                    //.AddProcessor(new BatchActivityExportProcessor(new SimpleLinkExporter()))
                     .AddOtlpExporter(options =>
                     {
                         options.Endpoint = telemetrySettings.TracesEndpoint;
@@ -79,8 +63,7 @@ public static class OpenTelemetryWebApplicationBuilderExtensions
                     .AddMeter(
                         "System.Runtime",
                         "Microsoft.AspNetCore.Hosting",
-                        "Microsoft.AspNetCore.Server.Kestrel",
-                        RunTimeDiagnosticConfig.Meter.Name
+                        "Microsoft.AspNetCore.Server.Kestrel"
                     ));
 
         return builder;

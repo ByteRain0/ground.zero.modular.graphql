@@ -3,6 +3,7 @@ using Anime.Contracts.Models.Events.Notifications;
 using Anime.Contracts.Services.Anime.Telemetry;
 using Anime.Service.Infrastructure.Data;
 using Core.Otel;
+using Core.Otel.Sources;
 using FluentValidation;
 using FluentValidation.Results;
 using HotChocolate.Subscriptions;
@@ -36,7 +37,7 @@ internal class CreateAnimeHandler
         Contracts.Services.Anime.Commands.CreateAnime request,
         CancellationToken cancellationToken)
     {
-        using (RunTimeDiagnosticConfig.Source.StartActivity("Check if anime with provided title exists"))
+        using (JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Check if anime with provided title exists"))
         {
             Activity.Current?.SetTag(AnimeTelemetryTags.AnimeTitle, request.Title);
             
@@ -56,7 +57,7 @@ internal class CreateAnimeHandler
             }
         }
 
-        using var saveAnimeToDbActivity = RunTimeDiagnosticConfig.Source.StartActivity("Save anime to database");
+        using var saveAnimeToDbActivity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Save anime to database");
 
         var anime = new Contracts.Models.Anime
         {
@@ -85,7 +86,7 @@ internal class CreateAnimeHandler
         _logger.LogInformation("New anime created. Title {Title}", anime.Title);
         
         using var publishNotificationActivity =
-            RunTimeDiagnosticConfig.Source.StartActivity("Publish notification to graphql subscribers.");
+            JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Publish notification to graphql subscribers.");
         
         Activity.Current?.SetTag(AnimeTelemetryTags.AnimeId, anime.Id);
         

@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Anime.Service.Infrastructure.Data;
 using Core.Otel;
+using Core.Otel.Sources;
 using Manga.Service.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +11,7 @@ internal static class MigrationsRunner
 {
     internal static void ApplyAnimeMigrations(this IApplicationBuilder app)
     {
-        using var applyMigrationsActivity = RunTimeDiagnosticConfig.Source.StartActivity();
+        using var applyMigrationsActivity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity();
         Activity.Current?.SetTag("DbContextType", typeof(AnimeDbContext));
         
         using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
@@ -26,7 +27,7 @@ internal static class MigrationsRunner
     
     internal static void ApplyMangaMigrations(this IApplicationBuilder app)
     {
-        using var applyMigrationsActivity = RunTimeDiagnosticConfig.Source.StartActivity();
+        using var applyMigrationsActivity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity();
         Activity.Current?.SetTag("DbContextType", typeof(MangaDbContext));
         using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
         

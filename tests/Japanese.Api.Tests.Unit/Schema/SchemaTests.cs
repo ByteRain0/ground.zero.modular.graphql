@@ -13,11 +13,13 @@ public class SchemaTests
     {
         var builder = WebApplication
             .CreateBuilder();
-        
+
         builder
             .Configuration
             .SetBasePath(Path.Combine(AppContext.BaseDirectory))
-            .AddJsonFile("appsettings.test.json", optional: false, reloadOnChange: false);
+            .AddJsonFile("appsettings.test.json", optional: false, reloadOnChange: false)
+            .AddJsonFile("appsettings.DynamicEntities.json", optional: false, reloadOnChange: false);
+            
 
        var schema = await builder
             .AddApplicationServices()
