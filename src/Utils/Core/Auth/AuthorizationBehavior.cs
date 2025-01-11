@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text.Json;
-using Core.Auth.Keycloack;
+using Core.Auth.Keycloak;
 using Core.Otel;
 using Core.Otel.Sources;
 using MediatR;

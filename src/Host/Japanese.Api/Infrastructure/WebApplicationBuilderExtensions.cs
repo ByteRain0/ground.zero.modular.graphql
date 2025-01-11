@@ -46,12 +46,12 @@ public static class WebApplicationBuilderExtensions
             .AddMangaGraphqlTypes()
             .AddGraphQlConventions();
 
-    public static IServiceCollection AddKeyCloackBasedAuth(this IServiceCollection services)
+    public static IServiceCollection AddKeyCloakBasedAuth(this IServiceCollection services)
     {
         services.AddAuthorization();
         services.AddAuthentication()
             .AddKeycloakJwtBearer(
-                serviceName: "keycloack",
+                serviceName: "keycloak",
                 realm: "japanese-culture",
                 configureOptions: bearerOptions =>
                 {

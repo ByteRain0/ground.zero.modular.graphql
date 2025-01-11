@@ -1,4 +1,4 @@
-namespace Core.Auth.Keycloack;
+namespace Core.Auth.Keycloak;
 
 public static class AuthorizationConstants
 {

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 namespace Core.Aspire;
 
 //TODO: check what else can be pushed into the service defaults from Core library
-// Candidates: Keycloack Auth 
+// Candidates: Keycloak Auth 
 public static class Extensions
 {
     public static IHostApplicationBuilder AddServiceDefaults(this IHostApplicationBuilder builder)

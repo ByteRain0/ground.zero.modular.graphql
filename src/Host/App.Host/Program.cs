@@ -18,9 +18,9 @@ var migrationService = builder.AddProject<Projects.Japanese_Api_MigrationService
     .WithReference(defaultDb);
 
 var keycloak = builder
-    .AddKeycloak(name: "keycloack", port: 8080)
+    .AddKeycloak(name: "keycloak", port: 8080)
     .WithDataVolume()
-    .WithRealmImport("../../../configurations/keycloack")
+    .WithRealmImport("../../../configurations/keycloak")
     .WithExternalHttpEndpoints()
     .WithLifetime(ContainerLifetime.Persistent);
 

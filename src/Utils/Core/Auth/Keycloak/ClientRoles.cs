@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Core.Auth.Keycloack;
+namespace Core.Auth.Keycloak;
 
 public class ClientRoles
 {
