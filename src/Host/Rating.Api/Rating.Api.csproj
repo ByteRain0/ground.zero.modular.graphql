@@ -24,6 +24,7 @@
         <PackageReference Include="HotChocolate.Diagnostics"/>
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\..\Utils\Common\Common.csproj" />
       <ProjectReference Include="..\..\Utils\Core\Core.csproj" />
     </ItemGroup>
 </Project>

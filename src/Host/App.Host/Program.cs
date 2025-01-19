@@ -5,6 +5,11 @@ var collector = builder
     .WithAppForwarding()
     .WithLifetime(ContainerLifetime.Persistent);
 
+var rabbitMq = builder.AddRabbitMQ("rabbitmq")
+    .WithDataVolume(isReadOnly: false)
+    .WithLifetime(ContainerLifetime.Persistent)
+    .WithManagementPlugin();
+
 var postgres = builder
     .AddPostgres("postgres")
     //.WithImage("ankane/pgvector")
@@ -28,7 +33,8 @@ var japaneseApi = builder
     .AddProject<Projects.Japanese_Api>("manga-api")
     .WithReference(defaultDb).WaitFor(defaultDb)
     .WithReference(keycloak).WaitFor(keycloak)
-    .WithReference(migrationService).WaitFor(migrationService);
+    .WithReference(migrationService).WaitFor(migrationService)
+    .WithReference(rabbitMq).WaitFor(rabbitMq);
 
 bool.TryParse(Environment.GetEnvironmentVariable("START_WITH_RATING_API"), out var startWithRatingApi );
 if (startWithRatingApi)
@@ -40,7 +46,8 @@ if (startWithRatingApi)
     
     var ratingApi = builder
         .AddProject<Projects.Rating_Api>("rating-api")
-        .WithReference(cache).WaitFor(cache);
+        .WithReference(cache).WaitFor(cache)
+        .WithReference(rabbitMq).WaitFor(rabbitMq);
 
     builder.AddFusionGateway<Projects.Gateway>("fusion-gateway")
         .WithSubgraph(japaneseApi)

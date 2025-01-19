@@ -9,7 +9,7 @@ public static class AnimeQuery
     [Lookup]
     [NodeResolver]
     [Internal]
-    public static Anime GetAnimeById(int id)
+    public static Domain.Anime GetAnimeById(int id)
     {
         return new()
         {

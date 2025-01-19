@@ -4,13 +4,9 @@
     <PackageReference Include="HotChocolate.Pagination.Primitives" />
     <PackageReference Include="HotChocolate.Types.CursorPagination" />
     <PackageReference Include="MediatR.Contracts" />
-    <PackageReference Include="HotChocolate.Types.CursorPagination" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Utils\Common\Common.csproj" />
     <ProjectReference Include="..\..\..\Utils\Core\Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Events\Integrations\" />
   </ItemGroup>
 </Project>

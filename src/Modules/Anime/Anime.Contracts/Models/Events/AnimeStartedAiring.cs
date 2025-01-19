@@ -1,3 +1,3 @@
-namespace Anime.Contracts.Models.Events.Notifications;
+namespace Anime.Contracts.Models.Events;
 
 public record AnimeStartedAiring(int AnimeId, DateTime ReleaseDateTime);

@@ -1,9 +1,9 @@
 using Core.Clasifiers;
 using MediatR;
 
-namespace Anime.Contracts.Models.Events.Notifications;
+namespace Anime.Contracts.Models.Events;
 
-public record AnimeWasCreated(
+public record AnimeCreated(
     int Id,
     Demographics Demographics,
     DateTimeOffset AddedAt) : INotification;
