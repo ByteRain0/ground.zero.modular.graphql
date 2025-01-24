@@ -1,3 +1,5 @@
+using MassTransit.Logging;
+using MassTransit.Monitoring;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -45,6 +47,7 @@ public static class OpenTelemetryWebApplicationBuilderExtensions
                     .AddHttpClientInstrumentation()
                     .AddHotChocolateInstrumentation()
                     .AddEntityFrameworkCoreInstrumentation()
+                    .AddSource(DiagnosticHeaders.DefaultListenerName) // Masstransit ActivitySource
                     .AddOtlpExporter(options =>
                     {
                         options.Endpoint = telemetrySettings.TracesEndpoint;
@@ -63,7 +66,8 @@ public static class OpenTelemetryWebApplicationBuilderExtensions
                     .AddMeter(
                         "System.Runtime",
                         "Microsoft.AspNetCore.Hosting",
-                        "Microsoft.AspNetCore.Server.Kestrel"
+                        "Microsoft.AspNetCore.Server.Kestrel",
+                        InstrumentationOptions.MeterName // Masstransit metrics
                     ));
 
         return builder;

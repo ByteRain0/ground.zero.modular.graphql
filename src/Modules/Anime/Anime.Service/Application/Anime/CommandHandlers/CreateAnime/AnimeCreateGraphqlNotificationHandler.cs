@@ -1,4 +1,4 @@
-using Anime.Contracts.Models.Events.Notifications;
+using Anime.Contracts.Models.Events;
 using Anime.Contracts.Services.Anime.Events;
 using Anime.Contracts.Services.Anime.Telemetry;
 using Core.Otel;
@@ -13,24 +13,25 @@ namespace Anime.Service.Application.Anime.CommandHandlers.CreateAnime;
 /// Pushes notification to GraphQl SSE subscribers.
 /// TODO: write a unit test that will ensure that the handler is writing the correct log message for monitoring purposes.
 /// </summary>
-public class AnimeWasCreateNotificationHandler : INotificationHandler<AnimeWasCreated>
+public class AnimeCreateGraphqlNotificationHandler : INotificationHandler<AnimeCreated>
 {
     private readonly ITopicEventSender _topicEventSender;
-    private readonly ILogger<AnimeWasCreateNotificationHandler> _logger;
+    private readonly ILogger<AnimeCreateGraphqlNotificationHandler> _logger;
 
-    public AnimeWasCreateNotificationHandler(ITopicEventSender topicEventSender,
-        ILogger<AnimeWasCreateNotificationHandler> logger)
+    public AnimeCreateGraphqlNotificationHandler(ITopicEventSender topicEventSender,
+        ILogger<AnimeCreateGraphqlNotificationHandler> logger)
     {
         _topicEventSender = topicEventSender;
         _logger = logger;
     }
 
-    public async Task Handle(AnimeWasCreated notification, CancellationToken cancellationToken)
+    public async Task Handle(AnimeCreated notification, CancellationToken cancellationToken)
     {
-        using var notificationActivity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Push notification to topic");
+        using var notificationActivity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Push notification to graphql topic");
         notificationActivity?.AddTag(AnimeTelemetryTags.Topic, AnimeTopicNames.AnimeAddedTopicName);
         notificationActivity?.AddTag(AnimeTelemetryTags.AnimeId, notification.Id);
-        
+        notificationActivity?.SetTag("event", "anime:created");
+
         try
         {
             await _topicEventSender.SendAsync(
@@ -47,7 +48,7 @@ public class AnimeWasCreateNotificationHandler : INotificationHandler<AnimeWasCr
             _logger.LogError(
                 exception: ex, 
                 message: "Issue sending notification. {NotificationType} {AnimeId}", 
-                typeof(AnimeWasCreated), notification.Id);
+                typeof(AnimeCreated), notification.Id);
             
             // TODO: decide if we want to stop the flow in case of failure or continue.
             // throw;

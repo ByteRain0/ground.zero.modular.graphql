@@ -39,8 +39,8 @@ Defines the module's public API for integration, ensuring clear boundaries and c
 - **Exceptions**: Lists exceptions specific to the module.
 - **Models**: Contains domain models and integration events.
   - **Events**
-    - **Notifications**: Events for client subscriptions.
-    - **Integrations**: Events for inter-module or system-wide subscriptions.
+    - Events for client subscriptions.
+    - Events for inter-module or system-wide subscriptions.
 - **Services**
   - Organized by **Node** (domain entities), containing commands, queries, metrics, and telemetry tags.
     - **Commands**: Command definitions and validators.

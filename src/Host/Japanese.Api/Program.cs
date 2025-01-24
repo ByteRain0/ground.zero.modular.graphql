@@ -1,5 +1,6 @@
 using Core.Aspire;
 using Core.Background;
+using Core.Messaging;
 using Japanese.Api.Infrastructure;
 
 var builder = WebApplication
@@ -12,6 +13,12 @@ builder
         .Services
             .AddBackgroundJobs(builder.Configuration)
             .AddKeyCloakBasedAuth()
+            .AddRabbitMqWithMasstransit(
+                configuration:builder.Configuration, 
+                assembliesWithConsumers:
+                [
+                    typeof(ApplicationBuilderExtensions).Assembly
+                ])
             .AddGraphQLInfrastructure();
 
 var app = builder.Build();

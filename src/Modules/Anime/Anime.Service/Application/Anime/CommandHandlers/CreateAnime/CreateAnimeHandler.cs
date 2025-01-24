@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using Anime.Contracts.Models.Events.Notifications;
+using Anime.Contracts.Models.Events;
 using Anime.Contracts.Services.Anime.Telemetry;
 using Anime.Service.Infrastructure.Data;
 using Core.Otel;
@@ -86,11 +86,9 @@ internal class CreateAnimeHandler
         _logger.LogInformation("New anime created. Title {Title}", anime.Title);
         
         using var publishNotificationActivity =
-            JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Publish notification to graphql subscribers.");
+            JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Publish event");
         
-        Activity.Current?.SetTag(AnimeTelemetryTags.AnimeId, anime.Id);
-        
-        await _mediator.Publish(new AnimeWasCreated(
+        await _mediator.Publish(new AnimeCreated(
             anime.Id,
             anime.Demographics,
             _timeProvider.GetUtcNow()), cancellationToken);

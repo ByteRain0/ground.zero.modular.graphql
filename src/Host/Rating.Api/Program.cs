@@ -1,4 +1,5 @@
 using Core.Aspire;
+using Core.Messaging;
 using Rating.Api;
 using Rating.Api.Infrastructure;
 
@@ -11,6 +12,13 @@ builder.Services.AddOpenTelemetry()
         tracing.AddSource(RatingApiRunTimeDiagnosticConfig.Source.Name));
 
 builder.AddRedisClient(connectionName: "cache");
+
+builder.Services.AddRabbitMqWithMasstransit(
+    configuration: builder.Configuration,
+    assembliesWithConsumers:
+    [
+        typeof(Program).Assembly
+    ]);
 
 builder.Services
     .AddSingleton<DatabaseMock>()
