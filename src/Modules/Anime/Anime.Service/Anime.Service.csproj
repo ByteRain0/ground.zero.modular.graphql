@@ -4,9 +4,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="GreenDonut.Data.EntityFramework" />
     <PackageReference Include="HotChocolate.Data" />
-    <PackageReference Include="HotChocolate.Pagination.Core" />
-    <PackageReference Include="HotChocolate.Pagination.EntityFramework" />
     <PackageReference Include="MediatR" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design">

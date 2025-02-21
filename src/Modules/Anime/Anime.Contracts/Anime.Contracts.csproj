@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <PackageReference Include="FluentValidation" />
-    <PackageReference Include="HotChocolate.Pagination.Primitives" />
     <PackageReference Include="HotChocolate.Types.CursorPagination" />
     <PackageReference Include="MediatR.Contracts" />
   </ItemGroup>

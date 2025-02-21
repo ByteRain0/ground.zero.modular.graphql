@@ -1,6 +1,6 @@
 using Anime.Service.Infrastructure.Data;
 using Core.Otel.Sources;
-using HotChocolate.Pagination;
+using GreenDonut.Data;
 using MediatR;
 
 namespace Anime.Service.Application.Anime.QueryHandlers.GetAnime;
@@ -33,6 +33,6 @@ internal class GetAnimeQueryHandler(AnimeDbContext animeDbContext)
                 || x.IsCompleted == request.QueryFilters.IsCompleted)
             .OrderBy(x => x.Title)
             .ThenBy(x => x.Id)
-            .ToPageAsync(request.PagingArguments, cancellationToken);
+            .ToPageAsync(request.PagingArguments, cancellationToken: cancellationToken);
     }
 }

@@ -1,6 +1,6 @@
 using Anime.Contracts.Services.Studio.Queries;
 using Anime.Service.Infrastructure.Data;
-using HotChocolate.Pagination;
+using GreenDonut.Data;
 using MediatR;
 
 namespace Anime.Service.Application.Studio.QueryHandlers;

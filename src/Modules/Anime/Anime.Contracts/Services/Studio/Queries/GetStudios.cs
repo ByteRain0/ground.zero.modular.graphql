@@ -1,4 +1,4 @@
-using HotChocolate.Pagination;
+using GreenDonut.Data;
 using MediatR;
 
 namespace Anime.Contracts.Services.Studio.Queries;

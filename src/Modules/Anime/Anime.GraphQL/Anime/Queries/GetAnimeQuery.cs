@@ -1,5 +1,5 @@
 using Anime.Contracts.Services.Anime.Queries;
-using HotChocolate.Pagination;
+using GreenDonut.Data;
 using HotChocolate.Types.Pagination;
 using MediatR;
 

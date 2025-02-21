@@ -1,7 +1,7 @@
 using Anime.Contracts.Services.Studio.Queries;
-using HotChocolate.Pagination;
-using HotChocolate.Types.Pagination;
 using MediatR;
+using GreenDonut.Data;
+using HotChocolate.Types.Pagination;
 
 namespace Anime.GraphQL.Studio.Queries;
 

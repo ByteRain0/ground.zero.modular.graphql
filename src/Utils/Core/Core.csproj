@@ -19,7 +19,6 @@
         <PackageReference Include="Hangfire.PostgreSql"/>
         <PackageReference Include="HotChocolate.Data.Filters.Extensions"/>
         <PackageReference Include="HotChocolate.Diagnostics"/>
-        <PackageReference Include="HotChocolate.Pagination.Primitives"/>
         <PackageReference Include="HotChocolate.Subscriptions"/>
         <PackageReference Include="HotChocolate.Subscriptions.InMemory"/>
         <PackageReference Include="MediatR"/>

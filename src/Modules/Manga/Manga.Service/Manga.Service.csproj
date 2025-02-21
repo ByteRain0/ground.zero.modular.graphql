@@ -2,8 +2,6 @@
   <ItemGroup>
     <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
     <PackageReference Include="HotChocolate.Data" />
-    <PackageReference Include="HotChocolate.Pagination.Core" />
-    <PackageReference Include="HotChocolate.Pagination.EntityFramework" />
     <PackageReference Include="HotChocolate.Types.Json" />
     <PackageReference Include="MediatR" />
     <PackageReference Include="MediatR.Extensions.FluentValidation.AspNetCore" />

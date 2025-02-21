@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
-    <HotChocolateVersion>14.3.0</HotChocolateVersion>
+    <HotChocolateVersion>15.0.3</HotChocolateVersion>
     <OTelVersion>1.10.0</OTelVersion>
     <MassTransitVersion>8.3.0</MassTransitVersion>
   </PropertyGroup>
@@ -44,6 +44,9 @@
     <!-- Hot Chocolate -->
     <PackageVersion Include="CookieCrumble" Version="14.3.0" />
     <PackageVersion Include="FairyBread" Version="11.0.0" />
+    <PackageVersion Include="GreenDonut.Data.Abstractions" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="GreenDonut.Data.EntityFramework" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="GreenDonut.Data.Primitives" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Abstractions" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.AspNetCore" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.AspNetCore.CommandLine" Version="$(HotChocolateVersion)" />
@@ -53,9 +56,6 @@
     <PackageVersion Include="HotChocolate.Data.Filters.Extensions" Version="0.8.0" />
     <PackageVersion Include="HotChocolate.Diagnostics" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Execution.Abstractions" Version="$(HotChocolateVersion)" />
-    <PackageVersion Include="HotChocolate.Pagination.Core" Version="$(HotChocolateVersion)" />
-    <PackageVersion Include="HotChocolate.Pagination.EntityFramework" Version="$(HotChocolateVersion)" />
-    <PackageVersion Include="HotChocolate.Pagination.Primitives" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Subscriptions" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Subscriptions.InMemory" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Types" Version="$(HotChocolateVersion)" />
