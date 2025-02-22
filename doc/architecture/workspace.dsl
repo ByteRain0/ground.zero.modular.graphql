@@ -4,7 +4,12 @@ workspace "Name" "Description" {
 
     model {
         software_system = softwareSystem "Japanese cultural app" {
-            telemetry_collector = container "Telemetry Collector"
+            aspire_dashboard = container "Aspire Dashboard" "Management dashboard used for local development" {
+                tags "AspireBase"
+            }
+            telemetry_collector = container "Telemetry Collector" {
+                -> aspire_dashboard "Push telemetry"
+            }
             japanese_database = container "Manga.DB" {
                 tags "Database"
             }
@@ -14,9 +19,9 @@ workspace "Name" "Description" {
             keycloak = container "Keycloak" {
                 tags "Service"
             }
-            migration_service = container "Japanese.Api.MigrationService" {
-                -> japanese_database "Apply migrations"
-                -> telemetry_collector "Send telemetry" "gRPC"
+            migration_service = container "Japanese.Api.MigrationService" "Service that can be run from the pipeline in order to apply migrations to the Database" {
+                -> japanese_database
+                -> telemetry_collector
             }
             message_broker = container "RabbitMq" {
                 tags "Messagebroker"
@@ -24,33 +29,26 @@ workspace "Name" "Description" {
             manga_api = container "Japanese.Api" {
                 tags "Service"
                 -> japanese_database
-                -> telemetry_collector "Send telemetry" "gRPC"
+                -> telemetry_collector
                 -> keycloak "Auth" "HTTP"
                 -> message_broker "Pub/Sub"
                 
                 group "Utilities" {
-                    core = component "Core"
-                    common = component "Common"
-                    graphql_topic_event_sender = component "GraphQL topic event sender"
-                    graphql_validation_filter = component "GraphQL business validation filter"
-                    mediatR_activity_tracing_behavior = component "MediatR activity tracing behavior" "Create traces for request handlers"
-                    mediatR_logging_behavior = component "MediatR logging behavior" "Create logs for request handlers"
-                    mediatR_performance_behavior = component "MediatR performance behavior" "Monitor request handler performance"
-                    mediatR_authorization_behavior = component "MediatR auth behavior" "Validate user is authenticated and authorized"
-                    mediatR = component "MediatR" {
-                        -> mediatR_activity_tracing_behavior "Register"
-                        -> mediatR_logging_behavior "Register"
-                        -> mediatR_performance_behavior "Register"
-                        -> mediatR_authorization_behavior "Register"
-                    }
+                    mediatr = component "MediatR"
+                    Otel = component "OTel"
+                    auth = component "Auth"
+                    error_filters = component "ErrorFilters"
+                    hangfire = component "Hangfire"
+                    masstransit = component "Masstransit"
                 }
                 group "Anime module" {
+                    graphql_topic_event_sender = component "GraphQL topic event sender"
                     anime_model = component "Anime" "Domain model"
                     anime_configuration = component "Anime DB Configuration" "Configure how the Anime model maps to the database table" {
                         -> anime_model "Configure"
                     }
                     anime_data_context = component "Anime DbContext" "DbContext that maps to the Anime Schema" {
-                        -> japanese_database "Interact with database"
+                        -> japanese_database
                         -> anime_configuration "Use configuration"
                     }
                     anime_messaging_notification_handler = component "Messaging Notification Handler" {
@@ -84,59 +82,67 @@ workspace "Name" "Description" {
                         -> graphql_topic_event_sender "Subscribe to anime events"
                     }
                 }
-                
                 group "Manga module" {
-                    manga_contracts = component "Manga.Contracts" {
-                        -> core
-                        -> common
+                    manga_model = component "Manga" "Domain model"
+                    author_model = component "Author" "Domain model"
+                    manga_configuration = component "Manga Configuration" "Configure how the Manga model maps to the database table"{
+                        -> manga_model "Configure"
                     }
-                    manga_service = component "Manga.Service" {
-                        -> manga_contracts "Implement"
+                    author_configuration = component "Author Configuration" "Configure how the Author model maps to the database table" {
+                        -> author_model "Configure"
+                    }
+                    author_settings_model = component "Author Settings Module" "Configure dynamic settings field for graphql node and map to model property" {
+                        -> author_model "Configure"
+                    }
+                    manga_data_context = component "Manga DbContext" "DbContext that maps to the Manga Schema" {
                         -> japanese_database
+                        -> manga_configuration "Use configuration"
+                        -> author_configuration "Use configuration"
                     }
-                    manga_graphql = component "Manga graphQL" {
-                        -> manga_contracts "Expose"
+                    manga_query_handler = component "Manga Query Handler" "Return IQueryable and allow GraphQL execution engine to directly tap into the EfCore DbContext to build queries and projections" {
+                        -> manga_data_context "Query data"
+                    }
+                    manga_queries = component "Manga Queries" {
+                        -> manga_query_handler "Send query" "MediatR"
                     }
                 }
-                
                 graphQL_execution_engine = component "GraphQL engine" {
                     -> anime_mutations
                     -> anime_queries
                     -> anime_subscriptions
-                    -> graphql_validation_filter
+                    -> manga_queries
+                    -> author_settings_model "Load configuration"
                 }
-
                 fairybread_validator = component "FairyBread" "Validate GraphQL requests before they hit MediatR" {
                     -> graphQL_execution_engine "Register validators"
                 }
-                
                 host = component "Host" {
-                    -> manga_graphql
-                    -> manga_service
-                    -> graphQL_execution_engine
+                    -> graphQL_execution_engine "Host"
                 }
             }
             rating_api = container "Rating.API" {
                 tags "Service"
                 -> rating_database
-                -> telemetry_collector "Send telemetry" "gRPC"
+                -> telemetry_collector
                 -> keycloak "Auth" "HTTP"
                 -> message_broker "Pub/Sub"
             }
-            api_gateway = container "Gateway" {
+            api_gateway = container "Gateway" "Fusion gateway" {
                 -> rating_api "Query for ratings" "GraphQL"
                 -> manga_api "Query for anime/manga information" "GraphQL"
             }
-            aspire_host = container "App.Host" {
+            aspire_host = container "App.Host" "Aspire app host used for local development" {
                 tags "AspireBase"
+            }
+            web_ui = container "Web Application" {
+                tags "WebBrowser
+                -> api_gateway "Send requests" "HTTP"
+                -> keycloak "Authenticate" "HTTP"
             }
         }
         user = person "Client" {
-            tags "WebBrowser"
-            -> software_system.api_gateway "Interact with" "HTTP"
-            -> software_system.keycloak "Authenticate" "HTTP"
+            -> software_system.web_ui "Interact" "HTTP"
         }
-
     }
 
     views {
