@@ -28,13 +28,13 @@ This repository serves as a playground for testing architectural decisions, tool
 - Other technologies will be detailed within the ADRs.
 
 ## 📜 Architectural Decisions
-We use [ADR Tools](https://github.com/npryce/adr-tools) to document architectural decisions. These are integrated with Structurizr for visualization. You can find ADRs in the `/docs/adr/` directory.
+We use [ADR Tools](https://github.com/npryce/adr-tools) to document architectural decisions. These are integrated with Structurizr for visualization. You can find ADRs in the `/docs/architecture/decisions` directory.
 
 ## 📊 Architecture Diagrams
-Architecture diagrams are auto-generated using Structurizr and can be found in `/docs/architecture/`. These diagrams provide a visual representation of the system’s structure and dependencies.
+Architecture diagrams are auto-generated using Structurizr and can be found in `/docs/`. These diagrams provide a visual representation of the system’s structure and dependencies.
 
 ## 🐞 Debugging Guide
-A step-by-step guide on how to debug the solution is available inside the ADR documentation. Refer to the `/docs/debugging.md` for troubleshooting and debugging best practices.
+A step-by-step guide on how to debug the solution is available inside the ADR documentation. Refer to the `/docs` for troubleshooting and debugging guides.
 
 ## 📌 Contributing
 This project is primarily for exploration and testing. Contributions are welcome but may not be actively maintained.

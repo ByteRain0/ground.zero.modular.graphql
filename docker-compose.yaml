@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  structurizr:
+    image: structurizr/lite
+    container_name: cultural_documentation
+    ports:
+      - "9090:8080"
+    volumes:
+      - ./doc/architecture:/usr/local/structurizr
+    restart: unless-stopped

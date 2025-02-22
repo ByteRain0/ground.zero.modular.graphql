@@ -1,0 +1,723 @@
+{
+  "configuration" : {
+    "scope" : "SoftwareSystem"
+  },
+  "description" : "Description",
+  "documentation" : { },
+  "id" : 1,
+  "lastModifiedAgent" : "structurizr-ui",
+  "lastModifiedDate" : "2025-02-22T12:04:27Z",
+  "model" : {
+    "people" : [ {
+      "id" : "51",
+      "location" : "Unspecified",
+      "name" : "Client",
+      "properties" : {
+        "structurizr.dsl.identifier" : "user"
+      },
+      "relationships" : [ {
+        "description" : "Interact with",
+        "destinationId" : "47",
+        "id" : "52",
+        "sourceId" : "51",
+        "tags" : "Relationship",
+        "technology" : "HTTP"
+      }, {
+        "description" : "Interact with",
+        "destinationId" : "1",
+        "id" : "53",
+        "linkedRelationshipId" : "52",
+        "sourceId" : "51",
+        "technology" : "HTTP"
+      }, {
+        "description" : "Authenticate",
+        "destinationId" : "5",
+        "id" : "54",
+        "sourceId" : "51",
+        "tags" : "Relationship",
+        "technology" : "HTTP"
+      } ],
+      "tags" : "Element,Person,WebBrowser"
+    } ],
+    "softwareSystems" : [ {
+      "containers" : [ {
+        "documentation" : { },
+        "id" : "2",
+        "name" : "Telemetry Collector",
+        "properties" : {
+          "structurizr.dsl.identifier" : "software_system.telemetry_collector"
+        },
+        "tags" : "Element,Container"
+      }, {
+        "documentation" : { },
+        "id" : "3",
+        "name" : "Manga.DB",
+        "properties" : {
+          "structurizr.dsl.identifier" : "software_system.japanese_database"
+        },
+        "tags" : "Element,Container,Database"
+      }, {
+        "documentation" : { },
+        "id" : "4",
+        "name" : "Rating.Cache",
+        "properties" : {
+          "structurizr.dsl.identifier" : "software_system.rating_database"
+        },
+        "tags" : "Element,Container,Database"
+      }, {
+        "documentation" : { },
+        "id" : "5",
+        "name" : "Keycloak",
+        "properties" : {
+          "structurizr.dsl.identifier" : "software_system.keycloak"
+        },
+        "tags" : "Element,Container,Service"
+      }, {
+        "documentation" : { },
+        "id" : "6",
+        "name" : "Japanese.Api.MigrationService",
+        "properties" : {
+          "structurizr.dsl.identifier" : "software_system.migration_service"
+        },
+        "relationships" : [ {
+          "description" : "Apply migrations",
+          "destinationId" : "3",
+          "id" : "7",
+          "sourceId" : "6",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Send telemetry",
+          "destinationId" : "2",
+          "id" : "8",
+          "sourceId" : "6",
+          "tags" : "Relationship",
+          "technology" : "gRPC"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "documentation" : { },
+        "id" : "9",
+        "name" : "RabbitMq",
+        "properties" : {
+          "structurizr.dsl.identifier" : "software_system.message_broker"
+        },
+        "tags" : "Element,Container,Messagebroker"
+      }, {
+        "components" : [ {
+          "documentation" : { },
+          "group" : "Utilities",
+          "id" : "15",
+          "name" : "Core",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.core"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Utilities",
+          "id" : "16",
+          "name" : "Common",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.common"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Anime module",
+          "id" : "17",
+          "name" : "Anime.Contracts",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_contracts"
+          },
+          "relationships" : [ {
+            "destinationId" : "15",
+            "id" : "18",
+            "sourceId" : "17",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "16",
+            "id" : "19",
+            "sourceId" : "17",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Anime module",
+          "id" : "20",
+          "name" : "Anime.Service",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_service"
+          },
+          "relationships" : [ {
+            "description" : "Implement",
+            "destinationId" : "17",
+            "id" : "21",
+            "sourceId" : "20",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Anime module",
+          "id" : "22",
+          "name" : "Anime.GraphQL",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_graphql"
+          },
+          "relationships" : [ {
+            "description" : "Expose",
+            "destinationId" : "17",
+            "id" : "23",
+            "sourceId" : "22",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "3",
+            "id" : "24",
+            "sourceId" : "22",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Manga module",
+          "id" : "25",
+          "name" : "Manga.Contracts",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.manga_contracts"
+          },
+          "relationships" : [ {
+            "destinationId" : "15",
+            "id" : "26",
+            "sourceId" : "25",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "16",
+            "id" : "27",
+            "sourceId" : "25",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Manga module",
+          "id" : "28",
+          "name" : "Manga.Service",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.manga_service"
+          },
+          "relationships" : [ {
+            "description" : "Implement",
+            "destinationId" : "25",
+            "id" : "29",
+            "sourceId" : "28",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "3",
+            "id" : "30",
+            "sourceId" : "28",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Manga module",
+          "id" : "31",
+          "name" : "Manga.GraphQL",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.manga_graphql"
+          },
+          "relationships" : [ {
+            "description" : "Expose",
+            "destinationId" : "25",
+            "id" : "32",
+            "sourceId" : "31",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "33",
+          "name" : "GraphQL engine",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.graphql_execution_engine"
+          },
+          "relationships" : [ {
+            "description" : "Query data",
+            "destinationId" : "31",
+            "id" : "34",
+            "sourceId" : "33",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Query data",
+            "destinationId" : "22",
+            "id" : "35",
+            "sourceId" : "33",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "36",
+          "name" : "Host",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.host"
+          },
+          "relationships" : [ {
+            "destinationId" : "31",
+            "id" : "37",
+            "sourceId" : "36",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "28",
+            "id" : "38",
+            "sourceId" : "36",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "22",
+            "id" : "39",
+            "sourceId" : "36",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "20",
+            "id" : "40",
+            "sourceId" : "36",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "33",
+            "id" : "41",
+            "sourceId" : "36",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        } ],
+        "documentation" : { },
+        "id" : "10",
+        "name" : "Japanese.Api",
+        "properties" : {
+          "structurizr.dsl.identifier" : "software_system.manga_api"
+        },
+        "relationships" : [ {
+          "destinationId" : "3",
+          "id" : "11",
+          "sourceId" : "10",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Send telemetry",
+          "destinationId" : "2",
+          "id" : "12",
+          "sourceId" : "10",
+          "tags" : "Relationship",
+          "technology" : "gRPC"
+        }, {
+          "description" : "Auth",
+          "destinationId" : "5",
+          "id" : "13",
+          "sourceId" : "10",
+          "tags" : "Relationship",
+          "technology" : "HTTP"
+        }, {
+          "description" : "Pub/Sub",
+          "destinationId" : "9",
+          "id" : "14",
+          "sourceId" : "10",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Service"
+      }, {
+        "documentation" : { },
+        "id" : "42",
+        "name" : "Rating.API",
+        "properties" : {
+          "structurizr.dsl.identifier" : "software_system.rating_api"
+        },
+        "relationships" : [ {
+          "destinationId" : "4",
+          "id" : "43",
+          "sourceId" : "42",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Send telemetry",
+          "destinationId" : "2",
+          "id" : "44",
+          "sourceId" : "42",
+          "tags" : "Relationship",
+          "technology" : "gRPC"
+        }, {
+          "description" : "Auth",
+          "destinationId" : "5",
+          "id" : "45",
+          "sourceId" : "42",
+          "tags" : "Relationship",
+          "technology" : "HTTP"
+        }, {
+          "description" : "Pub/Sub",
+          "destinationId" : "9",
+          "id" : "46",
+          "sourceId" : "42",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Service"
+      }, {
+        "documentation" : { },
+        "id" : "47",
+        "name" : "Gateway",
+        "properties" : {
+          "structurizr.dsl.identifier" : "software_system.api_gateway"
+        },
+        "relationships" : [ {
+          "description" : "Query for ratings",
+          "destinationId" : "42",
+          "id" : "48",
+          "sourceId" : "47",
+          "tags" : "Relationship",
+          "technology" : "GraphQL"
+        }, {
+          "description" : "Query for anime/manga information",
+          "destinationId" : "10",
+          "id" : "49",
+          "sourceId" : "47",
+          "tags" : "Relationship",
+          "technology" : "GraphQL"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "documentation" : { },
+        "id" : "50",
+        "name" : "App.Host",
+        "properties" : {
+          "structurizr.dsl.identifier" : "software_system.aspire_host"
+        },
+        "tags" : "Element,Container,AspireBase"
+      } ],
+      "documentation" : { },
+      "id" : "1",
+      "location" : "Unspecified",
+      "name" : "Japanese cultural app",
+      "properties" : {
+        "structurizr.dsl.identifier" : "software_system"
+      },
+      "tags" : "Element,Software System"
+    } ]
+  },
+  "name" : "Name",
+  "properties" : {
+    "structurizr.dsl" : "d29ya3NwYWNlICJOYW1lIiAiRGVzY3JpcHRpb24iIHsKCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewogICAgICAgIHNvZnR3YXJlX3N5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJKYXBhbmVzZSBjdWx0dXJhbCBhcHAiIHsKICAgICAgICAgICAgdGVsZW1ldHJ5X2NvbGxlY3RvciA9IGNvbnRhaW5lciAiVGVsZW1ldHJ5IENvbGxlY3RvciIKICAgICAgICAgICAgamFwYW5lc2VfZGF0YWJhc2UgPSBjb250YWluZXIgIk1hbmdhLkRCIiB7CiAgICAgICAgICAgICAgICB0YWdzICJEYXRhYmFzZSIKICAgICAgICAgICAgfQogICAgICAgICAgICByYXRpbmdfZGF0YWJhc2UgPSBjb250YWluZXIgIlJhdGluZy5DYWNoZSIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICAgICAga2V5Y2xvYWsgPSBjb250YWluZXIgIktleWNsb2FrIiB7CiAgICAgICAgICAgICAgICB0YWdzICJTZXJ2aWNlIgogICAgICAgICAgICB9CiAgICAgICAgICAgIG1pZ3JhdGlvbl9zZXJ2aWNlID0gY29udGFpbmVyICJKYXBhbmVzZS5BcGkuTWlncmF0aW9uU2VydmljZSIgewogICAgICAgICAgICAgICAgLT4gamFwYW5lc2VfZGF0YWJhc2UgIkFwcGx5IG1pZ3JhdGlvbnMiCiAgICAgICAgICAgICAgICAtPiB0ZWxlbWV0cnlfY29sbGVjdG9yICJTZW5kIHRlbGVtZXRyeSIgImdSUEMiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgbWVzc2FnZV9icm9rZXIgPSBjb250YWluZXIgIlJhYmJpdE1xIiB7CiAgICAgICAgICAgICAgICB0YWdzICJNZXNzYWdlYnJva2VyIgogICAgICAgICAgICB9CiAgICAgICAgICAgIG1hbmdhX2FwaSA9IGNvbnRhaW5lciAiSmFwYW5lc2UuQXBpIiB7CiAgICAgICAgICAgICAgICB0YWdzICJTZXJ2aWNlIgogICAgICAgICAgICAgICAgLT4gamFwYW5lc2VfZGF0YWJhc2UKICAgICAgICAgICAgICAgIC0+IHRlbGVtZXRyeV9jb2xsZWN0b3IgIlNlbmQgdGVsZW1ldHJ5IiAiZ1JQQyIKICAgICAgICAgICAgICAgIC0+IGtleWNsb2FrICJBdXRoIiAiSFRUUCIKICAgICAgICAgICAgICAgIC0+IG1lc3NhZ2VfYnJva2VyICJQdWIvU3ViIgogICAgICAgICAgICAgICAgZ3JvdXAgIlV0aWxpdGllcyIgewogICAgICAgICAgICAgICAgICAgIGNvcmUgPSBjb21wb25lbnQgIkNvcmUiCiAgICAgICAgICAgICAgICAgICAgY29tbW9uID0gY29tcG9uZW50ICJDb21tb24iCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBncm91cCAiQW5pbWUgbW9kdWxlIiB7CiAgICAgICAgICAgICAgICAgICAgYW5pbWVfY29udHJhY3RzID0gY29tcG9uZW50ICJBbmltZS5Db250cmFjdHMiIHsKICAgICAgICAgICAgICAgICAgICAgICAgLT4gY29yZQogICAgICAgICAgICAgICAgICAgICAgICAtPiBjb21tb24KICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgYW5pbWVfc2VydmljZSA9IGNvbXBvbmVudCAiQW5pbWUuU2VydmljZSIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBhbmltZV9jb250cmFjdHMgIkltcGxlbWVudCIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgYW5pbWVfZ3JhcGhxbCA9IGNvbXBvbmVudCAiQW5pbWUuR3JhcGhRTCIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBhbmltZV9jb250cmFjdHMgIkV4cG9zZSIKICAgICAgICAgICAgICAgICAgICAgICAgLT4gamFwYW5lc2VfZGF0YWJhc2UKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBncm91cCAiTWFuZ2EgbW9kdWxlIiB7CiAgICAgICAgICAgICAgICAgICAgbWFuZ2FfY29udHJhY3RzID0gY29tcG9uZW50ICJNYW5nYS5Db250cmFjdHMiIHsKICAgICAgICAgICAgICAgICAgICAgICAgLT4gY29yZQogICAgICAgICAgICAgICAgICAgICAgICAtPiBjb21tb24KICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgbWFuZ2Ffc2VydmljZSA9IGNvbXBvbmVudCAiTWFuZ2EuU2VydmljZSIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBtYW5nYV9jb250cmFjdHMgIkltcGxlbWVudCIKICAgICAgICAgICAgICAgICAgICAgICAgLT4gamFwYW5lc2VfZGF0YWJhc2UKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgbWFuZ2FfZ3JhcGhxbCA9IGNvbXBvbmVudCAiTWFuZ2EuR3JhcGhRTCIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBtYW5nYV9jb250cmFjdHMgIkV4cG9zZSIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBncmFwaFFMX2V4ZWN1dGlvbl9lbmdpbmUgPSBjb21wb25lbnQgIkdyYXBoUUwgZW5naW5lIiB7CiAgICAgICAgICAgICAgICAgICAgLT4gbWFuZ2FfZ3JhcGhxbCAiUXVlcnkgZGF0YSIKICAgICAgICAgICAgICAgICAgICAtPiBhbmltZV9ncmFwaHFsICJRdWVyeSBkYXRhIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgaG9zdCA9IGNvbXBvbmVudCAiSG9zdCIgewogICAgICAgICAgICAgICAgICAgIC0+IG1hbmdhX2dyYXBocWwKICAgICAgICAgICAgICAgICAgICAtPiBtYW5nYV9zZXJ2aWNlCiAgICAgICAgICAgICAgICAgICAgLT4gYW5pbWVfZ3JhcGhxbAogICAgICAgICAgICAgICAgICAgIC0+IGFuaW1lX3NlcnZpY2UKICAgICAgICAgICAgICAgICAgICAtPiBncmFwaFFMX2V4ZWN1dGlvbl9lbmdpbmUKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAgICByYXRpbmdfYXBpID0gY29udGFpbmVyICJSYXRpbmcuQVBJIiB7CiAgICAgICAgICAgICAgICB0YWdzICJTZXJ2aWNlIgogICAgICAgICAgICAgICAgLT4gcmF0aW5nX2RhdGFiYXNlCiAgICAgICAgICAgICAgICAtPiB0ZWxlbWV0cnlfY29sbGVjdG9yICJTZW5kIHRlbGVtZXRyeSIgImdSUEMiCiAgICAgICAgICAgICAgICAtPiBrZXljbG9hayAiQXV0aCIgIkhUVFAiCiAgICAgICAgICAgICAgICAtPiBtZXNzYWdlX2Jyb2tlciAiUHViL1N1YiIKICAgICAgICAgICAgfQogICAgICAgICAgICBhcGlfZ2F0ZXdheSA9IGNvbnRhaW5lciAiR2F0ZXdheSIgewogICAgICAgICAgICAgICAgLT4gcmF0aW5nX2FwaSAiUXVlcnkgZm9yIHJhdGluZ3MiICJHcmFwaFFMIgogICAgICAgICAgICAgICAgLT4gbWFuZ2FfYXBpICJRdWVyeSBmb3IgYW5pbWUvbWFuZ2EgaW5mb3JtYXRpb24iICJHcmFwaFFMIgogICAgICAgICAgICB9CiAgICAgICAgICAgIGFzcGlyZV9ob3N0ID0gY29udGFpbmVyICJBcHAuSG9zdCIgewogICAgICAgICAgICAgICAgdGFncyAiQXNwaXJlQmFzZSIKICAgICAgICAgICAgfQogICAgICAgIH0KICAgICAgICB1c2VyID0gcGVyc29uICJDbGllbnQiIHsKICAgICAgICAgICAgdGFncyAiV2ViQnJvd3NlciIKICAgICAgICAgICAgLT4gc29mdHdhcmVfc3lzdGVtLmFwaV9nYXRld2F5ICJJbnRlcmFjdCB3aXRoIiAiSFRUUCIKICAgICAgICAgICAgLT4gc29mdHdhcmVfc3lzdGVtLmtleWNsb2FrICJBdXRoZW50aWNhdGUiICJIVFRQIgogICAgICAgIH0KCiAgICB9CgogICAgdmlld3MgewogICAgICAgIHN5c3RlbUNvbnRleHQgc29mdHdhcmVfc3lzdGVtICJEaWFncmFtMSIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29udGFpbmVyIHNvZnR3YXJlX3N5c3RlbSAiamFwYW5lc2VfY3VsdHVyZV9zeXN0ZW0iIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9sYXlvdXQgbHIKICAgICAgICB9CiAgICAgICAgY29tcG9uZW50IHNvZnR3YXJlX3N5c3RlbS5tYW5nYV9hcGkgIm1hbmdhX2FwaV9jb21wb25lbnQiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9sYXlvdXQgbHIKICAgICAgICB9CgoKCiAgICAgICAgc3R5bGVzIHsKICAgICAgICAgICAgZWxlbWVudCAiRWxlbWVudCIgewogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlBlcnNvbiIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDQ4YzA0CiAgICAgICAgICAgICAgICBzaGFwZSBwZXJzb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzA0NzgwNAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbnRhaW5lciIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNTVhYTU1CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ29tcG9uZW50IiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM1NWFhNTUKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJBc3BpcmVCYXNlIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM3MjQyZjUKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgc2hhcGUgY3lsaW5kZXIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJNZXNzYWdlYnJva2VyIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBQaXBlCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiV2ViQnJvd3NlciIgewogICAgICAgICAgICAgICAgc2hhcGUgV2luZG93CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiTW9iaWxlQXBwIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBNb2JpbGVEZXZpY2VQb3J0cmFpdAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlNlcnZpY2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIGhleGFnb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJGaWxlU3RvcmFnZSIgewogICAgICAgICAgICAgICAgc2hhcGUgZm9sZGVyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRXh0ZXJuYWxBY3RvciIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjOTk5OTk5CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRXh0ZXJuYWxTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzk5OTk5OQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIk9ic2VydmFiaWxpdHlCRSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjZWJjOTM0CiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9CgogICAgY29uZmlndXJhdGlvbiB7CiAgICAgICAgc2NvcGUgc29mdHdhcmVzeXN0ZW0KICAgIH0KCn0="
+  },
+  "views" : {
+    "componentViews" : [ {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "10",
+      "dimensions" : {
+        "height" : 3165,
+        "width" : 3910
+      },
+      "elements" : [ {
+        "id" : "3",
+        "x" : 2469,
+        "y" : 2630
+      }, {
+        "id" : "15",
+        "x" : 3219,
+        "y" : 813
+      }, {
+        "id" : "16",
+        "x" : 3219,
+        "y" : 1413
+      }, {
+        "id" : "17",
+        "x" : 2469,
+        "y" : 1417
+      }, {
+        "id" : "20",
+        "x" : 1719,
+        "y" : 1417
+      }, {
+        "id" : "22",
+        "x" : 1719,
+        "y" : 2017
+      }, {
+        "id" : "25",
+        "x" : 2469,
+        "y" : 805
+      }, {
+        "id" : "28",
+        "x" : 1719,
+        "y" : 805
+      }, {
+        "id" : "31",
+        "x" : 1719,
+        "y" : 205
+      }, {
+        "id" : "33",
+        "x" : 969,
+        "y" : 1567
+      }, {
+        "id" : "36",
+        "x" : 219,
+        "y" : 1113
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "manga_api_component",
+      "order" : 3,
+      "relationships" : [ {
+        "id" : "18"
+      }, {
+        "id" : "19"
+      }, {
+        "id" : "21"
+      }, {
+        "id" : "23"
+      }, {
+        "id" : "24"
+      }, {
+        "id" : "26"
+      }, {
+        "id" : "27"
+      }, {
+        "id" : "29"
+      }, {
+        "id" : "30",
+        "vertices" : [ {
+          "x" : 2169,
+          "y" : 1238
+        }, {
+          "x" : 2469,
+          "y" : 2497
+        } ]
+      }, {
+        "id" : "32"
+      }, {
+        "id" : "34",
+        "vertices" : [ {
+          "x" : 1615,
+          "y" : 655
+        } ]
+      }, {
+        "id" : "35"
+      }, {
+        "id" : "37"
+      }, {
+        "id" : "38"
+      }, {
+        "id" : "39",
+        "vertices" : [ {
+          "x" : 969,
+          "y" : 2017
+        } ]
+      }, {
+        "id" : "40",
+        "vertices" : [ {
+          "x" : 1419,
+          "y" : 1417
+        } ]
+      }, {
+        "id" : "41"
+      } ]
+    } ],
+    "configuration" : {
+      "branding" : { },
+      "lastSavedView" : "manga_api_component",
+      "metadataSymbols" : "SquareBrackets",
+      "styles" : {
+        "elements" : [ {
+          "color" : "#ffffff",
+          "tag" : "Element"
+        }, {
+          "background" : "#048c04",
+          "shape" : "Person",
+          "tag" : "Person"
+        }, {
+          "background" : "#047804",
+          "tag" : "Software System"
+        }, {
+          "background" : "#55aa55",
+          "tag" : "Container"
+        }, {
+          "background" : "#55aa55",
+          "tag" : "Component"
+        }, {
+          "background" : "#7242f5",
+          "tag" : "AspireBase"
+        }, {
+          "shape" : "Cylinder",
+          "tag" : "Database"
+        }, {
+          "shape" : "Pipe",
+          "tag" : "Messagebroker"
+        }, {
+          "shape" : "Window",
+          "tag" : "WebBrowser"
+        }, {
+          "shape" : "MobileDevicePortrait",
+          "tag" : "MobileApp"
+        }, {
+          "shape" : "Hexagon",
+          "tag" : "Service"
+        }, {
+          "shape" : "Folder",
+          "tag" : "FileStorage"
+        }, {
+          "background" : "#999999",
+          "tag" : "ExternalActor"
+        }, {
+          "background" : "#999999",
+          "tag" : "ExternalSystem"
+        }, {
+          "background" : "#ebc934",
+          "tag" : "ObservabilityBE"
+        } ]
+      },
+      "terminology" : { }
+    },
+    "containerViews" : [ {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "dimensions" : {
+        "height" : 3211,
+        "width" : 3120
+      },
+      "elements" : [ {
+        "id" : "2",
+        "x" : 2450,
+        "y" : 1385
+      }, {
+        "id" : "3",
+        "x" : 2450,
+        "y" : 2585
+      }, {
+        "id" : "4",
+        "x" : 2450,
+        "y" : 185
+      }, {
+        "id" : "5",
+        "x" : 2450,
+        "y" : 1985
+      }, {
+        "id" : "6",
+        "x" : 1700,
+        "y" : 1985
+      }, {
+        "id" : "9",
+        "x" : 2450,
+        "y" : 785
+      }, {
+        "id" : "10",
+        "x" : 1700,
+        "y" : 1385
+      }, {
+        "id" : "42",
+        "x" : 1700,
+        "y" : 785
+      }, {
+        "id" : "47",
+        "x" : 950,
+        "y" : 1385
+      }, {
+        "id" : "50",
+        "x" : 950,
+        "y" : 1985
+      }, {
+        "id" : "51",
+        "x" : 200,
+        "y" : 1989
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "japanese_culture_system",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "11",
+        "vertices" : [ {
+          "x" : 2150,
+          "y" : 1835
+        }, {
+          "x" : 2450,
+          "y" : 2435
+        } ]
+      }, {
+        "id" : "12"
+      }, {
+        "id" : "13"
+      }, {
+        "id" : "14"
+      }, {
+        "id" : "43"
+      }, {
+        "id" : "44"
+      }, {
+        "id" : "45",
+        "vertices" : [ {
+          "x" : 2150,
+          "y" : 1235
+        }, {
+          "x" : 2450,
+          "y" : 1835
+        } ]
+      }, {
+        "id" : "46"
+      }, {
+        "id" : "48"
+      }, {
+        "id" : "49"
+      }, {
+        "id" : "52"
+      }, {
+        "id" : "54",
+        "vertices" : [ {
+          "x" : 846,
+          "y" : 2435
+        }, {
+          "x" : 2150,
+          "y" : 2435
+        } ]
+      }, {
+        "id" : "7"
+      }, {
+        "id" : "8"
+      } ],
+      "softwareSystemId" : "1"
+    } ],
+    "systemContextViews" : [ {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "51",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "key" : "Diagram1",
+      "order" : 1,
+      "relationships" : [ {
+        "id" : "53"
+      } ],
+      "softwareSystemId" : "1"
+    } ]
+  }
+}
