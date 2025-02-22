@@ -27,23 +27,64 @@ workspace "Name" "Description" {
                 -> telemetry_collector "Send telemetry" "gRPC"
                 -> keycloak "Auth" "HTTP"
                 -> message_broker "Pub/Sub"
+                
                 group "Utilities" {
                     core = component "Core"
                     common = component "Common"
+                    graphql_topic_event_sender = component "GraphQL topic event sender"
+                    graphql_validation_filter = component "GraphQL business validation filter"
+                    mediatR_activity_tracing_behavior = component "MediatR activity tracing behavior" "Create traces for request handlers"
+                    mediatR_logging_behavior = component "MediatR logging behavior" "Create logs for request handlers"
+                    mediatR_performance_behavior = component "MediatR performance behavior" "Monitor request handler performance"
+                    mediatR_authorization_behavior = component "MediatR auth behavior" "Validate user is authenticated and authorized"
+                    mediatR = component "MediatR" {
+                        -> mediatR_activity_tracing_behavior "Register"
+                        -> mediatR_logging_behavior "Register"
+                        -> mediatR_performance_behavior "Register"
+                        -> mediatR_authorization_behavior "Register"
+                    }
                 }
                 group "Anime module" {
-                    anime_contracts = component "Anime.Contracts" {
-                        -> core
-                        -> common
+                    anime_model = component "Anime" "Domain model"
+                    anime_configuration = component "Anime DB Configuration" "Configure how the Anime model maps to the database table" {
+                        -> anime_model "Configure"
                     }
-                    anime_service = component "Anime.Service" {
-                        -> anime_contracts "Implement"
+                    anime_data_context = component "Anime DbContext" "DbContext that maps to the Anime Schema" {
+                        -> japanese_database "Interact with database"
+                        -> anime_configuration "Use configuration"
                     }
-                    anime_graphql = component "Anime.GraphQL" {
-                        -> anime_contracts "Expose"
-                        -> japanese_database
+                    anime_messaging_notification_handler = component "Messaging Notification Handler" {
+                        -> message_broker "Publish notification" "Masstransit"
+                    }
+                    anime_graphql_notification_handler = component "GraphQL Notification Handler" {
+                        -> graphql_topic_event_sender "Publish event"
+                    }
+                    anime_command_handlers = component "Anime command handlers" {
+                        -> anime_data_context "Mutate data"
+                        -> anime_messaging_notification_handler "Publish notification" "MediatR"
+                        -> anime_graphql_notification_handler "Publish notification" "MediatR"
+                    }
+                    anime_data_loader = component "Anime DataLoaders" {
+                        -> anime_data_context "Batch query data"
+                    }
+                    anime_query_handlers = component "Anime query handlers" {
+                        -> anime_data_loader "Query data"
+                    }
+                    anime_node = component "Anime node" "Configure how Anime model is exposed via GraphQL" {
+                        -> anime_model "Configure"
+                    }
+                    anime_mutations = component "Anime mutations" {
+                        -> anime_command_handlers "Send command" "MediatR"
+                    }
+                    anime_queries = component "Anime queries" {
+                        -> anime_query_handlers "Send query" "MediatR"
+                        -> anime_node "Expose for quering"
+                    }
+                    anime_subscriptions = component "Anime subscriptions" {
+                        -> graphql_topic_event_sender "Subscribe to anime events"
                     }
                 }
+                
                 group "Manga module" {
                     manga_contracts = component "Manga.Contracts" {
                         -> core
@@ -53,19 +94,25 @@ workspace "Name" "Description" {
                         -> manga_contracts "Implement"
                         -> japanese_database
                     }
-                    manga_graphql = component "Manga.GraphQL" {
+                    manga_graphql = component "Manga graphQL" {
                         -> manga_contracts "Expose"
                     }
                 }
+                
                 graphQL_execution_engine = component "GraphQL engine" {
-                    -> manga_graphql "Query data"
-                    -> anime_graphql "Query data"
+                    -> anime_mutations
+                    -> anime_queries
+                    -> anime_subscriptions
+                    -> graphql_validation_filter
                 }
+
+                fairybread_validator = component "FairyBread" "Validate GraphQL requests before they hit MediatR" {
+                    -> graphQL_execution_engine "Register validators"
+                }
+                
                 host = component "Host" {
                     -> manga_graphql
                     -> manga_service
-                    -> anime_graphql
-                    -> anime_service
                     -> graphQL_execution_engine
                 }
             }

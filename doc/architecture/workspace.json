@@ -6,10 +6,10 @@
   "documentation" : { },
   "id" : 1,
   "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2025-02-22T12:04:27Z",
+  "lastModifiedDate" : "2025-02-22T17:07:47Z",
   "model" : {
     "people" : [ {
-      "id" : "51",
+      "id" : "83",
       "location" : "Unspecified",
       "name" : "Client",
       "properties" : {
@@ -17,23 +17,23 @@
       },
       "relationships" : [ {
         "description" : "Interact with",
-        "destinationId" : "47",
-        "id" : "52",
-        "sourceId" : "51",
+        "destinationId" : "79",
+        "id" : "84",
+        "sourceId" : "83",
         "tags" : "Relationship",
         "technology" : "HTTP"
       }, {
         "description" : "Interact with",
         "destinationId" : "1",
-        "id" : "53",
-        "linkedRelationshipId" : "52",
-        "sourceId" : "51",
+        "id" : "85",
+        "linkedRelationshipId" : "84",
+        "sourceId" : "83",
         "technology" : "HTTP"
       }, {
         "description" : "Authenticate",
         "destinationId" : "5",
-        "id" : "54",
-        "sourceId" : "51",
+        "id" : "86",
+        "sourceId" : "83",
         "tags" : "Relationship",
         "technology" : "HTTP"
       } ],
@@ -123,170 +123,437 @@
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "group" : "Anime module",
+          "group" : "Utilities",
           "id" : "17",
-          "name" : "Anime.Contracts",
+          "name" : "GraphQL topic event sender",
           "properties" : {
-            "structurizr.dsl.identifier" : "software_system.manga_api.anime_contracts"
+            "structurizr.dsl.identifier" : "software_system.manga_api.graphql_topic_event_sender"
           },
-          "relationships" : [ {
-            "destinationId" : "15",
-            "id" : "18",
-            "sourceId" : "17",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "16",
-            "id" : "19",
-            "sourceId" : "17",
-            "tags" : "Relationship"
-          } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "group" : "Anime module",
+          "group" : "Utilities",
+          "id" : "18",
+          "name" : "GraphQL business validation filter",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.graphql_validation_filter"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Create traces for request handlers",
+          "documentation" : { },
+          "group" : "Utilities",
+          "id" : "19",
+          "name" : "MediatR activity tracing behavior",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.mediatr_activity_tracing_behavior"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Create logs for request handlers",
+          "documentation" : { },
+          "group" : "Utilities",
           "id" : "20",
-          "name" : "Anime.Service",
+          "name" : "MediatR logging behavior",
           "properties" : {
-            "structurizr.dsl.identifier" : "software_system.manga_api.anime_service"
+            "structurizr.dsl.identifier" : "software_system.manga_api.mediatr_logging_behavior"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Monitor request handler performance",
+          "documentation" : { },
+          "group" : "Utilities",
+          "id" : "21",
+          "name" : "MediatR performance behavior",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.mediatr_performance_behavior"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Validate user is authenticated and authorized",
+          "documentation" : { },
+          "group" : "Utilities",
+          "id" : "22",
+          "name" : "MediatR auth behavior",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.mediatr_authorization_behavior"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Utilities",
+          "id" : "23",
+          "name" : "MediatR",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.mediatr"
           },
           "relationships" : [ {
-            "description" : "Implement",
-            "destinationId" : "17",
-            "id" : "21",
-            "sourceId" : "20",
+            "description" : "Register",
+            "destinationId" : "19",
+            "id" : "24",
+            "sourceId" : "23",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Register",
+            "destinationId" : "20",
+            "id" : "25",
+            "sourceId" : "23",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Register",
+            "destinationId" : "21",
+            "id" : "26",
+            "sourceId" : "23",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Register",
+            "destinationId" : "22",
+            "id" : "27",
+            "sourceId" : "23",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
         }, {
+          "description" : "Domain model",
           "documentation" : { },
           "group" : "Anime module",
-          "id" : "22",
-          "name" : "Anime.GraphQL",
-          "properties" : {
-            "structurizr.dsl.identifier" : "software_system.manga_api.anime_graphql"
-          },
-          "relationships" : [ {
-            "description" : "Expose",
-            "destinationId" : "17",
-            "id" : "23",
-            "sourceId" : "22",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "3",
-            "id" : "24",
-            "sourceId" : "22",
-            "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "group" : "Manga module",
-          "id" : "25",
-          "name" : "Manga.Contracts",
-          "properties" : {
-            "structurizr.dsl.identifier" : "software_system.manga_api.manga_contracts"
-          },
-          "relationships" : [ {
-            "destinationId" : "15",
-            "id" : "26",
-            "sourceId" : "25",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "16",
-            "id" : "27",
-            "sourceId" : "25",
-            "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "group" : "Manga module",
           "id" : "28",
-          "name" : "Manga.Service",
+          "name" : "Anime",
           "properties" : {
-            "structurizr.dsl.identifier" : "software_system.manga_api.manga_service"
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_model"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Configure how the Anime model maps to the database table",
+          "documentation" : { },
+          "group" : "Anime module",
+          "id" : "29",
+          "name" : "Anime DB Configuration",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_configuration"
           },
           "relationships" : [ {
-            "description" : "Implement",
-            "destinationId" : "25",
-            "id" : "29",
-            "sourceId" : "28",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "3",
+            "description" : "Configure",
+            "destinationId" : "28",
             "id" : "30",
-            "sourceId" : "28",
+            "sourceId" : "29",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
         }, {
+          "description" : "DbContext that maps to the Anime Schema",
           "documentation" : { },
-          "group" : "Manga module",
+          "group" : "Anime module",
           "id" : "31",
-          "name" : "Manga.GraphQL",
+          "name" : "Anime DbContext",
           "properties" : {
-            "structurizr.dsl.identifier" : "software_system.manga_api.manga_graphql"
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_data_context"
           },
           "relationships" : [ {
-            "description" : "Expose",
-            "destinationId" : "25",
+            "description" : "Interact with database",
+            "destinationId" : "3",
             "id" : "32",
+            "sourceId" : "31",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Use configuration",
+            "destinationId" : "29",
+            "id" : "33",
             "sourceId" : "31",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "id" : "33",
-          "name" : "GraphQL engine",
+          "group" : "Anime module",
+          "id" : "34",
+          "name" : "Messaging Notification Handler",
           "properties" : {
-            "structurizr.dsl.identifier" : "software_system.manga_api.graphql_execution_engine"
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_messaging_notification_handler"
           },
           "relationships" : [ {
-            "description" : "Query data",
-            "destinationId" : "31",
-            "id" : "34",
-            "sourceId" : "33",
-            "tags" : "Relationship"
-          }, {
-            "description" : "Query data",
-            "destinationId" : "22",
+            "description" : "Publish notification",
+            "destinationId" : "9",
             "id" : "35",
-            "sourceId" : "33",
+            "sourceId" : "34",
+            "tags" : "Relationship",
+            "technology" : "Masstransit"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Anime module",
+          "id" : "36",
+          "name" : "GraphQL Notification Handler",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_graphql_notification_handler"
+          },
+          "relationships" : [ {
+            "description" : "Publish event",
+            "destinationId" : "17",
+            "id" : "37",
+            "sourceId" : "36",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "id" : "36",
+          "group" : "Anime module",
+          "id" : "38",
+          "name" : "Anime command handlers",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_command_handlers"
+          },
+          "relationships" : [ {
+            "description" : "Mutate data",
+            "destinationId" : "31",
+            "id" : "39",
+            "sourceId" : "38",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Publish notification",
+            "destinationId" : "34",
+            "id" : "40",
+            "sourceId" : "38",
+            "tags" : "Relationship",
+            "technology" : "MediatR"
+          }, {
+            "description" : "Publish notification",
+            "destinationId" : "36",
+            "id" : "41",
+            "sourceId" : "38",
+            "tags" : "Relationship",
+            "technology" : "MediatR"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Anime module",
+          "id" : "42",
+          "name" : "Anime DataLoaders",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_data_loader"
+          },
+          "relationships" : [ {
+            "description" : "Batch query data",
+            "destinationId" : "31",
+            "id" : "43",
+            "sourceId" : "42",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Anime module",
+          "id" : "44",
+          "name" : "Anime query handlers",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_query_handlers"
+          },
+          "relationships" : [ {
+            "description" : "Query data",
+            "destinationId" : "42",
+            "id" : "45",
+            "sourceId" : "44",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Configure how Anime model is exposed via GraphQL",
+          "documentation" : { },
+          "group" : "Anime module",
+          "id" : "46",
+          "name" : "Anime node",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_node"
+          },
+          "relationships" : [ {
+            "description" : "Configure",
+            "destinationId" : "28",
+            "id" : "47",
+            "sourceId" : "46",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Anime module",
+          "id" : "48",
+          "name" : "Anime mutations",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_mutations"
+          },
+          "relationships" : [ {
+            "description" : "Send command",
+            "destinationId" : "38",
+            "id" : "49",
+            "sourceId" : "48",
+            "tags" : "Relationship",
+            "technology" : "MediatR"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Anime module",
+          "id" : "50",
+          "name" : "Anime queries",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_queries"
+          },
+          "relationships" : [ {
+            "description" : "Send query",
+            "destinationId" : "44",
+            "id" : "51",
+            "sourceId" : "50",
+            "tags" : "Relationship",
+            "technology" : "MediatR"
+          }, {
+            "description" : "Expose for quering",
+            "destinationId" : "46",
+            "id" : "52",
+            "sourceId" : "50",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Anime module",
+          "id" : "53",
+          "name" : "Anime subscriptions",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.anime_subscriptions"
+          },
+          "relationships" : [ {
+            "description" : "Subscribe to anime events",
+            "destinationId" : "17",
+            "id" : "54",
+            "sourceId" : "53",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Manga module",
+          "id" : "55",
+          "name" : "Manga.Contracts",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.manga_contracts"
+          },
+          "relationships" : [ {
+            "destinationId" : "15",
+            "id" : "56",
+            "sourceId" : "55",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "16",
+            "id" : "57",
+            "sourceId" : "55",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Manga module",
+          "id" : "58",
+          "name" : "Manga.Service",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.manga_service"
+          },
+          "relationships" : [ {
+            "description" : "Implement",
+            "destinationId" : "55",
+            "id" : "59",
+            "sourceId" : "58",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "3",
+            "id" : "60",
+            "sourceId" : "58",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "group" : "Manga module",
+          "id" : "61",
+          "name" : "Manga graphQL",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.manga_graphql"
+          },
+          "relationships" : [ {
+            "description" : "Expose",
+            "destinationId" : "55",
+            "id" : "62",
+            "sourceId" : "61",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "63",
+          "name" : "GraphQL engine",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.graphql_execution_engine"
+          },
+          "relationships" : [ {
+            "destinationId" : "48",
+            "id" : "64",
+            "sourceId" : "63",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "50",
+            "id" : "65",
+            "sourceId" : "63",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "53",
+            "id" : "66",
+            "sourceId" : "63",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "18",
+            "id" : "67",
+            "sourceId" : "63",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Validate GraphQL requests before they hit MediatR",
+          "documentation" : { },
+          "id" : "68",
+          "name" : "FairyBread",
+          "properties" : {
+            "structurizr.dsl.identifier" : "software_system.manga_api.fairybread_validator"
+          },
+          "relationships" : [ {
+            "description" : "Register validators",
+            "destinationId" : "63",
+            "id" : "69",
+            "sourceId" : "68",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "70",
           "name" : "Host",
           "properties" : {
             "structurizr.dsl.identifier" : "software_system.manga_api.host"
           },
           "relationships" : [ {
-            "destinationId" : "31",
-            "id" : "37",
-            "sourceId" : "36",
+            "destinationId" : "61",
+            "id" : "71",
+            "sourceId" : "70",
             "tags" : "Relationship"
           }, {
-            "destinationId" : "28",
-            "id" : "38",
-            "sourceId" : "36",
+            "destinationId" : "58",
+            "id" : "72",
+            "sourceId" : "70",
             "tags" : "Relationship"
           }, {
-            "destinationId" : "22",
-            "id" : "39",
-            "sourceId" : "36",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "20",
-            "id" : "40",
-            "sourceId" : "36",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "33",
-            "id" : "41",
-            "sourceId" : "36",
+            "destinationId" : "63",
+            "id" : "73",
+            "sourceId" : "70",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
@@ -326,64 +593,64 @@
         "tags" : "Element,Container,Service"
       }, {
         "documentation" : { },
-        "id" : "42",
+        "id" : "74",
         "name" : "Rating.API",
         "properties" : {
           "structurizr.dsl.identifier" : "software_system.rating_api"
         },
         "relationships" : [ {
           "destinationId" : "4",
-          "id" : "43",
-          "sourceId" : "42",
+          "id" : "75",
+          "sourceId" : "74",
           "tags" : "Relationship"
         }, {
           "description" : "Send telemetry",
           "destinationId" : "2",
-          "id" : "44",
-          "sourceId" : "42",
+          "id" : "76",
+          "sourceId" : "74",
           "tags" : "Relationship",
           "technology" : "gRPC"
         }, {
           "description" : "Auth",
           "destinationId" : "5",
-          "id" : "45",
-          "sourceId" : "42",
+          "id" : "77",
+          "sourceId" : "74",
           "tags" : "Relationship",
           "technology" : "HTTP"
         }, {
           "description" : "Pub/Sub",
           "destinationId" : "9",
-          "id" : "46",
-          "sourceId" : "42",
+          "id" : "78",
+          "sourceId" : "74",
           "tags" : "Relationship"
         } ],
         "tags" : "Element,Container,Service"
       }, {
         "documentation" : { },
-        "id" : "47",
+        "id" : "79",
         "name" : "Gateway",
         "properties" : {
           "structurizr.dsl.identifier" : "software_system.api_gateway"
         },
         "relationships" : [ {
           "description" : "Query for ratings",
-          "destinationId" : "42",
-          "id" : "48",
-          "sourceId" : "47",
+          "destinationId" : "74",
+          "id" : "80",
+          "sourceId" : "79",
           "tags" : "Relationship",
           "technology" : "GraphQL"
         }, {
           "description" : "Query for anime/manga information",
           "destinationId" : "10",
-          "id" : "49",
-          "sourceId" : "47",
+          "id" : "81",
+          "sourceId" : "79",
           "tags" : "Relationship",
           "technology" : "GraphQL"
         } ],
         "tags" : "Element,Container"
       }, {
         "documentation" : { },
-        "id" : "50",
+        "id" : "82",
         "name" : "App.Host",
         "properties" : {
           "structurizr.dsl.identifier" : "software_system.aspire_host"
@@ -402,7 +669,7 @@
   },
   "name" : "Name",
   "properties" : {
-    "structurizr.dsl" : "d29ya3NwYWNlICJOYW1lIiAiRGVzY3JpcHRpb24iIHsKCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewogICAgICAgIHNvZnR3YXJlX3N5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJKYXBhbmVzZSBjdWx0dXJhbCBhcHAiIHsKICAgICAgICAgICAgdGVsZW1ldHJ5X2NvbGxlY3RvciA9IGNvbnRhaW5lciAiVGVsZW1ldHJ5IENvbGxlY3RvciIKICAgICAgICAgICAgamFwYW5lc2VfZGF0YWJhc2UgPSBjb250YWluZXIgIk1hbmdhLkRCIiB7CiAgICAgICAgICAgICAgICB0YWdzICJEYXRhYmFzZSIKICAgICAgICAgICAgfQogICAgICAgICAgICByYXRpbmdfZGF0YWJhc2UgPSBjb250YWluZXIgIlJhdGluZy5DYWNoZSIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICAgICAga2V5Y2xvYWsgPSBjb250YWluZXIgIktleWNsb2FrIiB7CiAgICAgICAgICAgICAgICB0YWdzICJTZXJ2aWNlIgogICAgICAgICAgICB9CiAgICAgICAgICAgIG1pZ3JhdGlvbl9zZXJ2aWNlID0gY29udGFpbmVyICJKYXBhbmVzZS5BcGkuTWlncmF0aW9uU2VydmljZSIgewogICAgICAgICAgICAgICAgLT4gamFwYW5lc2VfZGF0YWJhc2UgIkFwcGx5IG1pZ3JhdGlvbnMiCiAgICAgICAgICAgICAgICAtPiB0ZWxlbWV0cnlfY29sbGVjdG9yICJTZW5kIHRlbGVtZXRyeSIgImdSUEMiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgbWVzc2FnZV9icm9rZXIgPSBjb250YWluZXIgIlJhYmJpdE1xIiB7CiAgICAgICAgICAgICAgICB0YWdzICJNZXNzYWdlYnJva2VyIgogICAgICAgICAgICB9CiAgICAgICAgICAgIG1hbmdhX2FwaSA9IGNvbnRhaW5lciAiSmFwYW5lc2UuQXBpIiB7CiAgICAgICAgICAgICAgICB0YWdzICJTZXJ2aWNlIgogICAgICAgICAgICAgICAgLT4gamFwYW5lc2VfZGF0YWJhc2UKICAgICAgICAgICAgICAgIC0+IHRlbGVtZXRyeV9jb2xsZWN0b3IgIlNlbmQgdGVsZW1ldHJ5IiAiZ1JQQyIKICAgICAgICAgICAgICAgIC0+IGtleWNsb2FrICJBdXRoIiAiSFRUUCIKICAgICAgICAgICAgICAgIC0+IG1lc3NhZ2VfYnJva2VyICJQdWIvU3ViIgogICAgICAgICAgICAgICAgZ3JvdXAgIlV0aWxpdGllcyIgewogICAgICAgICAgICAgICAgICAgIGNvcmUgPSBjb21wb25lbnQgIkNvcmUiCiAgICAgICAgICAgICAgICAgICAgY29tbW9uID0gY29tcG9uZW50ICJDb21tb24iCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBncm91cCAiQW5pbWUgbW9kdWxlIiB7CiAgICAgICAgICAgICAgICAgICAgYW5pbWVfY29udHJhY3RzID0gY29tcG9uZW50ICJBbmltZS5Db250cmFjdHMiIHsKICAgICAgICAgICAgICAgICAgICAgICAgLT4gY29yZQogICAgICAgICAgICAgICAgICAgICAgICAtPiBjb21tb24KICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgYW5pbWVfc2VydmljZSA9IGNvbXBvbmVudCAiQW5pbWUuU2VydmljZSIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBhbmltZV9jb250cmFjdHMgIkltcGxlbWVudCIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgYW5pbWVfZ3JhcGhxbCA9IGNvbXBvbmVudCAiQW5pbWUuR3JhcGhRTCIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBhbmltZV9jb250cmFjdHMgIkV4cG9zZSIKICAgICAgICAgICAgICAgICAgICAgICAgLT4gamFwYW5lc2VfZGF0YWJhc2UKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBncm91cCAiTWFuZ2EgbW9kdWxlIiB7CiAgICAgICAgICAgICAgICAgICAgbWFuZ2FfY29udHJhY3RzID0gY29tcG9uZW50ICJNYW5nYS5Db250cmFjdHMiIHsKICAgICAgICAgICAgICAgICAgICAgICAgLT4gY29yZQogICAgICAgICAgICAgICAgICAgICAgICAtPiBjb21tb24KICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgbWFuZ2Ffc2VydmljZSA9IGNvbXBvbmVudCAiTWFuZ2EuU2VydmljZSIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBtYW5nYV9jb250cmFjdHMgIkltcGxlbWVudCIKICAgICAgICAgICAgICAgICAgICAgICAgLT4gamFwYW5lc2VfZGF0YWJhc2UKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgbWFuZ2FfZ3JhcGhxbCA9IGNvbXBvbmVudCAiTWFuZ2EuR3JhcGhRTCIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBtYW5nYV9jb250cmFjdHMgIkV4cG9zZSIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBncmFwaFFMX2V4ZWN1dGlvbl9lbmdpbmUgPSBjb21wb25lbnQgIkdyYXBoUUwgZW5naW5lIiB7CiAgICAgICAgICAgICAgICAgICAgLT4gbWFuZ2FfZ3JhcGhxbCAiUXVlcnkgZGF0YSIKICAgICAgICAgICAgICAgICAgICAtPiBhbmltZV9ncmFwaHFsICJRdWVyeSBkYXRhIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgaG9zdCA9IGNvbXBvbmVudCAiSG9zdCIgewogICAgICAgICAgICAgICAgICAgIC0+IG1hbmdhX2dyYXBocWwKICAgICAgICAgICAgICAgICAgICAtPiBtYW5nYV9zZXJ2aWNlCiAgICAgICAgICAgICAgICAgICAgLT4gYW5pbWVfZ3JhcGhxbAogICAgICAgICAgICAgICAgICAgIC0+IGFuaW1lX3NlcnZpY2UKICAgICAgICAgICAgICAgICAgICAtPiBncmFwaFFMX2V4ZWN1dGlvbl9lbmdpbmUKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAgICByYXRpbmdfYXBpID0gY29udGFpbmVyICJSYXRpbmcuQVBJIiB7CiAgICAgICAgICAgICAgICB0YWdzICJTZXJ2aWNlIgogICAgICAgICAgICAgICAgLT4gcmF0aW5nX2RhdGFiYXNlCiAgICAgICAgICAgICAgICAtPiB0ZWxlbWV0cnlfY29sbGVjdG9yICJTZW5kIHRlbGVtZXRyeSIgImdSUEMiCiAgICAgICAgICAgICAgICAtPiBrZXljbG9hayAiQXV0aCIgIkhUVFAiCiAgICAgICAgICAgICAgICAtPiBtZXNzYWdlX2Jyb2tlciAiUHViL1N1YiIKICAgICAgICAgICAgfQogICAgICAgICAgICBhcGlfZ2F0ZXdheSA9IGNvbnRhaW5lciAiR2F0ZXdheSIgewogICAgICAgICAgICAgICAgLT4gcmF0aW5nX2FwaSAiUXVlcnkgZm9yIHJhdGluZ3MiICJHcmFwaFFMIgogICAgICAgICAgICAgICAgLT4gbWFuZ2FfYXBpICJRdWVyeSBmb3IgYW5pbWUvbWFuZ2EgaW5mb3JtYXRpb24iICJHcmFwaFFMIgogICAgICAgICAgICB9CiAgICAgICAgICAgIGFzcGlyZV9ob3N0ID0gY29udGFpbmVyICJBcHAuSG9zdCIgewogICAgICAgICAgICAgICAgdGFncyAiQXNwaXJlQmFzZSIKICAgICAgICAgICAgfQogICAgICAgIH0KICAgICAgICB1c2VyID0gcGVyc29uICJDbGllbnQiIHsKICAgICAgICAgICAgdGFncyAiV2ViQnJvd3NlciIKICAgICAgICAgICAgLT4gc29mdHdhcmVfc3lzdGVtLmFwaV9nYXRld2F5ICJJbnRlcmFjdCB3aXRoIiAiSFRUUCIKICAgICAgICAgICAgLT4gc29mdHdhcmVfc3lzdGVtLmtleWNsb2FrICJBdXRoZW50aWNhdGUiICJIVFRQIgogICAgICAgIH0KCiAgICB9CgogICAgdmlld3MgewogICAgICAgIHN5c3RlbUNvbnRleHQgc29mdHdhcmVfc3lzdGVtICJEaWFncmFtMSIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29udGFpbmVyIHNvZnR3YXJlX3N5c3RlbSAiamFwYW5lc2VfY3VsdHVyZV9zeXN0ZW0iIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9sYXlvdXQgbHIKICAgICAgICB9CiAgICAgICAgY29tcG9uZW50IHNvZnR3YXJlX3N5c3RlbS5tYW5nYV9hcGkgIm1hbmdhX2FwaV9jb21wb25lbnQiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9sYXlvdXQgbHIKICAgICAgICB9CgoKCiAgICAgICAgc3R5bGVzIHsKICAgICAgICAgICAgZWxlbWVudCAiRWxlbWVudCIgewogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlBlcnNvbiIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDQ4YzA0CiAgICAgICAgICAgICAgICBzaGFwZSBwZXJzb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzA0NzgwNAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbnRhaW5lciIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNTVhYTU1CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ29tcG9uZW50IiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM1NWFhNTUKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJBc3BpcmVCYXNlIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM3MjQyZjUKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgc2hhcGUgY3lsaW5kZXIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJNZXNzYWdlYnJva2VyIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBQaXBlCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiV2ViQnJvd3NlciIgewogICAgICAgICAgICAgICAgc2hhcGUgV2luZG93CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiTW9iaWxlQXBwIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBNb2JpbGVEZXZpY2VQb3J0cmFpdAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlNlcnZpY2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIGhleGFnb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJGaWxlU3RvcmFnZSIgewogICAgICAgICAgICAgICAgc2hhcGUgZm9sZGVyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRXh0ZXJuYWxBY3RvciIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjOTk5OTk5CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRXh0ZXJuYWxTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzk5OTk5OQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIk9ic2VydmFiaWxpdHlCRSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjZWJjOTM0CiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9CgogICAgY29uZmlndXJhdGlvbiB7CiAgICAgICAgc2NvcGUgc29mdHdhcmVzeXN0ZW0KICAgIH0KCn0="
+    "structurizr.dsl" : "d29ya3NwYWNlICJOYW1lIiAiRGVzY3JpcHRpb24iIHsKCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewogICAgICAgIHNvZnR3YXJlX3N5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJKYXBhbmVzZSBjdWx0dXJhbCBhcHAiIHsKICAgICAgICAgICAgdGVsZW1ldHJ5X2NvbGxlY3RvciA9IGNvbnRhaW5lciAiVGVsZW1ldHJ5IENvbGxlY3RvciIKICAgICAgICAgICAgamFwYW5lc2VfZGF0YWJhc2UgPSBjb250YWluZXIgIk1hbmdhLkRCIiB7CiAgICAgICAgICAgICAgICB0YWdzICJEYXRhYmFzZSIKICAgICAgICAgICAgfQogICAgICAgICAgICByYXRpbmdfZGF0YWJhc2UgPSBjb250YWluZXIgIlJhdGluZy5DYWNoZSIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICAgICAga2V5Y2xvYWsgPSBjb250YWluZXIgIktleWNsb2FrIiB7CiAgICAgICAgICAgICAgICB0YWdzICJTZXJ2aWNlIgogICAgICAgICAgICB9CiAgICAgICAgICAgIG1pZ3JhdGlvbl9zZXJ2aWNlID0gY29udGFpbmVyICJKYXBhbmVzZS5BcGkuTWlncmF0aW9uU2VydmljZSIgewogICAgICAgICAgICAgICAgLT4gamFwYW5lc2VfZGF0YWJhc2UgIkFwcGx5IG1pZ3JhdGlvbnMiCiAgICAgICAgICAgICAgICAtPiB0ZWxlbWV0cnlfY29sbGVjdG9yICJTZW5kIHRlbGVtZXRyeSIgImdSUEMiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgbWVzc2FnZV9icm9rZXIgPSBjb250YWluZXIgIlJhYmJpdE1xIiB7CiAgICAgICAgICAgICAgICB0YWdzICJNZXNzYWdlYnJva2VyIgogICAgICAgICAgICB9CiAgICAgICAgICAgIG1hbmdhX2FwaSA9IGNvbnRhaW5lciAiSmFwYW5lc2UuQXBpIiB7CiAgICAgICAgICAgICAgICB0YWdzICJTZXJ2aWNlIgogICAgICAgICAgICAgICAgLT4gamFwYW5lc2VfZGF0YWJhc2UKICAgICAgICAgICAgICAgIC0+IHRlbGVtZXRyeV9jb2xsZWN0b3IgIlNlbmQgdGVsZW1ldHJ5IiAiZ1JQQyIKICAgICAgICAgICAgICAgIC0+IGtleWNsb2FrICJBdXRoIiAiSFRUUCIKICAgICAgICAgICAgICAgIC0+IG1lc3NhZ2VfYnJva2VyICJQdWIvU3ViIgogICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICBncm91cCAiVXRpbGl0aWVzIiB7CiAgICAgICAgICAgICAgICAgICAgY29yZSA9IGNvbXBvbmVudCAiQ29yZSIKICAgICAgICAgICAgICAgICAgICBjb21tb24gPSBjb21wb25lbnQgIkNvbW1vbiIKICAgICAgICAgICAgICAgICAgICBncmFwaHFsX3RvcGljX2V2ZW50X3NlbmRlciA9IGNvbXBvbmVudCAiR3JhcGhRTCB0b3BpYyBldmVudCBzZW5kZXIiCiAgICAgICAgICAgICAgICAgICAgZ3JhcGhxbF92YWxpZGF0aW9uX2ZpbHRlciA9IGNvbXBvbmVudCAiR3JhcGhRTCBidXNpbmVzcyB2YWxpZGF0aW9uIGZpbHRlciIKICAgICAgICAgICAgICAgICAgICBtZWRpYXRSX2FjdGl2aXR5X3RyYWNpbmdfYmVoYXZpb3IgPSBjb21wb25lbnQgIk1lZGlhdFIgYWN0aXZpdHkgdHJhY2luZyBiZWhhdmlvciIgIkNyZWF0ZSB0cmFjZXMgZm9yIHJlcXVlc3QgaGFuZGxlcnMiCiAgICAgICAgICAgICAgICAgICAgbWVkaWF0Ul9sb2dnaW5nX2JlaGF2aW9yID0gY29tcG9uZW50ICJNZWRpYXRSIGxvZ2dpbmcgYmVoYXZpb3IiICJDcmVhdGUgbG9ncyBmb3IgcmVxdWVzdCBoYW5kbGVycyIKICAgICAgICAgICAgICAgICAgICBtZWRpYXRSX3BlcmZvcm1hbmNlX2JlaGF2aW9yID0gY29tcG9uZW50ICJNZWRpYXRSIHBlcmZvcm1hbmNlIGJlaGF2aW9yIiAiTW9uaXRvciByZXF1ZXN0IGhhbmRsZXIgcGVyZm9ybWFuY2UiCiAgICAgICAgICAgICAgICAgICAgbWVkaWF0Ul9hdXRob3JpemF0aW9uX2JlaGF2aW9yID0gY29tcG9uZW50ICJNZWRpYXRSIGF1dGggYmVoYXZpb3IiICJWYWxpZGF0ZSB1c2VyIGlzIGF1dGhlbnRpY2F0ZWQgYW5kIGF1dGhvcml6ZWQiCiAgICAgICAgICAgICAgICAgICAgbWVkaWF0UiA9IGNvbXBvbmVudCAiTWVkaWF0UiIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBtZWRpYXRSX2FjdGl2aXR5X3RyYWNpbmdfYmVoYXZpb3IgIlJlZ2lzdGVyIgogICAgICAgICAgICAgICAgICAgICAgICAtPiBtZWRpYXRSX2xvZ2dpbmdfYmVoYXZpb3IgIlJlZ2lzdGVyIgogICAgICAgICAgICAgICAgICAgICAgICAtPiBtZWRpYXRSX3BlcmZvcm1hbmNlX2JlaGF2aW9yICJSZWdpc3RlciIKICAgICAgICAgICAgICAgICAgICAgICAgLT4gbWVkaWF0Ul9hdXRob3JpemF0aW9uX2JlaGF2aW9yICJSZWdpc3RlciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBncm91cCAiQW5pbWUgbW9kdWxlIiB7CiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgYW5pbWVfbW9kZWwgPSBjb21wb25lbnQgIkFuaW1lIiAiRG9tYWluIG1vZGVsIgogICAgICAgICAgICAgICAgICAgIGFuaW1lX2NvbmZpZ3VyYXRpb24gPSBjb21wb25lbnQgIkFuaW1lIERCIENvbmZpZ3VyYXRpb24iICJDb25maWd1cmUgaG93IHRoZSBBbmltZSBtb2RlbCBtYXBzIHRvIHRoZSBkYXRhYmFzZSB0YWJsZSIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBhbmltZV9tb2RlbCAiQ29uZmlndXJlIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBhbmltZV9kYXRhX2NvbnRleHQgPSBjb21wb25lbnQgIkFuaW1lIERiQ29udGV4dCIgIkRiQ29udGV4dCB0aGF0IG1hcHMgdG8gdGhlIEFuaW1lIFNjaGVtYSIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBqYXBhbmVzZV9kYXRhYmFzZSAiSW50ZXJhY3Qgd2l0aCBkYXRhYmFzZSIKICAgICAgICAgICAgICAgICAgICAgICAgLT4gYW5pbWVfY29uZmlndXJhdGlvbiAiVXNlIGNvbmZpZ3VyYXRpb24iCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIGFuaW1lX21lc3NhZ2luZ19ub3RpZmljYXRpb25faGFuZGxlciA9IGNvbXBvbmVudCAiTWVzc2FnaW5nIE5vdGlmaWNhdGlvbiBIYW5kbGVyIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIC0+IG1lc3NhZ2VfYnJva2VyICJQdWJsaXNoIG5vdGlmaWNhdGlvbiIgIk1hc3N0cmFuc2l0IgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBhbmltZV9ncmFwaHFsX25vdGlmaWNhdGlvbl9oYW5kbGVyID0gY29tcG9uZW50ICJHcmFwaFFMIE5vdGlmaWNhdGlvbiBIYW5kbGVyIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIC0+IGdyYXBocWxfdG9waWNfZXZlbnRfc2VuZGVyICJQdWJsaXNoIGV2ZW50IgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBhbmltZV9jb21tYW5kX2hhbmRsZXJzID0gY29tcG9uZW50ICJBbmltZSBjb21tYW5kIGhhbmRsZXJzIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIC0+IGFuaW1lX2RhdGFfY29udGV4dCAiTXV0YXRlIGRhdGEiCiAgICAgICAgICAgICAgICAgICAgICAgIC0+IGFuaW1lX21lc3NhZ2luZ19ub3RpZmljYXRpb25faGFuZGxlciAiUHVibGlzaCBub3RpZmljYXRpb24iICJNZWRpYXRSIgogICAgICAgICAgICAgICAgICAgICAgICAtPiBhbmltZV9ncmFwaHFsX25vdGlmaWNhdGlvbl9oYW5kbGVyICJQdWJsaXNoIG5vdGlmaWNhdGlvbiIgIk1lZGlhdFIiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIGFuaW1lX2RhdGFfbG9hZGVyID0gY29tcG9uZW50ICJBbmltZSBEYXRhTG9hZGVycyIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBhbmltZV9kYXRhX2NvbnRleHQgIkJhdGNoIHF1ZXJ5IGRhdGEiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIGFuaW1lX3F1ZXJ5X2hhbmRsZXJzID0gY29tcG9uZW50ICJBbmltZSBxdWVyeSBoYW5kbGVycyIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBhbmltZV9kYXRhX2xvYWRlciAiUXVlcnkgZGF0YSIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgYW5pbWVfbm9kZSA9IGNvbXBvbmVudCAiQW5pbWUgbm9kZSIgIkNvbmZpZ3VyZSBob3cgQW5pbWUgbW9kZWwgaXMgZXhwb3NlZCB2aWEgR3JhcGhRTCIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBhbmltZV9tb2RlbCAiQ29uZmlndXJlIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBhbmltZV9tdXRhdGlvbnMgPSBjb21wb25lbnQgIkFuaW1lIG11dGF0aW9ucyIgewogICAgICAgICAgICAgICAgICAgICAgICAtPiBhbmltZV9jb21tYW5kX2hhbmRsZXJzICJTZW5kIGNvbW1hbmQiICJNZWRpYXRSIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBhbmltZV9xdWVyaWVzID0gY29tcG9uZW50ICJBbmltZSBxdWVyaWVzIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIC0+IGFuaW1lX3F1ZXJ5X2hhbmRsZXJzICJTZW5kIHF1ZXJ5IiAiTWVkaWF0UiIKICAgICAgICAgICAgICAgICAgICAgICAgLT4gYW5pbWVfbm9kZSAiRXhwb3NlIGZvciBxdWVyaW5nIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBhbmltZV9zdWJzY3JpcHRpb25zID0gY29tcG9uZW50ICJBbmltZSBzdWJzY3JpcHRpb25zIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIC0+IGdyYXBocWxfdG9waWNfZXZlbnRfc2VuZGVyICJTdWJzY3JpYmUgdG8gYW5pbWUgZXZlbnRzIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgZ3JvdXAgIk1hbmdhIG1vZHVsZSIgewogICAgICAgICAgICAgICAgICAgIG1hbmdhX2NvbnRyYWN0cyA9IGNvbXBvbmVudCAiTWFuZ2EuQ29udHJhY3RzIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIC0+IGNvcmUKICAgICAgICAgICAgICAgICAgICAgICAgLT4gY29tbW9uCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIG1hbmdhX3NlcnZpY2UgPSBjb21wb25lbnQgIk1hbmdhLlNlcnZpY2UiIHsKICAgICAgICAgICAgICAgICAgICAgICAgLT4gbWFuZ2FfY29udHJhY3RzICJJbXBsZW1lbnQiCiAgICAgICAgICAgICAgICAgICAgICAgIC0+IGphcGFuZXNlX2RhdGFiYXNlCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIG1hbmdhX2dyYXBocWwgPSBjb21wb25lbnQgIk1hbmdhIGdyYXBoUUwiIHsKICAgICAgICAgICAgICAgICAgICAgICAgLT4gbWFuZ2FfY29udHJhY3RzICJFeHBvc2UiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICBncmFwaFFMX2V4ZWN1dGlvbl9lbmdpbmUgPSBjb21wb25lbnQgIkdyYXBoUUwgZW5naW5lIiB7CiAgICAgICAgICAgICAgICAgICAgLT4gYW5pbWVfbXV0YXRpb25zCiAgICAgICAgICAgICAgICAgICAgLT4gYW5pbWVfcXVlcmllcwogICAgICAgICAgICAgICAgICAgIC0+IGFuaW1lX3N1YnNjcmlwdGlvbnMKICAgICAgICAgICAgICAgICAgICAtPiBncmFwaHFsX3ZhbGlkYXRpb25fZmlsdGVyCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgZmFpcnlicmVhZF92YWxpZGF0b3IgPSBjb21wb25lbnQgIkZhaXJ5QnJlYWQiICJWYWxpZGF0ZSBHcmFwaFFMIHJlcXVlc3RzIGJlZm9yZSB0aGV5IGhpdCBNZWRpYXRSIiB7CiAgICAgICAgICAgICAgICAgICAgLT4gZ3JhcGhRTF9leGVjdXRpb25fZW5naW5lICJSZWdpc3RlciB2YWxpZGF0b3JzIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgaG9zdCA9IGNvbXBvbmVudCAiSG9zdCIgewogICAgICAgICAgICAgICAgICAgIC0+IG1hbmdhX2dyYXBocWwKICAgICAgICAgICAgICAgICAgICAtPiBtYW5nYV9zZXJ2aWNlCiAgICAgICAgICAgICAgICAgICAgLT4gZ3JhcGhRTF9leGVjdXRpb25fZW5naW5lCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmF0aW5nX2FwaSA9IGNvbnRhaW5lciAiUmF0aW5nLkFQSSIgewogICAgICAgICAgICAgICAgdGFncyAiU2VydmljZSIKICAgICAgICAgICAgICAgIC0+IHJhdGluZ19kYXRhYmFzZQogICAgICAgICAgICAgICAgLT4gdGVsZW1ldHJ5X2NvbGxlY3RvciAiU2VuZCB0ZWxlbWV0cnkiICJnUlBDIgogICAgICAgICAgICAgICAgLT4ga2V5Y2xvYWsgIkF1dGgiICJIVFRQIgogICAgICAgICAgICAgICAgLT4gbWVzc2FnZV9icm9rZXIgIlB1Yi9TdWIiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgYXBpX2dhdGV3YXkgPSBjb250YWluZXIgIkdhdGV3YXkiIHsKICAgICAgICAgICAgICAgIC0+IHJhdGluZ19hcGkgIlF1ZXJ5IGZvciByYXRpbmdzIiAiR3JhcGhRTCIKICAgICAgICAgICAgICAgIC0+IG1hbmdhX2FwaSAiUXVlcnkgZm9yIGFuaW1lL21hbmdhIGluZm9ybWF0aW9uIiAiR3JhcGhRTCIKICAgICAgICAgICAgfQogICAgICAgICAgICBhc3BpcmVfaG9zdCA9IGNvbnRhaW5lciAiQXBwLkhvc3QiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIkFzcGlyZUJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICAgICAgdXNlciA9IHBlcnNvbiAiQ2xpZW50IiB7CiAgICAgICAgICAgIHRhZ3MgIldlYkJyb3dzZXIiCiAgICAgICAgICAgIC0+IHNvZnR3YXJlX3N5c3RlbS5hcGlfZ2F0ZXdheSAiSW50ZXJhY3Qgd2l0aCIgIkhUVFAiCiAgICAgICAgICAgIC0+IHNvZnR3YXJlX3N5c3RlbS5rZXljbG9hayAiQXV0aGVudGljYXRlIiAiSFRUUCIKICAgICAgICB9CgogICAgfQoKICAgIHZpZXdzIHsKICAgICAgICBzeXN0ZW1Db250ZXh0IHNvZnR3YXJlX3N5c3RlbSAiRGlhZ3JhbTEiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9sYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgIGNvbnRhaW5lciBzb2Z0d2FyZV9zeXN0ZW0gImphcGFuZXNlX2N1bHR1cmVfc3lzdGVtIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQogICAgICAgIGNvbXBvbmVudCBzb2Z0d2FyZV9zeXN0ZW0ubWFuZ2FfYXBpICJtYW5nYV9hcGlfY29tcG9uZW50IiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKCgogICAgICAgIHN0eWxlcyB7CiAgICAgICAgICAgIGVsZW1lbnQgIkVsZW1lbnQiIHsKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJQZXJzb24iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzA0OGMwNAogICAgICAgICAgICAgICAgc2hhcGUgcGVyc29uCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiU29mdHdhcmUgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwNDc4MDQKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb250YWluZXIiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzU1YWE1NQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbXBvbmVudCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNTVhYTU1CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQXNwaXJlQmFzZSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNzI0MmY1CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIGN5bGluZGVyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiTWVzc2FnZWJyb2tlciIgewogICAgICAgICAgICAgICAgc2hhcGUgUGlwZQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIldlYkJyb3dzZXIiIHsKICAgICAgICAgICAgICAgIHNoYXBlIFdpbmRvdwogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIk1vYmlsZUFwcCIgewogICAgICAgICAgICAgICAgc2hhcGUgTW9iaWxlRGV2aWNlUG9ydHJhaXQKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTZXJ2aWNlIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBoZXhhZ29uCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRmlsZVN0b3JhZ2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIGZvbGRlcgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkV4dGVybmFsQWN0b3IiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzk5OTk5OQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkV4dGVybmFsU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM5OTk5OTkKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJPYnNlcnZhYmlsaXR5QkUiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI2ViYzkzNAogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfQoKICAgIGNvbmZpZ3VyYXRpb24gewogICAgICAgIHNjb3BlIHNvZnR3YXJlc3lzdGVtCiAgICB9Cgp9"
   },
   "views" : {
     "componentViews" : [ {
@@ -417,110 +684,267 @@
       },
       "containerId" : "10",
       "dimensions" : {
-        "height" : 3165,
-        "width" : 3910
+        "height" : 6473,
+        "width" : 6160
       },
       "elements" : [ {
         "id" : "3",
-        "x" : 2469,
-        "y" : 2630
+        "x" : 4719,
+        "y" : 5938
+      }, {
+        "id" : "9",
+        "x" : 4719,
+        "y" : 5338
       }, {
         "id" : "15",
-        "x" : 3219,
-        "y" : 813
+        "x" : 4719,
+        "y" : 805
       }, {
         "id" : "16",
-        "x" : 3219,
-        "y" : 1413
-      }, {
-        "id" : "17",
-        "x" : 2469,
-        "y" : 1417
-      }, {
-        "id" : "20",
-        "x" : 1719,
-        "y" : 1417
-      }, {
-        "id" : "22",
-        "x" : 1719,
-        "y" : 2017
-      }, {
-        "id" : "25",
-        "x" : 2469,
-        "y" : 805
-      }, {
-        "id" : "28",
-        "x" : 1719,
-        "y" : 805
-      }, {
-        "id" : "31",
-        "x" : 1719,
+        "x" : 4719,
         "y" : 205
       }, {
-        "id" : "33",
-        "x" : 969,
-        "y" : 1567
+        "id" : "17",
+        "x" : 4719,
+        "y" : 2005
+      }, {
+        "id" : "18",
+        "x" : 4719,
+        "y" : 1405
+      }, {
+        "id" : "19",
+        "x" : 5469,
+        "y" : 1405
+      }, {
+        "id" : "20",
+        "x" : 5469,
+        "y" : 805
+      }, {
+        "id" : "21",
+        "x" : 5469,
+        "y" : 2605
+      }, {
+        "id" : "22",
+        "x" : 5469,
+        "y" : 2005
+      }, {
+        "id" : "23",
+        "x" : 4719,
+        "y" : 2605
+      }, {
+        "id" : "28",
+        "x" : 5469,
+        "y" : 3751
+      }, {
+        "id" : "29",
+        "x" : 4719,
+        "y" : 4051
+      }, {
+        "id" : "31",
+        "x" : 3969,
+        "y" : 4126
+      }, {
+        "id" : "34",
+        "x" : 3969,
+        "y" : 4726
       }, {
         "id" : "36",
+        "x" : 3969,
+        "y" : 3526
+      }, {
+        "id" : "38",
+        "x" : 3219,
+        "y" : 4380
+      }, {
+        "id" : "42",
+        "x" : 3219,
+        "y" : 3780
+      }, {
+        "id" : "44",
+        "x" : 2469,
+        "y" : 3780
+      }, {
+        "id" : "46",
+        "x" : 4719,
+        "y" : 3297
+      }, {
+        "id" : "48",
+        "x" : 2469,
+        "y" : 4380
+      }, {
+        "id" : "50",
+        "x" : 1719,
+        "y" : 3817
+      }, {
+        "id" : "53",
+        "x" : 1719,
+        "y" : 3217
+      }, {
+        "id" : "55",
+        "x" : 1719,
+        "y" : 892
+      }, {
+        "id" : "58",
+        "x" : 969,
+        "y" : 1492
+      }, {
+        "id" : "61",
+        "x" : 969,
+        "y" : 892
+      }, {
+        "id" : "63",
+        "x" : 969,
+        "y" : 3217
+      }, {
+        "id" : "68",
         "x" : 219,
-        "y" : 1113
+        "y" : 3217
+      }, {
+        "id" : "70",
+        "x" : 219,
+        "y" : 1492
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "manga_api_component",
       "order" : 3,
       "relationships" : [ {
-        "id" : "18"
+        "id" : "24",
+        "vertices" : [ {
+          "x" : 5169,
+          "y" : 2455
+        }, {
+          "x" : 5469,
+          "y" : 1855
+        } ]
       }, {
-        "id" : "19"
-      }, {
-        "id" : "21"
-      }, {
-        "id" : "23"
-      }, {
-        "id" : "24"
+        "id" : "25",
+        "vertices" : [ {
+          "x" : 5169,
+          "y" : 2455
+        }, {
+          "x" : 5469,
+          "y" : 1255
+        } ]
       }, {
         "id" : "26"
       }, {
         "id" : "27"
       }, {
-        "id" : "29"
+        "id" : "30"
       }, {
-        "id" : "30",
+        "id" : "32",
         "vertices" : [ {
-          "x" : 2169,
-          "y" : 1238
+          "x" : 4419,
+          "y" : 4576
         }, {
-          "x" : 2469,
-          "y" : 2497
+          "x" : 4615,
+          "y" : 5788
         } ]
       }, {
-        "id" : "32"
-      }, {
-        "id" : "34",
-        "vertices" : [ {
-          "x" : 1615,
-          "y" : 655
-        } ]
+        "id" : "33"
       }, {
         "id" : "35"
       }, {
-        "id" : "37"
-      }, {
-        "id" : "38"
-      }, {
-        "id" : "39",
+        "id" : "37",
         "vertices" : [ {
-          "x" : 969,
-          "y" : 2017
+          "x" : 4615,
+          "y" : 2455
         } ]
       }, {
-        "id" : "40",
-        "vertices" : [ {
-          "x" : 1419,
-          "y" : 1417
-        } ]
+        "id" : "39"
+      }, {
+        "id" : "40"
       }, {
         "id" : "41"
+      }, {
+        "id" : "43"
+      }, {
+        "id" : "45"
+      }, {
+        "id" : "47"
+      }, {
+        "id" : "49"
+      }, {
+        "id" : "51"
+      }, {
+        "id" : "52",
+        "vertices" : [ {
+          "x" : 2469,
+          "y" : 3630
+        }, {
+          "x" : 3969,
+          "y" : 3376
+        }, {
+          "x" : 4419,
+          "y" : 3376
+        } ]
+      }, {
+        "id" : "54",
+        "vertices" : [ {
+          "x" : 4419,
+          "y" : 2722
+        }, {
+          "x" : 4615,
+          "y" : 2455
+        } ]
+      }, {
+        "id" : "56",
+        "vertices" : [ {
+          "x" : 2469,
+          "y" : 1022
+        } ]
+      }, {
+        "id" : "57"
+      }, {
+        "id" : "59",
+        "vertices" : [ {
+          "x" : 1615,
+          "y" : 1209
+        } ]
+      }, {
+        "id" : "60",
+        "vertices" : [ {
+          "x" : 1419,
+          "y" : 1809
+        }, {
+          "x" : 1615,
+          "y" : 5205
+        }, {
+          "x" : 2690,
+          "y" : 5784
+        }, {
+          "x" : 3448,
+          "y" : 5784
+        } ]
+      }, {
+        "id" : "62"
+      }, {
+        "id" : "64",
+        "vertices" : [ {
+          "x" : 1615,
+          "y" : 4267
+        } ]
+      }, {
+        "id" : "65"
+      }, {
+        "id" : "66"
+      }, {
+        "id" : "67",
+        "vertices" : [ {
+          "x" : 2690,
+          "y" : 2092
+        }, {
+          "x" : 3448,
+          "y" : 2092
+        } ]
+      }, {
+        "id" : "69"
+      }, {
+        "id" : "71"
+      }, {
+        "id" : "72"
+      }, {
+        "id" : "73"
       } ]
     } ],
     "configuration" : {
@@ -580,7 +1004,7 @@
     },
     "containerViews" : [ {
       "automaticLayout" : {
-        "applied" : true,
+        "applied" : false,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -588,67 +1012,56 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "dimensions" : {
-        "height" : 3211,
-        "width" : 3120
-      },
       "elements" : [ {
         "id" : "2",
-        "x" : 2450,
-        "y" : 1385
+        "x" : 0,
+        "y" : 0
       }, {
         "id" : "3",
-        "x" : 2450,
-        "y" : 2585
+        "x" : 0,
+        "y" : 0
       }, {
         "id" : "4",
-        "x" : 2450,
-        "y" : 185
+        "x" : 0,
+        "y" : 0
       }, {
         "id" : "5",
-        "x" : 2450,
-        "y" : 1985
+        "x" : 0,
+        "y" : 0
       }, {
         "id" : "6",
-        "x" : 1700,
-        "y" : 1985
+        "x" : 0,
+        "y" : 0
       }, {
         "id" : "9",
-        "x" : 2450,
-        "y" : 785
+        "x" : 0,
+        "y" : 0
       }, {
         "id" : "10",
-        "x" : 1700,
-        "y" : 1385
+        "x" : 0,
+        "y" : 0
       }, {
-        "id" : "42",
-        "x" : 1700,
-        "y" : 785
+        "id" : "74",
+        "x" : 0,
+        "y" : 0
       }, {
-        "id" : "47",
-        "x" : 950,
-        "y" : 1385
+        "id" : "79",
+        "x" : 0,
+        "y" : 0
       }, {
-        "id" : "50",
-        "x" : 950,
-        "y" : 1985
+        "id" : "82",
+        "x" : 0,
+        "y" : 0
       }, {
-        "id" : "51",
-        "x" : 200,
-        "y" : 1989
+        "id" : "83",
+        "x" : 0,
+        "y" : 0
       } ],
       "externalSoftwareSystemBoundariesVisible" : false,
       "key" : "japanese_culture_system",
       "order" : 2,
       "relationships" : [ {
-        "id" : "11",
-        "vertices" : [ {
-          "x" : 2150,
-          "y" : 1835
-        }, {
-          "x" : 2450,
-          "y" : 2435
-        } ]
+        "id" : "11"
       }, {
         "id" : "12"
       }, {
@@ -656,39 +1069,25 @@
       }, {
         "id" : "14"
       }, {
-        "id" : "43"
-      }, {
-        "id" : "44"
-      }, {
-        "id" : "45",
-        "vertices" : [ {
-          "x" : 2150,
-          "y" : 1235
-        }, {
-          "x" : 2450,
-          "y" : 1835
-        } ]
-      }, {
-        "id" : "46"
-      }, {
-        "id" : "48"
-      }, {
-        "id" : "49"
-      }, {
-        "id" : "52"
-      }, {
-        "id" : "54",
-        "vertices" : [ {
-          "x" : 846,
-          "y" : 2435
-        }, {
-          "x" : 2150,
-          "y" : 2435
-        } ]
-      }, {
         "id" : "7"
       }, {
+        "id" : "75"
+      }, {
+        "id" : "76"
+      }, {
+        "id" : "77"
+      }, {
+        "id" : "78"
+      }, {
         "id" : "8"
+      }, {
+        "id" : "80"
+      }, {
+        "id" : "81"
+      }, {
+        "id" : "84"
+      }, {
+        "id" : "86"
       } ],
       "softwareSystemId" : "1"
     } ],
@@ -707,7 +1106,7 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "51",
+        "id" : "83",
         "x" : 0,
         "y" : 0
       } ],
@@ -715,7 +1114,7 @@
       "key" : "Diagram1",
       "order" : 1,
       "relationships" : [ {
-        "id" : "53"
+        "id" : "85"
       } ],
       "softwareSystemId" : "1"
     } ]
