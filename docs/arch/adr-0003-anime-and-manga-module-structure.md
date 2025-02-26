@@ -20,26 +20,7 @@ Explain the rationale behind implementing the Anime and Manga modules in differe
 
 ### Anime Module
 
-1. **Complexity**:  
-   The Anime module will be more complex due to the layered Onion Architecture design.
 
-2. **Boilerplate Code**:  
-   Requires more boilerplate code to ensure a clean separation of concerns.
-
-3. **Boilerplate Mitigation**:  
-   To reduce redundancy:
-   - **Contracts Library as Domain Layer**: The Contracts library will act as the Domain layer, housing domain models.
-   - **Domain Models Reuse**: Domain models will be reused in the EF Core `DbContext`.
-   - **EF Core Configurations**: Mappings will be handled via configurations to efficiently map domain models to the database.
-   - **GraphQL Nodes**: Nodes will also be based on domain models, with configurations used to fine-tune the exposed data and operations.
-
-4. **Schema Control**:  
-   This approach provides finer control over the GraphQL schema, ensuring it aligns with business requirements.
-
-5. **Contracts Library**:  
-   The Contracts library will expose:
-   - Events for **client subscriptions** (notifications).
-   - Events for **module integrations** (integrations).
 
 ---
 

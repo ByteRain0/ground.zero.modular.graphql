@@ -1,5 +1,6 @@
 workspace "Name" "Description" {
 
+    !adrs decisions
     !identifiers hierarchical
 
     model {

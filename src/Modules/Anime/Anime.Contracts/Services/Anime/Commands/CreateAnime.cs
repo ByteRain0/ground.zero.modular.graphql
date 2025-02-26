@@ -15,7 +15,7 @@ namespace Anime.Contracts.Services.Anime.Commands;
 /// <param name="Synopsis"></param>
 /// <param name="Demographics"></param>
 /// <param name="TotalEpisodes"></param>
-[AuthorizeRoles("app-admin")]
+//[AuthorizeRoles("app-admin")]
 public record CreateAnime(
     string Title,
     int StudioId,
@@ -32,7 +32,8 @@ public class CreateAnimeValidator : AbstractValidator<CreateAnime>
             .NotEmpty();
 
         RuleFor(x => x.Synopsis)
-            .NotEmpty();
+            .NotEmpty()
+            .MaximumLength(10);
 
         RuleFor(x => x.StudioId)
             .GreaterThan(0);
