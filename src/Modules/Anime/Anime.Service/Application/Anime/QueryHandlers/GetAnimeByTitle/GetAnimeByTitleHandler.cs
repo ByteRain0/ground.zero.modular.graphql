@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Anime.Contracts.Services.Anime.Telemetry;
 using Anime.Service.Infrastructure.Data.DataLoaders;
+using GreenDonut.Data;
 using MediatR;
 
 namespace Anime.Service.Application.Anime.QueryHandlers.GetAnimeByTitle;
@@ -13,7 +14,9 @@ internal class GetAnimeByTitleHandler(IAnimeByTitleDataLoader dataLoader)
         CancellationToken cancellationToken)
     {
         Activity.Current?.SetTag(AnimeTelemetryTags.AnimeTitle,request.Title);
-        return await dataLoader.LoadAsync(request.Title, cancellationToken);
+        return await dataLoader
+            .With(request.QueryContext)
+            .LoadAsync(request.Title, cancellationToken);
     }
 }
 

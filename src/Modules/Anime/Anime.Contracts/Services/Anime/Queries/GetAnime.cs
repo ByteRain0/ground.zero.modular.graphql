@@ -1,4 +1,3 @@
-using FluentValidation;
 using GreenDonut.Data;
 using MediatR;
 
@@ -18,12 +17,4 @@ public class GetAnimeQueryFilters
     public bool? IsAiring { get; set; }
 
     public string? Title { get; set; }
-}
-
-public class GetAnimeQueryValidator : AbstractValidator<GetAnime>
-{
-    public GetAnimeQueryValidator()
-    {
-        //
-    }
 }

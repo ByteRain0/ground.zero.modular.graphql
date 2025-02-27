@@ -91,7 +91,8 @@ public static class WebApplicationBuilderExtensions
             .AddErrorFilter<BusinessValidationErrorFilter>()
             .AddFairyBread(opts => { opts.ThrowIfNoValidatorsFound = true; })
             .InitializeOnStartup()
-            .AddInstrumentation();
+            .AddInstrumentation()
+            .AddQueryContext();
 
         builder.ModifyPagingOptions(cfg =>
         {

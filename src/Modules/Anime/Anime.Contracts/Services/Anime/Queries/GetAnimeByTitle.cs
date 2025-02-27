@@ -1,15 +1,9 @@
-using FluentValidation;
+using GreenDonut.Data;
 using MediatR;
 
 namespace Anime.Contracts.Services.Anime.Queries;
 
-public record GetAnimeByTitle(string Title) : IRequest<Contracts.Models.Anime?>;
-
-public class GetAnimeByTitleValidator : AbstractValidator<GetAnimeByTitle>
-{
-    public GetAnimeByTitleValidator()
-    {
-        RuleFor(x => x.Title)
-            .NotEmpty();
-    }
-}
+public record GetAnimeByTitle(
+    string Title,
+    QueryContext<Models.Anime> QueryContext) 
+    : IRequest<Contracts.Models.Anime?>;

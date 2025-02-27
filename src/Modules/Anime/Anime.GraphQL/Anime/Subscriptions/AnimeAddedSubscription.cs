@@ -3,6 +3,7 @@ using Anime.Contracts.Models.Events;
 using Anime.Contracts.Services.Anime.Events;
 using Anime.Contracts.Services.Anime.Queries;
 using Core.Clasifiers;
+using GreenDonut.Data;
 using HotChocolate.Subscriptions;
 using MediatR;
 
@@ -36,7 +37,8 @@ public static class AnimeAddedSubscription
     [Subscribe(With = nameof(OnAnimeAddedStream))]
     public static async Task<Contracts.Models.Anime?> OnAnimeAdded(
         [EventMessage] AnimeCreated message,
+        QueryContext<Contracts.Models.Anime> queryContext,
         IMediator mediator,
         CancellationToken cancellationToken) =>
-        await mediator.Send(new GetAnimeById(message.Id), cancellationToken);
+        await mediator.Send(new GetAnimeById(message.Id, queryContext), cancellationToken);
 }

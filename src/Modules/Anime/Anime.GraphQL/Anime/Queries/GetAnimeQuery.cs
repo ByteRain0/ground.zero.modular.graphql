@@ -13,5 +13,5 @@ public static class GetAnimeQuery
         PagingArguments pagingArguments,
         CancellationToken cancellationToken,
         [Service] IMediator mediator) =>
-        (await mediator.Send(new GetAnime(pagingArguments, new GetAnimeQueryFilters()), cancellationToken)).ToConnection();
+        await mediator.Send(new GetAnime(pagingArguments, new GetAnimeQueryFilters()), cancellationToken).ToConnectionAsync();
 }

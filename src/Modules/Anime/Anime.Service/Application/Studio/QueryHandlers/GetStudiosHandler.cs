@@ -13,6 +13,7 @@ internal class GetStudiosHandler(AnimeDbContext dbContext)
         CancellationToken cancellationToken)
         => await dbContext
             .Studios
+            .With(request.QueryContext)
             .OrderBy(x => x.Name)
             .ThenBy(x => x.Id)
             .ToPageAsync(request.PagingArguments, cancellationToken);

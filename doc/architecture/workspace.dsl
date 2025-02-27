@@ -68,6 +68,7 @@ workspace "Name" "Description" {
                     }
                     anime_query_handlers = component "Anime query handlers" {
                         -> anime_data_loader "Query data"
+                        -> anime_data_context "Query data"
                     }
                     anime_node = component "Anime node" "Configure how Anime model is exposed via GraphQL" {
                         -> anime_model "Configure"

@@ -49,6 +49,24 @@ type AnimeNotFoundError implements Error {
   idOrTitle: String
 }
 
+"A connection to a list of items."
+type AnimesConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [AnimesEdge!]
+  "A flattened list of the nodes."
+  nodes: [Anime!]
+}
+
+"An edge in a connection."
+type AnimesEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Anime!
+}
+
 type Author {
   name: String!
   settings: AuthorSettings @cost(weight: "10")
@@ -128,10 +146,9 @@ type Query {
 }
 
 type Studio implements Node {
-  anime("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): AnimeConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  animes("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): AnimesConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
   id(where: IntOperationFilterInput @cost(weight: "10")): ID!
   name(where: RestrictedStringOperationFilterInput @cost(weight: "10")): String!
-  animes: [Anime!]!
 }
 
 "A connection to a list of items."

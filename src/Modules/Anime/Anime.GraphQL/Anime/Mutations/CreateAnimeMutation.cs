@@ -1,5 +1,6 @@
 using Anime.Contracts.Services.Anime.Commands;
 using Anime.Contracts.Services.Anime.Queries;
+using GreenDonut.Data;
 using MediatR;
 
 namespace Anime.GraphQL.Anime.Mutations;
@@ -9,13 +10,14 @@ public static class CreateAnimeMutation
 {
     public static async Task<Contracts.Models.Anime?> CreateAnimeAsync(
         CreateAnime command,
+        QueryContext<Contracts.Models.Anime> queryContext,
         IMediator mediator,
         CancellationToken cancellationToken)
     {
         await mediator.Send(command, cancellationToken);
         
         return await mediator.Send(
-            new GetAnimeByTitle(command.Title),
+            new GetAnimeByTitle(command.Title, queryContext),
             cancellationToken);
     }
 }

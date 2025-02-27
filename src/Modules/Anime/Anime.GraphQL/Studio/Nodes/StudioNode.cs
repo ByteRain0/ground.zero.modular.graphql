@@ -1,4 +1,4 @@
-using Anime.Contracts.Services.Anime.Queries;
+using Anime.Contracts.Services.Studio.Queries;
 using MediatR;
 using GreenDonut.Data;
 using HotChocolate.Types.Pagination;
@@ -24,22 +24,17 @@ public static partial class StudioNode
             .UseFiltering();
     }
     
-    /// <summary>
-    /// Example of how one can extend the functionality of a node.
-    /// </summary>
-    /// <param name="studio"></param>
-    /// <param name="pagingArguments"></param>
-    /// <param name="cancellationToken"></param>
-    /// <param name="mediator"></param>
-    /// <returns></returns>
     [UsePaging]
-    public static async Task<Connection<Contracts.Models.Anime>> GetAnimeAsync(
+    [UseProjection]
+    public static async Task<Connection<Contracts.Models.Anime>> GetAnimesAsync(
         [Parent] Contracts.Models.Studio studio,
         PagingArguments pagingArguments,
+        QueryContext<Contracts.Models.Anime> queryContext,
         CancellationToken cancellationToken,
         [Service] IMediator mediator) =>
-        (await mediator.Send(new GetAnime(pagingArguments, new GetAnimeQueryFilters()
-        {
-            StudioId = studio.Id
-        }), cancellationToken)).ToConnection();
+        await mediator.Send(new GetAnimeByStudioId(
+                StudioId: studio.Id,
+                PagingArguments: pagingArguments,
+                QueryContext: queryContext), cancellationToken)
+            .ToConnectionAsync();
 }
