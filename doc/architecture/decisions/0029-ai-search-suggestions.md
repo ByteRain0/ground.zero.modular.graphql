@@ -1,4 +1,4 @@
-# 29. ai search suggestions
+# 29. Ai search suggestions
 
 Date: 2025-02-27
 
