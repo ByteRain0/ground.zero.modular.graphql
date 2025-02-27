@@ -1,4 +1,4 @@
-# 12. graphql source generation
+# 12. Graphql source generation
 
 Date: 2025-02-22
 

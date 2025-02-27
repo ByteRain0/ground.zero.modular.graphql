@@ -1,4 +1,4 @@
-# 27. auditing
+# 27. Auditing
 
 Date: 2025-02-26
 

@@ -1,1 +1,0 @@
-1. describe the use of graphql with direct EF core plugins.

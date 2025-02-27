@@ -1,4 +1,4 @@
-# 26. dependencies management strategy
+# 26. Dependencies management strategy
 
 Date: 2025-02-22
 

@@ -1,4 +1,4 @@
-# 20. testing manga module
+# 20. Testing manga module
 
 Date: 2025-02-22
 

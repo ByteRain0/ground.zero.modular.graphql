@@ -12,15 +12,23 @@ New developers should be able to easily set up and run the solution on a clean m
 
 ## Decision
 
-Adopt Aspire to streamline the local development process.
+We will use `.NET Aspire` to enhance the local development environment, as it provides integrated tools and capabilities tailored for .NET applications.
+
+## Alternatives
+
+**Docker Compose**: While Docker Compose provides a robust way to orchestrate containers, it requires additional configuration and maintenance overhead, which may complicate the development process for this specific use case.
+
 
 ## Consequences
 
+- Local development will be more straightforward and aligned with .NET-specific workflows.
 - Aspire will handle infrastructure provisioning for local development.
-- Developers will use Aspire and Aspire-Integrations to set up system containers.
-- Docker Compose will be deprecated in favor of Aspire and C# configuration.
-- Developers will use an App.Host to run the system locally. 2 Launch profiles will be created:
+- Faster and less complex setup process.
+- Developers will be provided with 2 launch profiles:
   - single-project : which will run only the Japanese.Api and it's dependencies
   - http/https : which will run Japanese.Api, Rating.Api and Fusion Gateway.
-- Telemetry configuration will be done via an OTel collector to resemble the deployment model.
-- Deployment artifacts/manifests will be generated using the Aspirate project until Aspire provides built-in support for Kubernetes.
+- Dependency on .NET Aspire tools means the team must stay up-to-date with its latest updates and best practices.
+- Deployment artifacts/manifests will be generated using the `Aspirate` project until native Kubernetes support is provided.
+
+
+For further details, see the documentation for .NET Aspire and compare it with other solutions like Docker Compose if needed.

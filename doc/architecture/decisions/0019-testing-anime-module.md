@@ -1,4 +1,4 @@
-# 19. testing anime module
+# 19. Testing anime module
 
 Date: 2025-02-22
 

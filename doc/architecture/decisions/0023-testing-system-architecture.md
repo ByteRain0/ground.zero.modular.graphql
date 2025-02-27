@@ -1,4 +1,4 @@
-# 23. testing system architecture
+# 23. Testing system architecture
 
 Date: 2025-02-22
 

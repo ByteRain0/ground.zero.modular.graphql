@@ -1,4 +1,4 @@
-# 11. relay patterns usage
+# 11. Relay patterns usage
 
 Date: 2025-02-22
 

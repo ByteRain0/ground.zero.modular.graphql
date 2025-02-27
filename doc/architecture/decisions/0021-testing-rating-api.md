@@ -1,4 +1,4 @@
-# 21. testing rating api
+# 21. Testing rating api
 
 Date: 2025-02-22
 
