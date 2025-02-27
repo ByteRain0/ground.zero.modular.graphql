@@ -1,4 +1,4 @@
-# 8. error handling strategy
+# 8. observability strategy
 
 Date: 2025-02-22
 

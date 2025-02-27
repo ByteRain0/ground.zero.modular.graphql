@@ -19,14 +19,14 @@
       "status" : "Proposed",
       "title" : "auth strategy"
     }, {
-      "content" : "# 11. relay patterns usage\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
+      "content" : "# 11. relay patterns usage\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n\n\n* https://www.youtube.com/watch?v=IrEZvLSxo3E",
       "date" : "2025-02-22T00:00:00Z",
       "format" : "Markdown",
       "id" : "11",
       "status" : "Proposed",
       "title" : "relay patterns usage"
     }, {
-      "content" : "# 12. graphql source generation\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
+      "content" : "# 12. graphql source generation\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n\n\nLinks\n* https://www.youtube.com/watch?v=s1rXR46h86o",
       "date" : "2025-02-22T00:00:00Z",
       "format" : "Markdown",
       "id" : "12",
@@ -47,7 +47,7 @@
       "status" : "Proposed",
       "title" : "graphql sse"
     }, {
-      "content" : "# 15. graphql fusion gateway\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
+      "content" : "# 15. graphql fusion gateway\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n\n\nhttps://youtu.be/AHitpPCeM00?si=D6H_d7Ocdel4-zmX",
       "date" : "2025-02-22T00:00:00Z",
       "format" : "Markdown",
       "id" : "15",
@@ -75,7 +75,7 @@
       "status" : "Proposed",
       "title" : "async communication over message broker"
     }, {
-      "content" : "# 19. testing anime module\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
+      "content" : "# 19. testing anime module\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n\n\nLinks:\nhttps://www.youtube.com/watch?v=g7wZYLj6kgk\nhttps://www.youtube.com/watch?v=7nDb5JDpvXw\nhttps://www.youtube.com/watch?v=Nf7nX2H_iiM\n",
       "date" : "2025-02-22T00:00:00Z",
       "format" : "Markdown",
       "id" : "19",
@@ -103,7 +103,7 @@
       "status" : "Proposed",
       "title" : "testing rating api"
     }, {
-      "content" : "# 22. testing strategy\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
+      "content" : "# 22. testing strategy\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n\n\nhttps://youtu.be/KFqHXwwls3o?si=d0Lui2fGkTDV091P -> schema testing",
       "date" : "2025-02-22T00:00:00Z",
       "format" : "Markdown",
       "id" : "22",
@@ -117,68 +117,68 @@
       "status" : "Proposed",
       "title" : "testing system architecture"
     }, {
-      "content" : "# 24. app configuration\n\nDate: 2025-02-22\n\n## Status\n\nAccepted\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
+      "content" : "# 24. app configuration\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
       "date" : "2025-02-22T00:00:00Z",
       "format" : "Markdown",
       "id" : "24",
-      "status" : "Accepted",
+      "status" : "Proposed",
       "title" : "app configuration"
     }, {
-      "content" : "# 25. observability strategy\n\nDate: 2025-02-22\n\n## Status\n\nAccepted\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
+      "content" : "# 26. dependencies management strategy\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
       "date" : "2025-02-22T00:00:00Z",
       "format" : "Markdown",
       "id" : "25",
-      "status" : "Accepted",
-      "title" : "observability strategy"
-    }, {
-      "content" : "# 26. dependencies management strategy\n\nDate: 2025-02-22\n\n## Status\n\nAccepted\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
-      "date" : "2025-02-22T00:00:00Z",
-      "format" : "Markdown",
-      "id" : "26",
-      "status" : "Accepted",
+      "status" : "Proposed",
       "title" : "dependencies management strategy"
     }, {
-      "content" : "# 3. Component context definition\n\nDate: 2025-02-22\n\n## Status\n\nAccepted\n\n## Context\n\nCreate a C4 component level overview of the Japanese.Api.\nExplain the rationale behind implementing the Anime and Manga modules in different ways and their respective design decisions.\n\n\n## Solution\n\nCreate a C4 component level diagram covering the Anime & Manga modules of the Japanese.Api.\n\n## Additional details\n\n### High level decisions\n- The **Anime module** follows a more traditional, albeit simplified, Onion Architecture template. In this setup, GraphQL will primarily act at the API layer.\n- The **Manga module** adopts a **GraphQL over Database** (EF Core) approach, directly exposing `IQueryables` to clients, allowing them to build their queries dynamically.\n- A **Bridge module** will be introduced to unify the public APIs of both modules at the GraphQL level.\n\n---\n\n### Anime module\n\n#### Anime contracts library structure:\n- **Exceptions**: Lists exceptions specific to the module.\n- **Models**: Contains domain models and integration events.\n   - **Events**\n      - Events for client subscriptions.\n      - Events for inter-module or system-wide subscriptions.\n- **Services**\n   - Organized by **Node** (domain entities), containing commands, queries, metrics, and telemetry tags.\n      - **Commands**: Command definitions and validators.\n      - **Queries**: Query definitions, validators, and filters.\n      - **Metrics**: Metrics for the node.\n      - **Telemetry**: Tags specific to the node for observability.\n\n#### Anime GraphQL library structure:\n- **Nodes**: Represents domain entities as GraphQL types.\n- **Mutations**: Command inputs and (optional) response types.\n- **Subscriptions**: Subscription types.\n- **Queries**: Query types.\n- Additional GraphQL-specific definitions like constraints and enums.\n\n#### Anime service library structure:\n- **Application**\n   - **CommandHandlers**: Handles business operations for commands.\n   - **QueryHandlers**: Handles business operations for queries.\n   - **EventHandlers**: Handles async cross-module events.\n- **Infrastructure**\n   - **Data**\n      - **Configurations**: EF Core model configurations.\n      - **DataLoaders**: Integrate EF Core for data fetching.\n      - **Migrations**: Database migrations.\n      - **Seed**: Data seeding classes.\n      - **ModuleDbContext**: Database context for the module.\n   - **ModuleInfo.cs**: Metadata for HotChocolate source generation.\n   - **ServiceCollectionExtensions.cs**: Dependency Injection setup.\n\n   \n#### Boilerplate mitigation\n- **Contracts Library as Domain Layer**:\n- **Domain Models Reuse**: Domain models will be reused in the EF Core `DbContext`.\n- **EF Core Configurations**: Mappings will be handled via configurations to efficiently map domain models to the database.\n- **GraphQL Nodes**: Nodes will also be based on domain models, with configurations used to fine-tune the exposed data and operations.\n\n---\n\n### Manga module\n\n#### Manga contracts library structure:\n- **Models**: Contains domain models and integration events.\n- **Services**\n   - Organized by **Node** (domain entities), containing queries, metrics, and telemetry tags.\n      - **Queries**: Query definitions, validators, and filters.\n\n#### Anime GraphQL library structure:\n- **Nodes**: Represents domain entities as GraphQL types.\n- **Queries**: Query types.\n- Additional GraphQL-specific definitions like constraints and enums.\n\n#### Manga service library structure:\n- **Application**\n    - **QueryHandlers**: Handles business operations for queries and exposes EF Core integration to GraphQL queries (engine).\n- **Infrastructure**\n    - **Data**\n        - **Configurations**: EF Core model configurations.\n        - **Migrations**: Database migrations.\n        - **Seed**: Data seeding classes.\n        - **Dynamic Types**: Author settings have a dynamic structure that can be exposed via GraphQL. \n        - **ModuleDbContext**: Database context for the module.\n    - **ModuleInfo.cs**: Metadata for HotChocolate source generation.\n    - **ServiceCollectionExtensions.cs**: Dependency Injection setup. ",
+      "content" : "# 27. auditing\n\nDate: 2025-02-26\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n\n* https://www.youtube.com/watch?v=VSEg4hXDkTA",
+      "date" : "2025-02-26T00:00:00Z",
+      "format" : "Markdown",
+      "id" : "26",
+      "status" : "Proposed",
+      "title" : "auditing"
+    }, {
+      "content" : "# 3. Component context definition\n\nDate: 2025-02-22\n\n## Status\n\nAccepted\n\n## Context\n\nCreate a C4 component level overview of the Japanese.Api.\nExplain the rationale behind implementing the Anime and Manga modules in different ways and their respective design decisions.\n\n## Solution\n\nCreate a C4 component level diagram covering the Anime & Manga modules of the Japanese.Api.\n\n## Additional details\n\n### High level decisions\n- The **Anime module** follows a more traditional, albeit simplified, Onion Architecture template. In this setup, GraphQL will primarily act at the API layer.\n- The **Manga module** adopts a **GraphQL over Database** (EF Core) approach, directly exposing `IQueryables` to clients, allowing them to build their queries dynamically.\n- A **Bridge module** will be introduced to unify the public APIs of both modules at the GraphQL level.\n\n---\n\n### Anime module\n\n#### Anime contracts library structure:\n- **Exceptions**: Lists exceptions specific to the module.\n- **Models**: Contains domain models and integration events.\n   - **Events**\n      - Events for client subscriptions.\n      - Events for inter-module or system-wide subscriptions.\n- **Services**\n   - Organized by **Node** (domain entities), containing commands, queries, metrics, and telemetry tags.\n      - **Commands**: Command definitions and validators.\n      - **Queries**: Query definitions, validators, and filters.\n      - **Metrics**: Metrics for the node.\n      - **Telemetry**: Tags specific to the node for observability.\n\n#### Anime GraphQL library structure:\n- **Nodes**: Represents domain entities as GraphQL types.\n- **Mutations**: Command inputs and (optional) response types.\n- **Subscriptions**: Subscription types.\n- **Queries**: Query types.\n- Additional GraphQL-specific definitions like constraints and enums.\n\n#### Anime service library structure:\n- **Application**\n   - **CommandHandlers**: Handles business operations for commands.\n   - **QueryHandlers**: Handles business operations for queries.\n   - **EventHandlers**: Handles async cross-module events.\n- **Infrastructure**\n   - **Data**\n      - **Configurations**: EF Core model configurations.\n      - **DataLoaders**: Integrate EF Core for data fetching.\n      - **Migrations**: Database migrations.\n      - **Seed**: Data seeding classes.\n      - **ModuleDbContext**: Database context for the module.\n   - **ModuleInfo.cs**: Metadata for HotChocolate source generation.\n   - **ServiceCollectionExtensions.cs**: Dependency Injection setup.\n\n   \n#### Boilerplate mitigation\n- **Contracts Library as Domain Layer**:\n- **Domain Models Reuse**: Domain models will be reused in the EF Core `DbContext`.\n- **EF Core Configurations**: Mappings will be handled via configurations to efficiently map domain models to the database.\n- **GraphQL Nodes**: Nodes will also be based on domain models, with configurations used to fine-tune the exposed data and operations.\n\n---\n\n### Manga module\n\n#### Manga contracts library structure:\n- **Models**: Contains domain models and integration events.\n- **Services**\n   - Organized by **Node** (domain entities), containing queries, metrics, and telemetry tags.\n      - **Queries**: Query definitions, validators, and filters.\n\n#### Anime GraphQL library structure:\n- **Nodes**: Represents domain entities as GraphQL types.\n- **Queries**: Query types.\n- Additional GraphQL-specific definitions like constraints and enums.\n\n#### Manga service library structure:\n- **Application**\n    - **QueryHandlers**: Handles business operations for queries and exposes EF Core integration to GraphQL queries (engine).\n- **Infrastructure**\n    - **Data**\n        - **Configurations**: EF Core model configurations.\n        - **Migrations**: Database migrations.\n        - **Seed**: Data seeding classes.\n        - **Dynamic Types**: Author settings have a dynamic structure that can be exposed via GraphQL. \n        - **ModuleDbContext**: Database context for the module.\n    - **ModuleInfo.cs**: Metadata for HotChocolate source generation.\n    - **ServiceCollectionExtensions.cs**: Dependency Injection setup.",
       "date" : "2025-02-22T00:00:00Z",
       "format" : "Markdown",
       "id" : "3",
       "status" : "Accepted",
       "title" : "Component context definition"
     }, {
-      "content" : "# 4. f5 experience\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n\n\nTODO: define the use of docker & docker compose.\n1. aspire setup\n2. running infrastructure\n3. IDE setup (extensions, cyclomatic complexity etc.)",
+      "content" : "# 4. F5 Experience\n\nDate: 2025-02-22\n\n## Status\n\nAccepted\n\n## Context\n\nNew developers should be able to easily set up and run the solution on a clean machine.\n\n## Decision\n\nAdopt Aspire to streamline the local development process.\n\n## Consequences\n\n- Aspire will handle infrastructure provisioning for local development.\n- Developers will use Aspire and Aspire-Integrations to set up system containers.\n- Docker Compose will be deprecated in favor of Aspire and C# configuration.\n- Developers will use an App.Host to run the system locally. 2 Launch profiles will be created:\n  - single-project : which will run only the Japanese.Api and it's dependencies\n  - http/https : which will run Japanese.Api, Rating.Api and Fusion Gateway.\n- Telemetry configuration will be done via an OTel collector to resemble the deployment model.\n- Deployment artifacts/manifests will be generated using the Aspirate project until Aspire provides built-in support for Kubernetes.",
       "date" : "2025-02-22T00:00:00Z",
       "format" : "Markdown",
       "id" : "4",
-      "status" : "Proposed",
-      "title" : "f5 experience"
+      "status" : "Accepted",
+      "title" : "F5 Experience"
     }, {
-      "content" : "# 5. layering considerations\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
+      "content" : "# 5. Data loaders architecture\n\nDate: 2025-02-22\n\n## Status\n\nAccepted\n\n## Context\n\nEvery data fetching technology is prone to suffer from n+1 problem. </br>\nThe problem/difference from REST is that in a GraphQL api the n+1 problem occurs on the server rather then the client. </br>\n</br>\nThe problem with the GraphQL backend is that field resolvers are atomic and do not have any knowledge about the query as a whole. So, a field resolver does not know that it will be called multiple times in parallel to fetch similar or equal data from the same data source. </br>\n</br>\nA field resolver without a data loader would get called in parallel multiple times in a fetch of multiple items. </br>\nThis request would cause multiple requests to our data source resulting in sluggish performance and unnecessary round-trips to our data source\n\n\n## Decision\n\nWe are going to use a [Data loader](https://chillicream.com/docs/hotchocolate/v15/fetching-data/dataloader) architecture in this case.\n</br>\nWith GraphQL we have technically reduced the number of round-trips from our client to our server.\nWith data loaders we can centralize the data fetching and reduce the number of round trips between the data sources and the service layer.\nInstead of fetching the data from the repository directly, we fetch the data from the data loader. The data loader batches all the requests together into one request to the database.\n\n## Consequences\n\nThe benefits of the GraphQL + Data loader setup are:\n- We only have to deal with the n+1 problem once on the server rather than on every client.\n- Data loaders can efficiently fetch the data from the data sources.\n\n\n## Additional resources\n* [Data loader documentation](https://chillicream.com/docs/hotchocolate/v15/fetching-data/dataloader)\n* [General overview](https://youtu.be/gVIxde5nlWE?si=pYRUm6e5ovfFbwpM)\n* [Green donut overview](https://youtu.be/FhNK7KMAnXc?si=u_cTZZa2rdI0QuIF)",
       "date" : "2025-02-22T00:00:00Z",
       "format" : "Markdown",
       "id" : "5",
-      "status" : "Proposed",
-      "title" : "layering considerations"
+      "status" : "Accepted",
+      "title" : "Data loaders architecture"
     }, {
-      "content" : "# 6. Data loaders architecture\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
+      "content" : "# 6. EfCore exposure via graphql\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n* Projections\n* Filtering\n* Pagination\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
       "date" : "2025-02-22T00:00:00Z",
       "format" : "Markdown",
       "id" : "6",
       "status" : "Proposed",
-      "title" : "Data loaders architecture"
+      "title" : "EfCore exposure via graphql"
     }, {
-      "content" : "# 7. EfCore exposure via graphql\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n* Projections\n* Filtering\n* Pagination\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
+      "content" : "# 7. error handling strategy\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n\n\n* https://www.youtube.com/watch?v=Zx0nvTUfjn4\n* https://productionreadygraphql.com/2020-08-01-guide-to-graphql-errors\n* ",
       "date" : "2025-02-22T00:00:00Z",
       "format" : "Markdown",
       "id" : "7",
       "status" : "Proposed",
-      "title" : "EfCore exposure via graphql"
+      "title" : "error handling strategy"
     }, {
-      "content" : "# 8. error handling strategy\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
+      "content" : "# 8. observability strategy\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
       "date" : "2025-02-22T00:00:00Z",
       "format" : "Markdown",
       "id" : "8",
       "status" : "Proposed",
-      "title" : "error handling strategy"
+      "title" : "observability strategy"
     }, {
       "content" : "# 9. input validation strategy\n\nDate: 2025-02-22\n\n## Status\n\nProposed\n\n## Context\n\nThe issue motivating this decision, and any context that influences or constrains the decision.\n\n## Decision\n\nThe change that we're proposing or have agreed to implement.\n\n## Consequences\n\nWhat becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.\n",
       "date" : "2025-02-22T00:00:00Z",
@@ -189,7 +189,7 @@
     } ]
   },
   "id" : 1,
-  "lastModifiedDate" : "2025-02-26T21:38:11Z",
+  "lastModifiedDate" : "2025-02-27T14:56:28Z",
   "model" : {
     "people" : [ {
       "id" : "89",

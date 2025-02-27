@@ -1,25 +1,26 @@
-# 4. f5 experience
+# 4. F5 Experience
 
 Date: 2025-02-22
 
 ## Status
 
-Proposed
+Accepted
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+New developers should be able to easily set up and run the solution on a clean machine.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+Adopt Aspire to streamline the local development process.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
-
-
-TODO: define the use of docker & docker compose.
-1. aspire setup
-2. running infrastructure
-3. IDE setup (extensions, cyclomatic complexity etc.)
+- Aspire will handle infrastructure provisioning for local development.
+- Developers will use Aspire and Aspire-Integrations to set up system containers.
+- Docker Compose will be deprecated in favor of Aspire and C# configuration.
+- Developers will use an App.Host to run the system locally. 2 Launch profiles will be created:
+  - single-project : which will run only the Japanese.Api and it's dependencies
+  - http/https : which will run Japanese.Api, Rating.Api and Fusion Gateway.
+- Telemetry configuration will be done via an OTel collector to resemble the deployment model.
+- Deployment artifacts/manifests will be generated using the Aspirate project until Aspire provides built-in support for Kubernetes.

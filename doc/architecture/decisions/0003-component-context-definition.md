@@ -11,7 +11,6 @@ Accepted
 Create a C4 component level overview of the Japanese.Api.
 Explain the rationale behind implementing the Anime and Manga modules in different ways and their respective design decisions.
 
-
 ## Solution
 
 Create a C4 component level diagram covering the Anime & Manga modules of the Japanese.Api.

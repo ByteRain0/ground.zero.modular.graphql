@@ -1,4 +1,4 @@
-# 7. EfCore exposure via graphql
+# 7. error handling strategy
 
 Date: 2025-02-22
 
@@ -13,10 +13,12 @@ The issue motivating this decision, and any context that influences or constrain
 ## Decision
 
 The change that we're proposing or have agreed to implement.
-* Projections
-* Filtering
-* Pagination
 
 ## Consequences
 
 What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+
+
+* https://www.youtube.com/watch?v=Zx0nvTUfjn4
+* https://productionreadygraphql.com/2020-08-01-guide-to-graphql-errors
+* 

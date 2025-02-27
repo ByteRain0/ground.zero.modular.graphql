@@ -1,4 +1,4 @@
-# 5. layering considerations
+# 26. dependencies management strategy
 
 Date: 2025-02-22
 
@@ -17,5 +17,3 @@ The change that we're proposing or have agreed to implement.
 ## Consequences
 
 What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
-
-* [Layered architecture](https://youtu.be/kOGS7HI3lEA?si=51-YP0yzC81VQ3XT)
