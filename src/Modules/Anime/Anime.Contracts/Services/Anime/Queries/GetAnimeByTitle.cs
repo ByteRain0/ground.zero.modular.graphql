@@ -4,6 +4,5 @@ using MediatR;
 namespace Anime.Contracts.Services.Anime.Queries;
 
 public record GetAnimeByTitle(
-    string Title,
-    QueryContext<Models.Anime> QueryContext) 
+    string Title) 
     : IRequest<Contracts.Models.Anime?>;

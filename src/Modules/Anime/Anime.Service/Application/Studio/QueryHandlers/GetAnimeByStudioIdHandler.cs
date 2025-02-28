@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Anime.Service.Application.Studio.QueryHandlers;
 
-public class GetAnimeByStudioIdHandler(IAnimeByStudioIdDataLoader dataLoader) 
+internal class GetAnimeByStudioIdHandler(IAnimeByStudioIdDataLoader dataLoader) 
     : IRequestHandler<GetAnimeByStudioId, Page<Contracts.Models.Anime>>
 {
     public async Task<Page<Contracts.Models.Anime>> Handle(

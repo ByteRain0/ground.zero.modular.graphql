@@ -11,16 +11,15 @@ public static class StudioQueries
     [UsePaging]
     public static async Task<Connection<Contracts.Models.Studio>> GetStudioAsync(
         PagingArguments pagingArguments,
-        QueryContext<Contracts.Models.Studio> queryContext,
+        QueryContext<Contracts.Models.Studio>? queryContext,
         CancellationToken cancellationToken,
         [Service] IMediator mediator) =>
         await mediator.Send(new GetStudios(pagingArguments, queryContext), cancellationToken).ToConnectionAsync();
 
-    [UseProjection]
     [NodeResolver]
     public static async Task<Contracts.Models.Studio?> GetStudioByIdAsync(
         int id,
-        QueryContext<Contracts.Models.Studio> queryContext,
+        QueryContext<Contracts.Models.Studio>? queryContext,
         CancellationToken cancellationToken,
         [Service] IMediator mediator) =>
         await mediator.Send(new GetStudioById(id, queryContext), cancellationToken);

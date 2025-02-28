@@ -14,14 +14,6 @@ public static partial class StudioNode
     static partial void Configure(IObjectTypeDescriptor<Contracts.Models.Studio> descriptor)
     {
         descriptor.BindFieldsImplicitly();
-
-        descriptor
-            .Field(x => x.Id)
-            .UseFiltering();
-
-        descriptor
-            .Field(x => x.Name)
-            .UseFiltering();
     }
     
     [UsePaging]
@@ -31,7 +23,7 @@ public static partial class StudioNode
         PagingArguments pagingArguments,
         QueryContext<Contracts.Models.Anime> queryContext,
         CancellationToken cancellationToken,
-        [Service] IMediator mediator) =>
+        IMediator mediator) =>
         await mediator.Send(new GetAnimeByStudioId(
                 StudioId: studio.Id,
                 PagingArguments: pagingArguments,

@@ -13,14 +13,13 @@ public static class UpdateAnimeMutation
     [Error<AnimeNotFoundException>]
     public static async Task<Contracts.Models.Anime?> UpdateAnimeAsync(
         UpdateAnime command,
-        QueryContext<Contracts.Models.Anime> queryContext,
         IMediator mediator,
         CancellationToken cancellationToken)
     {
         await mediator.Send(command, cancellationToken);
         
         return await mediator.Send(
-            new GetAnimeById(command.Id, queryContext),
+            new GetAnimeById(command.Id),
             cancellationToken);
     }
 }

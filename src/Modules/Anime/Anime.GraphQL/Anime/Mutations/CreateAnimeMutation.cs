@@ -10,14 +10,13 @@ public static class CreateAnimeMutation
 {
     public static async Task<Contracts.Models.Anime?> CreateAnimeAsync(
         CreateAnime command,
-        QueryContext<Contracts.Models.Anime> queryContext,
         IMediator mediator,
         CancellationToken cancellationToken)
     {
         await mediator.Send(command, cancellationToken);
         
         return await mediator.Send(
-            new GetAnimeByTitle(command.Title, queryContext),
+            new GetAnimeByTitle(command.Title),
             cancellationToken);
     }
 }

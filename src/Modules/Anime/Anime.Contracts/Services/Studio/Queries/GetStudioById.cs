@@ -7,5 +7,5 @@ namespace Anime.Contracts.Services.Studio.Queries;
 //[AuthorizeRoles("Administrator")]
 public record GetStudioById(
     int StudioId,
-    QueryContext<Contracts.Models.Studio> QueryContext)
+    QueryContext<Contracts.Models.Studio>? QueryContext = default)
     : IRequest<Models.Studio?>;
