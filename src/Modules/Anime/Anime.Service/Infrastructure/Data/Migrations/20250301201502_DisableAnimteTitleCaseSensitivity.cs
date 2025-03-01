@@ -11,14 +11,14 @@ namespace anime.Service.src.Anime.Service.Infrastructure.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
-                .Annotation("Npgsql:CollationDefinition:text_insensitive", "en-u-ks-primary,en-u-ks-primary,icu,False");
+                .Annotation("Npgsql:CollationDefinition:case_insensitive", "en-u-ks-primary,en-u-ks-primary,icu,False");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Title",
                 table: "Animes",
                 type: "text",
                 nullable: false,
-                collation: "text_insensitive",
+                collation: "case_insensitive",
                 oldClrType: typeof(string),
                 oldType: "text");
         }
@@ -27,7 +27,7 @@ namespace anime.Service.src.Anime.Service.Infrastructure.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
-                .OldAnnotation("Npgsql:CollationDefinition:text_insensitive", "en-u-ks-primary,en-u-ks-primary,icu,False");
+                .OldAnnotation("Npgsql:CollationDefinition:case_insensitive", "en-u-ks-primary,en-u-ks-primary,icu,False");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Title",
@@ -36,7 +36,7 @@ namespace anime.Service.src.Anime.Service.Infrastructure.Data.Migrations
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "text",
-                oldCollation: "text_insensitive");
+                oldCollation: "case_insensitive");
         }
     }
 }

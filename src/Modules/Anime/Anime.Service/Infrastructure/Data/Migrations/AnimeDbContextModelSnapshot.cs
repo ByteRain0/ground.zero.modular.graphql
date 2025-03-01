@@ -17,7 +17,7 @@ namespace anime.Service.src.Anime.Service.Infrastructure.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Npgsql:CollationDefinition:text_insensitive", "en-u-ks-primary,en-u-ks-primary,icu,False")
+                .HasAnnotation("Npgsql:CollationDefinition:case_insensitive", "en-u-ks-primary,en-u-ks-primary,icu,False")
                 .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
@@ -60,7 +60,7 @@ namespace anime.Service.src.Anime.Service.Infrastructure.Data.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text")
-                        .UseCollation("text_insensitive");
+                        .UseCollation("case_insensitive");
 
                     b.Property<int>("TotalEpisodes")
                         .HasColumnType("integer");
