@@ -138,7 +138,7 @@ type Query {
   nodes("The list of node IDs." ids: [ID!]!): [Node]! @cost(weight: "10")
   animeById(id: ID!): Anime @cost(weight: "10")
   animeByTitle(title: String!): Anime @cost(weight: "10")
-  anime("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): AnimeConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  anime("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: AnimeFilterInput @cost(weight: "10")): AnimeConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
   studio("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): StudioConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
   studioById(id: ID!): Studio @cost(weight: "10")
   manga("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: MangaFilterInput @cost(weight: "10") order: [MangaSortInput!] @cost(weight: "10")): MangaConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
@@ -181,6 +181,12 @@ type UpdateAnimePayload {
 union StudioResult = Studio | ForbiddenError
 
 union UpdateAnimeError = AnimeNotFoundError
+
+input AnimeFilterInput {
+  and: [AnimeFilterInput!]
+  or: [AnimeFilterInput!]
+  title: RestrictedStringOperationFilterInput
+}
 
 input AnimeSortInput {
   title: SortEnumType @cost(weight: "10")
