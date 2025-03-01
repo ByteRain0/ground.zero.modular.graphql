@@ -5,6 +5,9 @@ using MediatR;
 
 namespace Anime.GraphQL.Anime.Nodes;
 
+/// <summary>
+/// Re-write the graph node / model that is exposed to the client application.
+/// </summary>
 [ObjectType<Contracts.Models.Anime>]
 public static partial class AnimeNode
 {

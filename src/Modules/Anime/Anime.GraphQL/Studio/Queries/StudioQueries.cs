@@ -13,7 +13,7 @@ public static class StudioQueries
         PagingArguments pagingArguments,
         QueryContext<Contracts.Models.Studio>? queryContext,
         CancellationToken cancellationToken,
-        [Service] IMediator mediator) =>
+        IMediator mediator) =>
         await mediator.Send(new GetStudios(pagingArguments, queryContext), cancellationToken).ToConnectionAsync();
 
     [NodeResolver]
@@ -21,6 +21,6 @@ public static class StudioQueries
         int id,
         QueryContext<Contracts.Models.Studio>? queryContext,
         CancellationToken cancellationToken,
-        [Service] IMediator mediator) =>
+        IMediator mediator) =>
         await mediator.Send(new GetStudioById(id, queryContext), cancellationToken);
 }

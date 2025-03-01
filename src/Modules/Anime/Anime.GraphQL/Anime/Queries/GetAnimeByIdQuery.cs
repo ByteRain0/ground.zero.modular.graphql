@@ -1,5 +1,4 @@
 using Anime.Contracts.Services.Anime.Queries;
-using Core.Auth;
 using GreenDonut.Data;
 using MediatR;
 
@@ -17,7 +16,8 @@ public static class GetAnimeByIdQuery
     public static async Task<Contracts.Models.Anime?> GetAnimeByIdAsync(
         // [ID<Anime> int id] alternative way to use the GraphQl_ID
         int id,
+        QueryContext<Contracts.Models.Anime>? queryContext,
         CancellationToken cancellationToken,
         IMediator mediator)
-        => await mediator.Send(new GetAnimeById(id), cancellationToken);
+        => await mediator.Send(new GetAnimeById(id, queryContext), cancellationToken);
 }

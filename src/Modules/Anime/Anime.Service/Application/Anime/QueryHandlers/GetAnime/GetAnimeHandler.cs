@@ -15,6 +15,7 @@ internal class GetAnimeQueryHandler(AnimeDbContext animeDbContext)
         using var retrieveAnimeFromDatabase = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Retrieve anime from database");
         return await animeDbContext
             .Animes
+            .With(request.QueryContext)
             // Filter for Studio                
             .Where(x =>
                 !request.QueryFilters.StudioId.HasValue

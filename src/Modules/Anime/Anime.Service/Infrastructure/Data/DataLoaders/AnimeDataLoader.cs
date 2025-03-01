@@ -10,10 +10,12 @@ internal sealed class AnimeDataLoader
     internal static async Task<Dictionary<int, Contracts.Models.Anime>>
         GetAnimeByIdDataLoader(
             IReadOnlyList<int> keys,
+            QueryContext<Contracts.Models.Anime> queryContext,
             CancellationToken cancellationToken,
             AnimeDbContext context)
         => await context
             .Animes
+            .With(queryContext)
             .Where(an => keys.Contains(an.Id))
             .ToDictionaryAsync(an => an.Id, cancellationToken);
     
@@ -21,6 +23,7 @@ internal sealed class AnimeDataLoader
     internal static async Task<Dictionary<string, Contracts.Models.Anime>>
         GetAnimeByTitleDataLoader(
             IReadOnlyList<string> keys,
+            QueryContext<Contracts.Models.Anime> queryContext,
             CancellationToken cancellationToken,
             AnimeDbContext context) =>
         await context

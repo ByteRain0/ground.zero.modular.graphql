@@ -4,7 +4,8 @@ using MediatR;
 namespace Anime.Contracts.Services.Anime.Queries;
 
 public record GetAnime(
-    PagingArguments PagingArguments, 
+    PagingArguments PagingArguments,
+    QueryContext<Contracts.Models.Anime>? QueryContext,
     GetAnimeQueryFilters QueryFilters) 
     : IRequest<Page<Contracts.Models.Anime>>;
 

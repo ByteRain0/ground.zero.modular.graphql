@@ -37,7 +37,8 @@ public static class AnimeAddedSubscription
     [Subscribe(With = nameof(OnAnimeAddedStream))]
     public static async Task<Contracts.Models.Anime?> OnAnimeAdded(
         [EventMessage] AnimeCreated message,
+        QueryContext<Contracts.Models.Anime>? queryContext,
         IMediator mediator,
         CancellationToken cancellationToken) =>
-        await mediator.Send(new GetAnimeById(message.Id), cancellationToken);
+        await mediator.Send(new GetAnimeById(message.Id, queryContext), cancellationToken);
 }

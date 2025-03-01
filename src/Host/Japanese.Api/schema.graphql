@@ -147,8 +147,8 @@ type Query {
 
 type Studio implements Node {
   animes("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): AnimesConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
-  id(where: IntOperationFilterInput @cost(weight: "10")): ID!
-  name(where: RestrictedStringOperationFilterInput @cost(weight: "10")): String!
+  id: ID!
+  name: String!
 }
 
 "A connection to a list of items."
@@ -206,21 +206,6 @@ input CreateAnimeInput {
   synopsis: String!
   demographics: Demographics!
   totalEpisodes: Int!
-}
-
-input IntOperationFilterInput {
-  eq: Int @cost(weight: "10")
-  neq: Int @cost(weight: "10")
-  in: [Int] @cost(weight: "10")
-  nin: [Int] @cost(weight: "10")
-  gt: Int @cost(weight: "10")
-  ngt: Int @cost(weight: "10")
-  gte: Int @cost(weight: "10")
-  ngte: Int @cost(weight: "10")
-  lt: Int @cost(weight: "10")
-  nlt: Int @cost(weight: "10")
-  lte: Int @cost(weight: "10")
-  nlte: Int @cost(weight: "10")
 }
 
 input MangaFilterInput {

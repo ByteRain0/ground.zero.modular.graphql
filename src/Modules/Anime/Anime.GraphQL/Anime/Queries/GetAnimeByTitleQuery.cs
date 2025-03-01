@@ -9,7 +9,8 @@ public static class GetAnimeByTitleQuery
 {
     public static async Task<Contracts.Models.Anime?> GetAnimeByTitleAsync(
         string title,
+        QueryContext<Contracts.Models.Anime>? queryContext,
         CancellationToken cancellationToken,
         IMediator mediator)
-        => await mediator.Send(new GetAnimeByTitle(title), cancellationToken);
+        => await mediator.Send(new GetAnimeByTitle(title, queryContext), cancellationToken);
 }

@@ -15,6 +15,7 @@ internal class GetAnimeByTitleHandler(IAnimeByTitleDataLoader dataLoader)
     {
         Activity.Current?.SetTag(AnimeTelemetryTags.AnimeTitle,request.Title);
         return await dataLoader
+            .With(request.QueryContext)
             .LoadAsync(request.Title, cancellationToken);
     }
 }

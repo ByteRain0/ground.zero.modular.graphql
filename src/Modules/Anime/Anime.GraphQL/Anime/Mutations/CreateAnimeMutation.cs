@@ -10,13 +10,14 @@ public static class CreateAnimeMutation
 {
     public static async Task<Contracts.Models.Anime?> CreateAnimeAsync(
         CreateAnime command,
-        IMediator mediator,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken,
+        IMediator mediator)
     {
         await mediator.Send(command, cancellationToken);
         
+        // Since there is no selection set on mutation pass default one.
         return await mediator.Send(
-            new GetAnimeByTitle(command.Title),
+            new GetAnimeByTitle(command.Title, default),
             cancellationToken);
     }
 }
