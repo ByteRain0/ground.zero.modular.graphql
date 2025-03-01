@@ -5,17 +5,5 @@ namespace Anime.Contracts.Services.Anime.Queries;
 
 public record GetAnime(
     PagingArguments PagingArguments,
-    QueryContext<Contracts.Models.Anime>? QueryContext,
-    GetAnimeQueryFilters QueryFilters) 
+    QueryContext<Contracts.Models.Anime>? QueryContext) 
     : IRequest<Page<Contracts.Models.Anime>>;
-
-public class GetAnimeQueryFilters
-{
-    public int? StudioId { get; set; }
-
-    public bool? IsCompleted { get; set; }
-    
-    public bool? IsAiring { get; set; }
-
-    public string? Title { get; set; }
-}

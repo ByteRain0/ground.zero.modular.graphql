@@ -42,7 +42,7 @@
     </PackageVersion>
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
     <!-- Hot Chocolate -->
-    <PackageVersion Include="CookieCrumble" Version="14.3.0" />
+    <PackageVersion Include="CookieCrumble" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="FairyBread" Version="11.0.0" />
     <PackageVersion Include="GreenDonut.Data.Abstractions" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="GreenDonut.Data.EntityFramework" Version="$(HotChocolateVersion)" />
@@ -56,6 +56,7 @@
     <PackageVersion Include="HotChocolate.Data.Filters.Extensions" Version="0.8.0" />
     <PackageVersion Include="HotChocolate.Diagnostics" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Execution.Abstractions" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Fusion" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Subscriptions" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Subscriptions.InMemory" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Types" Version="$(HotChocolateVersion)" />
@@ -66,7 +67,6 @@
     <PackageVersion Include="HotChocolate.Types.CursorPagination" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Types.Json" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="ChilliCream.Nitro" Version="14.0.0-preview.10" />
-    <PackageVersion Include="HotChocolate.Fusion" Version="$(HotChocolateVersion)" />
     <!-- Testing -->
     <PackageVersion Include="coverlet.collector" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>

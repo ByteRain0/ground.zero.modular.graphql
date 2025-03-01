@@ -9,6 +9,9 @@ namespace Anime.GraphQL.Studio.Queries;
 public static class StudioQueries
 {
     [UsePaging]
+    [UseProjection]
+    [UseFiltering]
+    [UseSorting]
     public static async Task<Connection<Contracts.Models.Studio>> GetStudioAsync(
         PagingArguments pagingArguments,
         QueryContext<Contracts.Models.Studio>? queryContext,

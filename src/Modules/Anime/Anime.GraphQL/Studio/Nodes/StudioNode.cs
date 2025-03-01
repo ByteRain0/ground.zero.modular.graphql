@@ -15,11 +15,11 @@ public static partial class StudioNode
     {
         descriptor.BindFieldsImplicitly();
     }
-    
+
     [UsePaging]
     [UseProjection]
     public static async Task<Connection<Contracts.Models.Anime>> GetAnimesAsync(
-        [Parent] Contracts.Models.Studio studio,
+        [Parent(requires: nameof(Contracts.Models.Studio.Id))] Contracts.Models.Studio studio,
         PagingArguments pagingArguments,
         QueryContext<Contracts.Models.Anime> queryContext,
         CancellationToken cancellationToken,

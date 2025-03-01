@@ -1,5 +1,4 @@
 using Anime.Contracts.Services.Studio.Queries;
-using Core.Auth;
 using GreenDonut.Data;
 using MediatR;
 
@@ -15,8 +14,7 @@ public static partial class AnimeNode
     {
         descriptor.BindFieldsImplicitly();
 
-        descriptor.Field(x => x.StudioId)
-            .Ignore();
+        descriptor.Field(x => x.StudioId).Ignore();
     }
 
     public static int InternalId([Parent] Contracts.Models.Anime anime) => anime.Id;
@@ -27,13 +25,10 @@ public static partial class AnimeNode
     /// Return type is nullable in case the studio handler fails
     /// we can at least return a partial result.
     /// </summary>
-    /// <param name="anime"></param>
-    /// <param name="queryContext"></param>
-    /// <param name="mediator"></param>
-    /// <returns></returns>
-    [Error<ForbiddenException>]
     public static async Task<Contracts.Models.Studio?> GetStudioAsync(
-        [Parent] Contracts.Models.Anime anime,
+        // Force load the StudioId into the data loader while still hiding it from the Client.
+        [Parent(requires: nameof(Contracts.Models.Anime.StudioId))]
+        Contracts.Models.Anime anime,
         QueryContext<Contracts.Models.Studio> queryContext,
         IMediator mediator) =>
         await mediator.Send(new GetStudioById(anime.StudioId, queryContext));

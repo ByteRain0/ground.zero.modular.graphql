@@ -63,12 +63,17 @@ workspace "Name" "Description" {
                         -> anime_messaging_notification_handler "Publish notification" "MediatR"
                         -> anime_graphql_notification_handler "Publish notification" "MediatR"
                     }
+                    anime_order_configuration = component "Anime default order configuration" {
+                        -> anime_model
+                    }
                     anime_data_loader = component "Anime DataLoaders" {
                         -> anime_data_context "Batch query data"
+                        -> anime_order_configuration "Use"
                     }
                     anime_query_handlers = component "Anime query handlers" {
                         -> anime_data_loader "Query data"
                         -> anime_data_context "Query data"
+                        -> anime_order_configuration "Use"
                     }
                     anime_node = component "Anime node" "Configure how Anime model is exposed via GraphQL" {
                         -> anime_model "Configure"
@@ -76,9 +81,17 @@ workspace "Name" "Description" {
                     anime_mutations = component "Anime mutations" {
                         -> anime_command_handlers "Send command" "MediatR"
                     }
+                    anime_filter_input = component "Anime filter input" "Configure fields a client can filter animes by" {
+                        -> anime_model
+                    }
+                    anime_sort_input = component "Anime sort input" "Configure fields a client can sort animes by" {
+                        -> anime_model
+                    }
                     anime_queries = component "Anime queries" {
                         -> anime_query_handlers "Send query" "MediatR"
                         -> anime_node "Expose for quering"
+                        -> anime_filter_input "Use configuration for filtering"
+                        -> anime_sort_input "Use configuration for sorting"
                     }
                     anime_subscriptions = component "Anime subscriptions" {
                         -> graphql_topic_event_sender "Subscribe to anime events"
@@ -101,8 +114,16 @@ workspace "Name" "Description" {
                         -> manga_configuration "Use configuration"
                         -> author_configuration "Use configuration"
                     }
+                    manga_sort_input = component "Manga sort input" "Configure fields a client can sort manga by" {
+                        -> manga_model
+                    }
+                    manga_filter_input = component "Manga filter input" "Configure fields a client can filter manga by" {
+                        -> manga_model
+                    }
                     manga_query_handler = component "Manga Query Handler" "Return IQueryable and allow GraphQL execution engine to directly tap into the EfCore DbContext to build queries and projections" {
                         -> manga_data_context "Query data"
+                        -> manga_sort_input
+                        -> manga_filter_input
                     }
                     manga_queries = component "Manga Queries" {
                         -> manga_query_handler "Send query" "MediatR"

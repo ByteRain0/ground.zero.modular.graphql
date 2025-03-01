@@ -1,6 +1,7 @@
 using GreenDonut;
 using GreenDonut.Data;
 using Microsoft.EntityFrameworkCore;
+using static Anime.Service.Infrastructure.Data.Configurations.AnimeOrderingConfiguration;
 
 namespace Anime.Service.Infrastructure.Data.DataLoaders;
 
@@ -28,9 +29,7 @@ internal sealed class StudioDataLoader
             CancellationToken cancellationToken,
             AnimeDbContext context) =>
         await context.Animes
-            .With(queryContext)
+            .With(queryContext, DefaultAnimeOrder)
             .Where(x => studioIds.Contains(x.StudioId))
-            .OrderBy(x => x.Title)
-            .ThenBy(x => x.Id)
             .ToBatchPageAsync(x => x.StudioId, pagingArguments, cancellationToken);
 }

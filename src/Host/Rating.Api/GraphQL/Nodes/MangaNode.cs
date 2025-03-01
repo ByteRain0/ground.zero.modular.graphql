@@ -13,7 +13,7 @@ public static partial class MangaNode
     }
 
     public static async Task<double?> GetTotalRating(
-        [Parent] Manga parent,
+        [Parent(requires: nameof(Manga.Id))] Manga parent,
         IMediator mediator,
         CancellationToken cancellationToken)
         => await mediator.Send(new GetRatingById(parent.Id, "Manga"), cancellationToken);
