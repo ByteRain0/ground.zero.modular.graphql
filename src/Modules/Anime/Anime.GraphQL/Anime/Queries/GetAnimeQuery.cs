@@ -17,5 +17,5 @@ public static class GetAnimeQuery
         QueryContext<Contracts.Models.Anime>? queryContext,
         CancellationToken cancellationToken,
         IMediator mediator) =>
-        await mediator.Send(new GetAnime(pagingArguments,queryContext), cancellationToken).ToConnectionAsync();
+        await mediator.Send(new GetAnime(pagingArguments, queryContext), cancellationToken).ToConnectionAsync();
 }

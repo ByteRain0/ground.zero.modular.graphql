@@ -18,6 +18,8 @@ public static partial class StudioNode
 
     [UsePaging]
     [UseProjection]
+    [UseFiltering]
+    [UseSorting]
     public static async Task<Connection<Contracts.Models.Anime>> GetAnimesAsync(
         [Parent(requires: nameof(Contracts.Models.Studio.Id))] Contracts.Models.Studio studio,
         PagingArguments pagingArguments,

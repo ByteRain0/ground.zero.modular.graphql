@@ -13,7 +13,7 @@ internal class GetAnimeQueryHandler(AnimeDbContext animeDbContext)
         Contracts.Services.Anime.Queries.GetAnime request,
         CancellationToken cancellationToken)
     {
-        using var retrieveAnimeFromDatabase = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Retrieve anime from database");
+        using var activity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Retrieve anime from database");
         
         return await animeDbContext
             .Animes
