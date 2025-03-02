@@ -12,7 +12,7 @@ public static partial class AnimeNode
     }
     
     public static async Task<double?> GetTotalRating(
-        [Parent] Domain.Anime parent,
+        [Parent(requires: nameof(Domain.Anime.Id))] Domain.Anime parent,
         IMediator mediator, 
         CancellationToken cancellationToken) 
         => await mediator.Send(new GetRatingById(parent.Id, "Anime"), cancellationToken);

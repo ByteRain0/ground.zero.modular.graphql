@@ -38,4 +38,6 @@ We will use **PostgreSQL** as the primary data store for the application. </br>
 1. [Adding EF Core Migrations to .NET Aspire Solutions](https://khalidabuhakmeh.com/add-ef-core-migrations-to-dotnet-aspire-solutions) </br>
 2. Example command to add a migration from the root:
    ```bash
-   dotnet ef migrations add UserSettings --project src/Modules/Manga/Manga.Service/Manga.Service.csproj --startup-project src/Host/App.Host/App.Host.csproj --context MangaDbContext
+   dotnet ef migrations add MigrationTitle --project src/Modules/Manga/Manga.Service/Manga.Service.csproj --startup-project src/Host/App.Host/App.Host.csproj --context MangaDbContext
+   dotnet ef migrations add MigrationTitle --project src/Modules/Anime/Anime.Service/Anime.Service.csproj --startup-project src/Host/App.Host/App.Host.csproj --context AnimeDbContext
+   ```

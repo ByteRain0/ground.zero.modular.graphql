@@ -16,6 +16,9 @@ internal class AnimeConfiguration : IEntityTypeConfiguration<Contracts.Models.An
 
         builder
             .Property(x => x.Title)
+            // Make sure title comparison is case insensitive
+            // https://www.npgsql.org/efcore/misc/collations-and-case-sensitivity.html?tabs=fluent-api
+            .UseCollation("case_insensitive")
             .IsRequired();
 
         builder

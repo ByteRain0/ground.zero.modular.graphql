@@ -16,6 +16,7 @@ The change that we're proposing or have agreed to implement.
 * Projections
 * Filtering
 * Pagination
+* Input
 
 ## Consequences
 

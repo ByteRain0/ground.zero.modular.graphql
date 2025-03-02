@@ -1,30 +1,23 @@
-using System.Diagnostics;
-using Anime.Contracts.Exceptions;
 using Anime.Contracts.Services.Anime.Telemetry;
 using Anime.Service.Infrastructure.Data.DataLoaders;
+using Core.Otel.Sources;
+using GreenDonut.Data;
 using MediatR;
 
 namespace Anime.Service.Application.Anime.QueryHandlers.GetAnimeById;
 
-internal class GetAnimeByIdHandler(IAnimeByIdDataLoader dataLoader) 
+internal class GetAnimeByIdHandler(IAnimeByIdDataLoader dataLoader)
     : IRequestHandler<Contracts.Services.Anime.Queries.GetAnimeById, Contracts.Models.Anime?>
 {
     public async Task<Contracts.Models.Anime?> Handle(
         Contracts.Services.Anime.Queries.GetAnimeById request,
         CancellationToken cancellationToken)
     {
-        Activity.Current?.SetTag(AnimeTelemetryTags.AnimeId,request.Id);
-        return await dataLoader.LoadAsync(request.Id, cancellationToken);
-        
-        // In case we want to return exact errors we can use Error patterns :
-        var anime = await dataLoader.LoadAsync(request.Id, cancellationToken);
+        using var activity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Retrieve anime from database");
+        activity?.SetTag(AnimeTelemetryTags.AnimeId, request.Id);
 
-        if (anime is null)
-        {
-            throw new AnimeNotFoundException(idOrTitle: request.Id.ToString());
-        }
-
-        return anime;
+        return await dataLoader
+            .With(request.QueryContext)
+            .LoadAsync(request.Id, cancellationToken);
     }
 }
-

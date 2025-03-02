@@ -9,9 +9,13 @@ namespace Anime.GraphQL.Anime.Queries;
 public static class GetAnimeQuery
 {
     [UsePaging]
+    [UseProjection]
+    [UseFiltering]
+    [UseSorting]
     public static async Task<Connection<Contracts.Models.Anime>> GetAnimeAsync(
         PagingArguments pagingArguments,
+        QueryContext<Contracts.Models.Anime>? queryContext,
         CancellationToken cancellationToken,
-        [Service] IMediator mediator) =>
-        (await mediator.Send(new GetAnime(pagingArguments, new GetAnimeQueryFilters()), cancellationToken)).ToConnection();
+        IMediator mediator) =>
+        await mediator.Send(new GetAnime(pagingArguments, queryContext), cancellationToken).ToConnectionAsync();
 }

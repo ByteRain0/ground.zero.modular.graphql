@@ -1,5 +1,6 @@
 using Anime.Contracts.Services.Studio.Queries;
 using Anime.Service.Infrastructure.Data.DataLoaders;
+using GreenDonut.Data;
 using MediatR;
 
 namespace Anime.Service.Application.Studio.QueryHandlers;
@@ -10,5 +11,7 @@ internal class GetStudioByIdHandler(IStudioByIdDataLoader dataLoader)
     public async Task<Contracts.Models.Studio?> Handle(
         GetStudioById request,
         CancellationToken cancellationToken) =>
-        await dataLoader.LoadAsync(request.StudioId, cancellationToken);
+        await dataLoader
+            .With(request.QueryContext)
+            .LoadAsync(request.StudioId, cancellationToken);
 }

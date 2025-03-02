@@ -15,7 +15,7 @@ interface Node {
 
 type Anime implements Node {
   internalId: Int!
-  studio: StudioResult! @cost(weight: "10")
+  studio: Studio @cost(weight: "10")
   id: ID!
   title: String!
   releaseDate: DateTime!
@@ -49,6 +49,24 @@ type AnimeNotFoundError implements Error {
   idOrTitle: String
 }
 
+"A connection to a list of items."
+type AnimesConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [AnimesEdge!]
+  "A flattened list of the nodes."
+  nodes: [Anime!]
+}
+
+"An edge in a connection."
+type AnimesEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Anime!
+}
+
 type Author {
   name: String!
   settings: AuthorSettings @cost(weight: "10")
@@ -61,10 +79,6 @@ type AuthorSettings {
 
 type CreateAnimePayload {
   anime: Anime
-}
-
-type ForbiddenError implements Error {
-  message: String!
 }
 
 type Manga {
@@ -120,18 +134,17 @@ type Query {
   nodes("The list of node IDs." ids: [ID!]!): [Node]! @cost(weight: "10")
   animeById(id: ID!): Anime @cost(weight: "10")
   animeByTitle(title: String!): Anime @cost(weight: "10")
-  anime("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): AnimeConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
-  studio("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): StudioConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  anime("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: AnimeFilterInput @cost(weight: "10") order: [AnimeSortInput!] @cost(weight: "10")): AnimeConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  studio("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: StudioFilterInput @cost(weight: "10") order: [StudioSortInput!] @cost(weight: "10")): StudioConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
   studioById(id: ID!): Studio @cost(weight: "10")
   manga("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: MangaFilterInput @cost(weight: "10") order: [MangaSortInput!] @cost(weight: "10")): MangaConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
   mangaById(id: Int!): Manga @cost(weight: "10")
 }
 
 type Studio implements Node {
-  anime("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): AnimeConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
-  id(where: IntOperationFilterInput @cost(weight: "10")): ID!
-  name(where: RestrictedStringOperationFilterInput @cost(weight: "10")): String!
-  animes: [Anime!]!
+  animes("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): AnimesConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  id: ID!
+  name: String!
 }
 
 "A connection to a list of items."
@@ -161,9 +174,19 @@ type UpdateAnimePayload {
   errors: [UpdateAnimeError!]
 }
 
-union StudioResult = Studio | ForbiddenError
-
 union UpdateAnimeError = AnimeNotFoundError
+
+input AnimeFilterInput {
+  and: [AnimeFilterInput!]
+  or: [AnimeFilterInput!]
+  title: SearchStringOperationFilterInput
+  studioId: IntOperationFilterInput
+  releaseDate: DateTimeOperationFilterInput
+  demographics: DemographicsOperationFilterInput
+  totalEpisodes: IntOperationFilterInput
+  isCompleted: BooleanOperationFilterInput
+  isAiring: BooleanOperationFilterInput
+}
 
 input AnimeSortInput {
   title: SortEnumType @cost(weight: "10")
@@ -182,6 +205,11 @@ input AuthorSortInput {
   name: SortEnumType @cost(weight: "10")
 }
 
+input BooleanOperationFilterInput {
+  eq: Boolean @cost(weight: "10")
+  neq: Boolean @cost(weight: "10")
+}
+
 input CreateAnimeInput {
   studioId: ID!
   title: String!
@@ -189,6 +217,28 @@ input CreateAnimeInput {
   synopsis: String!
   demographics: Demographics!
   totalEpisodes: Int!
+}
+
+input DateTimeOperationFilterInput {
+  eq: DateTime @cost(weight: "10")
+  neq: DateTime @cost(weight: "10")
+  in: [DateTime] @cost(weight: "10")
+  nin: [DateTime] @cost(weight: "10")
+  gt: DateTime @cost(weight: "10")
+  ngt: DateTime @cost(weight: "10")
+  gte: DateTime @cost(weight: "10")
+  ngte: DateTime @cost(weight: "10")
+  lt: DateTime @cost(weight: "10")
+  nlt: DateTime @cost(weight: "10")
+  lte: DateTime @cost(weight: "10")
+  nlte: DateTime @cost(weight: "10")
+}
+
+input DemographicsOperationFilterInput {
+  eq: Demographics @cost(weight: "10")
+  neq: Demographics @cost(weight: "10")
+  in: [Demographics!] @cost(weight: "10")
+  nin: [Demographics!] @cost(weight: "10")
 }
 
 input IntOperationFilterInput {

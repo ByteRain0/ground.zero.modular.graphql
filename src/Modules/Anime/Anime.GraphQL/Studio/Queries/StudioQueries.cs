@@ -8,17 +8,22 @@ namespace Anime.GraphQL.Studio.Queries;
 [QueryType]
 public static class StudioQueries
 {
-    [UsePaging] 
+    [UsePaging]
+    [UseProjection]
+    [UseFiltering]
+    [UseSorting]
     public static async Task<Connection<Contracts.Models.Studio>> GetStudioAsync(
         PagingArguments pagingArguments,
+        QueryContext<Contracts.Models.Studio>? queryContext,
         CancellationToken cancellationToken,
-        [Service] IMediator mediator) =>
-        (await mediator.Send(new GetStudios(pagingArguments), cancellationToken)).ToConnection();
-    
+        IMediator mediator) =>
+        await mediator.Send(new GetStudios(pagingArguments, queryContext), cancellationToken).ToConnectionAsync();
+
     [NodeResolver]
     public static async Task<Contracts.Models.Studio?> GetStudioByIdAsync(
         int id,
+        QueryContext<Contracts.Models.Studio>? queryContext,
         CancellationToken cancellationToken,
-        [Service] IMediator mediator) =>
-        await mediator.Send(new GetStudioById(id), cancellationToken);
+        IMediator mediator) =>
+        await mediator.Send(new GetStudioById(id, queryContext), cancellationToken);
 }

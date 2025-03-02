@@ -74,6 +74,13 @@ To prevent the N+1 problem, we will implement **data loaders** with the followin
     - Data loader classes are defined as `internal sealed`. </br>
     - Inject data loader services from the **DI container** to promote reuse and efficiency. </br>
 
+5. **Query Context:** </br>
+   - All data loaders will receive a QueryContext<T> as input parameter.
+   - QueryContext<T> will be nullable everywhere except the data loader itself, the GreenDonut library will make sure it initializes it whenever a null instance is passed.
+   - QueryContext is not present on mutations (hence previous point).
+   - Make use of the build in functionalities for: Projections, Filters, Sorting, PagingArguments provided by GreenDonut.
+   - Define a standard reusable ordering rules inside the Infrastructure.Data.Configurations folder for existing entities and use it inside the data loader and Query Handlers.
+
 Benefits of Data loader usage:
 1. Reduces the number of database queries by batching similar requests into fewer operations. </br>
 2. Improves performance and scalability for GraphQL queries involving related data. </br>

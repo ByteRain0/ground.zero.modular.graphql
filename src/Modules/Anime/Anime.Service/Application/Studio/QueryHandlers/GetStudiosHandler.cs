@@ -2,6 +2,8 @@ using Anime.Contracts.Services.Studio.Queries;
 using Anime.Service.Infrastructure.Data;
 using GreenDonut.Data;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using static Anime.Service.Infrastructure.Data.Configurations.StudioOrderingConfiguration;
 
 namespace Anime.Service.Application.Studio.QueryHandlers;
 
@@ -13,7 +15,6 @@ internal class GetStudiosHandler(AnimeDbContext dbContext)
         CancellationToken cancellationToken)
         => await dbContext
             .Studios
-            .OrderBy(x => x.Name)
-            .ThenBy(x => x.Id)
+            .With(request.QueryContext, DefaultStudioOrder)
             .ToPageAsync(request.PagingArguments, cancellationToken);
 }

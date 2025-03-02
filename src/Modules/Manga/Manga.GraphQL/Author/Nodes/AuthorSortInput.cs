@@ -2,7 +2,7 @@ using HotChocolate.Data.Sorting;
 
 namespace Manga.GraphQL.Author.Nodes;
 
-public class MangaSortConstraints : SortInputType<Contracts.Models.Author>
+public class AuthorSortInput : SortInputType<Contracts.Models.Author>
 {
     protected override void Configure(ISortInputTypeDescriptor<Contracts.Models.Author> descriptor)
     {

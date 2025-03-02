@@ -32,8 +32,7 @@ public class CreateAnimeValidator : AbstractValidator<CreateAnime>
             .NotEmpty();
 
         RuleFor(x => x.Synopsis)
-            .NotEmpty()
-            .MaximumLength(10);
+            .NotEmpty();
 
         RuleFor(x => x.StudioId)
             .GreaterThan(0);

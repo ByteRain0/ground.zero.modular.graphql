@@ -19,6 +19,7 @@ public class AnimeDbContext(DbContextOptions<AnimeDbContext> options)
     
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        builder.HasCollation("case_insensitive", locale: "en-u-ks-primary", provider: "icu", deterministic: false);
         builder.ApplyConfigurationsFromAssembly(typeof(AnimeDbContext).Assembly);
         builder.AddStudioData();
         builder.AddAnimeData();
