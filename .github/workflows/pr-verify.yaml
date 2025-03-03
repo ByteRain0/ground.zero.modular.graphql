@@ -22,10 +22,10 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build --no-restore
 
       - name: Test
-        run: dotnet test --no-build --configuration Release
+        run: dotnet test --no-build
       
       - name: Format
         run: dotnet format -v detailed --verify-no-changes
