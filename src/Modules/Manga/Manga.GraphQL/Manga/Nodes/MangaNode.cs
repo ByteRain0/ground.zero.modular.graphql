@@ -17,9 +17,9 @@ public static partial class MangaNode
         descriptor
             .Field(x => x.AuthorId)
             .Ignore();
-        
+
         descriptor
             .Field(x => x.Demographics)
             .Ignore();
-    } 
+    }
 }

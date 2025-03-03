@@ -6,5 +6,5 @@ namespace Anime.Manga.Bridge;
 /// </summary>
 public class AnimeAuthorTypeResolver
 {
-    
+
 }

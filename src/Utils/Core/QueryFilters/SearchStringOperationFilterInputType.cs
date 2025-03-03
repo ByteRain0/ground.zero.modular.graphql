@@ -16,5 +16,5 @@ public class SearchStringOperationFilterInputType : StringOperationFilterInputTy
         descriptor.Operation(DefaultFilterOperations.Equals).Type<StringType>();
         descriptor.Operation(DefaultFilterOperations.Contains).Type<StringType>();
         descriptor.Operation(DefaultFilterOperations.In).Type<StringType>();
-    } 
+    }
 }

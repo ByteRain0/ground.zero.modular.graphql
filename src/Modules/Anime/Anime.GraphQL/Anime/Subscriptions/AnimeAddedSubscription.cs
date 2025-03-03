@@ -21,10 +21,10 @@ public static class AnimeAddedSubscription
             AnimeTopicNames.AnimeAddedTopicName,
             cancellationToken);
 
-        var demographicsSet = interestedDemographics is null 
-            ? null 
+        var demographicsSet = interestedDemographics is null
+            ? null
             : new HashSet<Demographics>(interestedDemographics);
-        
+
         await foreach (var message in eventStream.ReadEventsAsync().WithCancellation(cancellationToken))
         {
             if (demographicsSet?.Contains(message.Demographics) ?? true)

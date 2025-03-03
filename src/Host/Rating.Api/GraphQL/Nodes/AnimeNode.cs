@@ -10,10 +10,10 @@ public static partial class AnimeNode
     {
         descriptor.BindFieldsImplicitly();
     }
-    
+
     public static async Task<double?> GetTotalRating(
         [Parent(requires: nameof(Domain.Anime.Id))] Domain.Anime parent,
-        IMediator mediator, 
-        CancellationToken cancellationToken) 
+        IMediator mediator,
+        CancellationToken cancellationToken)
         => await mediator.Send(new GetRatingById(parent.Id, "Anime"), cancellationToken);
 }
