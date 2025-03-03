@@ -12,8 +12,8 @@ namespace Manga.Service.Application.Manga.QueryHandlers;
 /// * ...
 /// </summary>
 /// <param name="dbContext"></param>
-public class GetMangaHandler(MangaDbContext context) 
-    : IRequestHandler<GetManga,IQueryable<Contracts.Models.Manga>>
+public class GetMangaHandler(MangaDbContext context)
+    : IRequestHandler<GetManga, IQueryable<Contracts.Models.Manga>>
 {
     public Task<IQueryable<Contracts.Models.Manga>> Handle(
         GetManga request,

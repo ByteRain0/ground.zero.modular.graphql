@@ -36,7 +36,7 @@ internal class AnimeConfiguration : IEntityTypeConfiguration<Contracts.Models.An
         builder.Property(x => x.Demographics)
             .HasDefaultValue(Demographics.Shounen)
             .HasConversion(new EnumToStringConverter<Demographics>());
-        
+
         builder
             .HasOne<Studio>()
             .WithMany(x => x.Animes);

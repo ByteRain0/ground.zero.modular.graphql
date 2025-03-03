@@ -8,7 +8,7 @@ namespace Core.Auth;
 /// Can be expanded with additional data from Context.
 /// </summary>
 public class GraphQLAuthExceptionFilter : IErrorFilter
-{ 
+{
     public IError OnError(IError error)
     {
         if (error.Exception is ForbiddenException forbiddenException)

@@ -18,7 +18,7 @@ public static class BackgroundJobsServiceCollectionExtensions
         {
             return services;
         }
-        
+
         var connectionFactory = new NpgsqlConnectionFactory(connectionString, new PostgreSqlStorageOptions());
 
         services.AddHangfire(hangfireConfiguration =>

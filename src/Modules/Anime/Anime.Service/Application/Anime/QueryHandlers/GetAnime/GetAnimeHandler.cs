@@ -14,7 +14,7 @@ internal class GetAnimeQueryHandler(AnimeDbContext animeDbContext)
         CancellationToken cancellationToken)
     {
         using var activity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Retrieve anime from database");
-        
+
         return await animeDbContext
             .Animes
             .With(request.QueryContext, DefaultAnimeOrder)

@@ -36,14 +36,14 @@ var japaneseApi = builder
     .WithReference(migrationService).WaitFor(migrationService)
     .WithReference(rabbitMq).WaitFor(rabbitMq);
 
-bool.TryParse(Environment.GetEnvironmentVariable("START_WITH_RATING_API"), out var startWithRatingApi );
+bool.TryParse(Environment.GetEnvironmentVariable("START_WITH_RATING_API"), out var startWithRatingApi);
 if (startWithRatingApi)
 {
     var cache = builder.AddRedis("cache", port: 6379)
         .WithDataVolume()
         .WithLifetime(ContainerLifetime.Persistent)
         .WithRedisInsight();
-    
+
     var ratingApi = builder
         .AddProject<Projects.Rating_Api>("rating-api")
         .WithReference(cache).WaitFor(cache)

@@ -16,7 +16,7 @@ public static class MangaQueries
         ISortingContext sortingContext)
     {
         sortingContext.Handled(false);
-        
+
         var queryBase = await mediator.Send(new GetManga());
 
         // Add default sorting if none specified.
@@ -27,10 +27,10 @@ public static class MangaQueries
                 .OrderBy(x => x.Title)
                 .ThenBy(x => x.Id);
         }
-        
+
         return queryBase;
     }
-    
+
     [UseFirstOrDefault]
     [UseProjection]
     public static async Task<IQueryable<Contracts.Models.Manga>> GetMangaByIdAsync(
