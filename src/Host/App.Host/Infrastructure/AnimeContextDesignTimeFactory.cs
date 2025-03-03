@@ -10,7 +10,7 @@ public sealed class AnimeContextDesignTimeFactory :
     public AnimeDbContext CreateDbContext(string[] args)
     {
         var builder = DistributedApplication.CreateBuilder(args);
-    
+
         var postgres = builder
             .AddPostgres("postgres")
             .AddDatabase("anime-migrations", databaseName: "anime-migrations");

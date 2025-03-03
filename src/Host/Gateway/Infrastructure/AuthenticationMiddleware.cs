@@ -10,7 +10,7 @@ public sealed class AuthenticationMiddleware(IHttpContextAccessor accessor) : De
         {
             request.Headers.Authorization = AuthenticationHeaderValue.Parse(value.ToString());
         }
-        
+
         return base.SendAsync(request, cancellationToken);
     }
 }

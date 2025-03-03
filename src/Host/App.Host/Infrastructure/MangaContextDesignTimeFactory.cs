@@ -10,7 +10,7 @@ public sealed class MangaContextDesignTimeFactory :
     public MangaDbContext CreateDbContext(string[] args)
     {
         var builder = DistributedApplication.CreateBuilder(args);
-    
+
         var postgres = builder
             .AddPostgres("postgres")
             .AddDatabase("manga-migrations", databaseName: "manga-migrations");

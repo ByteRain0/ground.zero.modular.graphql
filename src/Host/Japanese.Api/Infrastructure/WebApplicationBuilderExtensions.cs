@@ -65,13 +65,13 @@ public static class WebApplicationBuilderExtensions
     public static WebApplicationBuilder AddDynamicEntitiesConfigurations(this WebApplicationBuilder builder)
     {
         builder.Configuration.AddJsonFile(
-            path:"appsettings.DynamicEntities.json", 
-            optional: false, 
+            path: "appsettings.DynamicEntities.json",
+            optional: false,
             reloadOnChange: true);
 
         return builder;
     }
-    
+
     private static IRequestExecutorBuilder AddGraphQlConventions(
         this IRequestExecutorBuilder builder)
     {
