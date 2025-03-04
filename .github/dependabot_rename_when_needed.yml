@@ -1,0 +1,77 @@
+version: 2
+updates:
+  # NuGet dependencies
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "ByteRain0"
+    assignees:
+      - "ByteRain0"
+    labels:
+      - "dependencies"
+      - "security"
+    commit-message:
+      prefix: "nuget"
+    rebase-strategy: "auto"
+    
+    # Group HotChocolate and GreenDonut dependencies
+    groups:
+      hotchocolate-packages:
+        patterns:
+          - "HotChocolate.*"
+          - "GreenDonut.*"
+          - "CookieCrumble"
+        update-types:
+          - "minor"
+          - "patch"
+      
+      microsoft-extensions-packages:
+        patterns:
+          - "Microsoft.Extensions.*"
+          - "Microsoft.AspNetCore.*"
+        update-types:
+          - "minor"
+          - "patch"
+            
+      microsoft-entity-framework-packages:
+        patterns:
+          - "Microsoft.EntityFrameworkCore.*"
+        update-types:
+          - "major"
+          - "minor"
+          - "patch"
+      
+      masstransit-packages:
+        patterns:
+          - "MassTransit"
+          - "MassTransit.*"
+            
+      mediatr-packages:
+        patterns:
+          - "MediatR"
+          - "MediatR.*"
+      
+      opentelemetry-packages:
+        patterns:
+          - "OpenTelemetry"
+          - "OpenTelemetry.*"
+
+  # GitHub Actions updates
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "ByteRain0"
+    assignees:
+      - "ByteRain0"
+    labels:
+      - "github-actions"
+      - "security"
+    commit-message:
+      prefix: "actions"
+    rebase-strategy: "auto"
