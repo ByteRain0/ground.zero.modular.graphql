@@ -4,7 +4,7 @@
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
     <HotChocolateVersion>15.0.3</HotChocolateVersion>
     <OTelVersion>1.10.0</OTelVersion>
-    <MassTransitVersion>8.3.0</MassTransitVersion>
+    <MassTransitVersion>8.3.6</MassTransitVersion>
   </PropertyGroup>
   <ItemGroup>
     <!-- Aspire -->
