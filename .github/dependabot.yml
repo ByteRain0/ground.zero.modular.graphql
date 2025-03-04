@@ -19,6 +19,7 @@ updates:
         versions: [">=9.0.0"]
       - dependency-name: "System.*"
         versions: [">=9.0.0"]
+    # Todo: add Hotchocolate grouping for NuGet packages.
 
   # GitHub Actions updates
   - package-ecosystem: "github-actions"
