@@ -44,12 +44,12 @@ public class AnimeCreateGraphqlNotificationHandler : INotificationHandler<AnimeC
         catch (Exception ex)
         {
             notificationActivity?.AddExceptionAndFail(ex);
-            
+
             _logger.LogError(
-                exception: ex, 
-                message: "Issue sending notification. {NotificationType} {AnimeId}", 
+                exception: ex,
+                message: "Issue sending notification. {NotificationType} {AnimeId}",
                 typeof(AnimeCreated), notification.Id);
-            
+
             // TODO: decide if we want to stop the flow in case of failure or continue.
             // throw;
         }

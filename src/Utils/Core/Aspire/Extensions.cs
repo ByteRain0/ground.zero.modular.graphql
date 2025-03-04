@@ -27,7 +27,7 @@ public static class Extensions
             // Turn on service discovery by default
             http.AddServiceDiscovery();
         });
-        
+
         return builder;
     }
 
@@ -36,7 +36,7 @@ public static class Extensions
         builder.AddTelemetry();
         return builder;
     }
-    
+
     public static IHostApplicationBuilder AddDefaultHealthChecks(this IHostApplicationBuilder builder)
     {
         builder.Services.AddHealthChecks()

@@ -3,7 +3,7 @@ using HotChocolate.Data.Filters;
 
 namespace Manga.GraphQL.Author.Nodes;
 
-public class AuthorFilterInput: FilterInputType<Contracts.Models.Author>
+public class AuthorFilterInput : FilterInputType<Contracts.Models.Author>
 {
     protected override void Configure(IFilterInputTypeDescriptor<Contracts.Models.Author> descriptor)
     {

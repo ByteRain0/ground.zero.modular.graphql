@@ -8,15 +8,15 @@ namespace Core.Behaviors;
 /// </summary>
 /// <typeparam name="TRequest"></typeparam>
 /// <typeparam name="TResponse"></typeparam>
-public class ActivityTracingBehavior<TRequest, TResponse> 
+public class ActivityTracingBehavior<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {
     public async Task<TResponse> Handle(
-        TRequest request, 
-        RequestHandlerDelegate<TResponse> next, 
+        TRequest request,
+        RequestHandlerDelegate<TResponse> next,
         CancellationToken cancellationToken)
-    { 
+    {
         using var activity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity($"Handling MediatR request: {typeof(TRequest).Name}");
-        return await next(); 
+        return await next();
     }
 }

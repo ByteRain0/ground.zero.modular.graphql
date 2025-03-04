@@ -32,7 +32,7 @@ internal class CreateAnimeHandler
         _logger = logger;
         _mediator = mediator;
     }
-    
+
     public async Task Handle(
         Contracts.Services.Anime.Commands.CreateAnime request,
         CancellationToken cancellationToken)
@@ -40,7 +40,7 @@ internal class CreateAnimeHandler
         using (JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Check if anime with provided title exists"))
         {
             Activity.Current?.SetTag(AnimeTelemetryTags.AnimeTitle, request.Title);
-            
+
             var animeExists = await _animeDbContext.Animes.AnyAsync(
                 x => x.Title.ToLower() == request.Title.ToLower(), cancellationToken);
 
@@ -71,7 +71,7 @@ internal class CreateAnimeHandler
             IsAiring = false
         };
         await _animeDbContext.Animes.AddAsync(anime, cancellationToken);
-        
+
         try
         {
             await _animeDbContext.SaveChangesAsync(cancellationToken);
@@ -84,10 +84,10 @@ internal class CreateAnimeHandler
         saveAnimeToDbActivity?.Stop();
 
         _logger.LogInformation("New anime created. Title {Title}", anime.Title);
-        
+
         using var publishNotificationActivity =
             JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Publish event");
-        
+
         await _mediator.Publish(new AnimeCreated(
             anime.Id,
             anime.Demographics,

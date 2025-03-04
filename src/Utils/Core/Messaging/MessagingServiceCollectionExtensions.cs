@@ -17,7 +17,7 @@ public static class MessagingServiceCollectionExtensions
         {
             x.AddConsumers(assembliesWithConsumers);
             x.SetKebabCaseEndpointNameFormatter();
-            
+
             x.UsingRabbitMq((context, cfg) =>
             {
                 var rabbitMqConnectionString = configuration.GetConnectionString("rabbitmq");
@@ -28,12 +28,12 @@ public static class MessagingServiceCollectionExtensions
                 }
                 cfg.ConfigureEndpoints(context);
             });
-            
+
 
         });
-        
+
         services.AddScoped<IMessageSender, MessageSender>();
-        
+
         return services;
     }
 }

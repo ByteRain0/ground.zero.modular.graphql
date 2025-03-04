@@ -14,7 +14,7 @@ builder
             .AddBackgroundJobs(builder.Configuration)
             .AddKeyCloakBasedAuth()
             .AddRabbitMqWithMasstransit(
-                configuration:builder.Configuration, 
+                configuration: builder.Configuration,
                 assembliesWithConsumers:
                 [
                     typeof(ApplicationBuilderExtensions).Assembly

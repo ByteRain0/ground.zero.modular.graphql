@@ -9,7 +9,7 @@ public class MangaConfiguration : IEntityTypeConfiguration<Contracts.Models.Mang
     {
         builder.Property(x => x.Id)
             .IsRequired();
-        
+
         builder.Property(x => x.Title)
             .IsRequired();
 
