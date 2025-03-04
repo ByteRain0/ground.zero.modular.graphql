@@ -4,7 +4,8 @@ on:
     branches: [ "main" ]
     
 jobs:
-  verify-build:
+  build:
+    name: PR Verify
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
