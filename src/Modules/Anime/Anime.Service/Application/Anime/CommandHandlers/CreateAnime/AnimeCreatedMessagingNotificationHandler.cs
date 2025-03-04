@@ -28,7 +28,7 @@ public class AnimeCreatedMessagingNotificationHandler : INotificationHandler<Ani
         notificationActivity?.AddTag(AnimeTelemetryTags.Topic, AnimeTopicNames.AnimeAddedTopicName);
         notificationActivity?.AddTag(AnimeTelemetryTags.AnimeId, notification.Id);
         notificationActivity?.SetTag("event", "anime:created");
-        
+
         try
         {
             await _messageSender.PublishMessageAsync(notification, cancellationToken);
@@ -38,15 +38,15 @@ public class AnimeCreatedMessagingNotificationHandler : INotificationHandler<Ani
         catch (Exception ex)
         {
             notificationActivity?.AddExceptionAndFail(ex);
-            
+
             _logger.LogError(
-                exception: ex, 
-                message: "Issue sending notification. {NotificationType} {AnimeId}", 
+                exception: ex,
+                message: "Issue sending notification. {NotificationType} {AnimeId}",
                 typeof(AnimeCreated), notification.Id);
-            
+
             // TODO: decide if we want to stop the flow in case of failure or continue.
             // throw;
         }
-        
+
     }
 }

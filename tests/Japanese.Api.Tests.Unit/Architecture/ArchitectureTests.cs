@@ -5,5 +5,5 @@ namespace Japanese.Api.Tests.Unit.Architecture;
 /// </summary>
 public class ArchitectureTests
 {
-    
+
 }

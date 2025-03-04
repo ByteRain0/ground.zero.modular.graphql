@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Anime.Service.Application.Anime.CommandHandlers.DeleteAnime;
 
-internal class DeleteAnimeHandler 
+internal class DeleteAnimeHandler
     : IRequestHandler<Contracts.Services.Anime.Commands.DeleteAnime>
 {
     private readonly AnimeDbContext _animeDbContext;
@@ -15,7 +15,7 @@ internal class DeleteAnimeHandler
     }
 
     public async Task Handle(
-        Contracts.Services.Anime.Commands.DeleteAnime request, 
+        Contracts.Services.Anime.Commands.DeleteAnime request,
         CancellationToken cancellationToken)
     {
         await _animeDbContext

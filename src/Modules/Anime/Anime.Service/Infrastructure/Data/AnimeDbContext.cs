@@ -10,13 +10,13 @@ namespace Anime.Service.Infrastructure.Data;
 /// Left as public in order to allow having an external source run the migrations.
 /// </summary>
 /// <param name="options"></param>
-public class AnimeDbContext(DbContextOptions<AnimeDbContext> options) 
+public class AnimeDbContext(DbContextOptions<AnimeDbContext> options)
     : DbContext(options)
 {
     public DbSet<Anime.Contracts.Models.Anime> Animes { get; set; }
-    
+
     public DbSet<Studio> Studios { get; set; }
-    
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.HasCollation("case_insensitive", locale: "en-u-ks-primary", provider: "icu", deterministic: false);

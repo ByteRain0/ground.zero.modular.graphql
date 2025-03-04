@@ -16,11 +16,11 @@ namespace Core.Auth;
 /// </summary>
 /// <typeparam name="TRequest"></typeparam>
 /// <typeparam name="TResponse"></typeparam>
-public class AuthorizationBehavior<TRequest, TResponse> 
+public class AuthorizationBehavior<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse>
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
-    
+
     public AuthorizationBehavior(IHttpContextAccessor httpContextAccessor)
     {
         _httpContextAccessor = httpContextAccessor;
@@ -38,13 +38,13 @@ public class AuthorizationBehavior<TRequest, TResponse>
             evaluateAuthActivity?.Stop();
             return await next();
         }
-        
+
         var roles = attribute.Roles;
         evaluateAuthActivity?.SetTag("required_roles", roles);
 
         var identity = GetAuthenticatedUserIdentity();
         var resourceAccesses = GetResourceAccesses(identity);
-        
+
         var appUserRolesList = ParseRetrievedUserRoles(resourceAccesses);
         if (appUserRolesList == null)
         {
@@ -63,13 +63,13 @@ public class AuthorizationBehavior<TRequest, TResponse>
         evaluateAuthActivity?.SetStatus(ActivityStatusCode.Error);
         throw new ForbiddenException("User does not have the required claims.");
     }
-    
+
     private AuthorizeRolesAttribute? GetAuthorizeRolesAttribute(TRequest request)
     {
         using var activity = JapaneseApiRunTimeDiagnosticConfig.Source?.StartActivity();
         return request!.GetType().GetCustomAttribute<AuthorizeRolesAttribute>();
     }
-    
+
     private ClaimsIdentity GetAuthenticatedUserIdentity()
     {
         using var activity = JapaneseApiRunTimeDiagnosticConfig.Source?.StartActivity();
@@ -80,7 +80,7 @@ public class AuthorizationBehavior<TRequest, TResponse>
             activity?.AddExceptionAndFail(exception);
             throw exception;
         }
-        
+
         return identity;
     }
 
@@ -114,7 +114,7 @@ public class AuthorizationBehavior<TRequest, TResponse>
             .FirstOrDefault(x => x.Key == AuthorizationConstants.ApplicationName)
             .Value
             .Roles;
-        
+
         Activity.Current?.SetTag("user_roles", appUserRoles.ToArray());
         return requiredRoles.Any(appUserRoles.Contains);
     }

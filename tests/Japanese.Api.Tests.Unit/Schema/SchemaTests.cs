@@ -19,13 +19,13 @@ public class SchemaTests
             .SetBasePath(Path.Combine(AppContext.BaseDirectory))
             .AddJsonFile("appsettings.test.json", optional: false, reloadOnChange: false)
             .AddJsonFile("appsettings.DynamicEntities.json", optional: false, reloadOnChange: false);
-            
 
-       var schema = await builder
-            .AddApplicationServices()
-            .Services.AddGraphQLInfrastructure()
-            .BuildSchemaAsync();
-       
+
+        var schema = await builder
+             .AddApplicationServices()
+             .Services.AddGraphQLInfrastructure()
+             .BuildSchemaAsync();
+
         schema.MatchSnapshot();
     }
 }

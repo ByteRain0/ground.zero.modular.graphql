@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Anime.Service.Application.Anime.CommandHandlers.UpdateAnime;
 
-internal class UpdateAnimeHandler 
+internal class UpdateAnimeHandler
     : IRequestHandler<Contracts.Services.Anime.Commands.UpdateAnime>
 {
     private readonly AnimeDbContext _animeDbContext;
@@ -21,32 +21,32 @@ internal class UpdateAnimeHandler
     }
 
     public async Task Handle(
-        Contracts.Services.Anime.Commands.UpdateAnime request, 
+        Contracts.Services.Anime.Commands.UpdateAnime request,
         CancellationToken cancellationToken)
     {
         Activity.Current?.SetTag(AnimeTelemetryTags.AnimeId, request.Id);
-        
+
         using var searchActivity =
             JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Check if anime with provided Id exists");
-        
+
         var anime = await _animeDbContext
             .Animes
             .FirstOrDefaultAsync(
                 x => x.Id == request.Id,
                 cancellationToken);
-        
+
         if (anime is null)
         {
             var exception = new AnimeNotFoundException(request.Id.ToString());
             Activity.Current?.AddExceptionAndFail(exception);
             throw exception;
         }
-        
+
         searchActivity?.Stop();
         Activity.Current?.SetTag(AnimeTelemetryTags.AnimeTitle, anime.Title);
 
         using var updateAnimeActivity = JapaneseApiRunTimeDiagnosticConfig.Source.StartActivity("Update anime using new values");
-        
+
         anime.Title.UpdateIfHasValue(
             request.Title,
             title => anime.Title = title,

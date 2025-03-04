@@ -3,7 +3,7 @@ namespace Core.Otel;
 public class OpenTelemetrySettings
 {
     public required Uri TracesEndpoint { get; init; }
-    
+
     public List<TelemetryAttribute> Attributes { get; set; }
 
     public bool Enabled { get; set; }
@@ -12,7 +12,7 @@ public class OpenTelemetrySettings
     {
         return Attributes.Select(x => new KeyValuePair<string, object>(x.Key, x.Value)).ToList();
     }
-    
+
     public class TelemetryAttribute
     {
         public string Key { get; set; }
