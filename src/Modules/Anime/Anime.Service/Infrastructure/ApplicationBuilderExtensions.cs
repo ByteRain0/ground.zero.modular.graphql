@@ -14,10 +14,10 @@ public static class ApplicationBuilderExtensions
     {
         //TODO: track https://github.com/dotnet/aspire/issues/6852 for OTel setup.
         builder.AddNpgsqlDbContext<AnimeDbContext>("default-db", c => c.DisableTracing = true);
-        
+
         var serviceAssembly = typeof(ApplicationBuilderExtensions).Assembly;
         var contractAssembly = typeof(CreateAnime).Assembly;
-        
+
         builder.Services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssembly(serviceAssembly);
@@ -26,7 +26,7 @@ public static class ApplicationBuilderExtensions
         builder.Services.AddFluentValidation([serviceAssembly, contractAssembly]);
 
         builder.AddGraphQL().AddAnimeServiceTypes();
-        
+
         return builder;
     }
 }

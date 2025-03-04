@@ -18,7 +18,7 @@ public class AnimeCreatedConsumer : IConsumer<AnimeCreated>
     {
         using var consumeEventActivity = RatingApiRunTimeDiagnosticConfig.Source.StartActivity("Handling anime:created event");
         Activity.Current?.AddTag("anime_id", context.Message.Id);
-        
+
         _databaseMock.Ratings.Add(new Domain.Rating()
         {
             Id = Guid.NewGuid(),
@@ -26,7 +26,7 @@ public class AnimeCreatedConsumer : IConsumer<AnimeCreated>
             EntityId = context.Message.Id,
             Mark = new Random().NextDouble() * 10
         });
-        
+
         return Task.CompletedTask;
     }
 }

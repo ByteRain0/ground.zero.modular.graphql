@@ -7,7 +7,7 @@ public class StudioSortInput : SortInputType<Contracts.Models.Studio>
     protected override void Configure(ISortInputTypeDescriptor<Contracts.Models.Studio> descriptor)
     {
         descriptor.BindFieldsExplicitly();
-        
+
         descriptor.Field(x => x.Name);
     }
 }

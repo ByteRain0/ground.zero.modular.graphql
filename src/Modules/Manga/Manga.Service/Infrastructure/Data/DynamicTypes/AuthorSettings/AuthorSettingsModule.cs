@@ -80,7 +80,7 @@ public class AuthorSettingsModule : ITypeModule
                 .Extend()
                 .Definition.Type = settingsType;
         });
-        
+
         types.Add(author);
 
         return new ValueTask<IReadOnlyCollection<ITypeSystemMember>>(types);

@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
 builder.Services.AddOpenTelemetry()
-    .WithTracing(tracing => 
+    .WithTracing(tracing =>
         tracing.AddSource(RatingApiRunTimeDiagnosticConfig.Source.Name));
 
 builder.AddRedisClient(connectionName: "cache");

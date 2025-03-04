@@ -14,7 +14,7 @@ public static class CreateAnimeMutation
         IMediator mediator)
     {
         await mediator.Send(command, cancellationToken);
-        
+
         // Since there is no selection set on mutation pass default one.
         return await mediator.Send(
             new GetAnimeByTitle(command.Title, default),
