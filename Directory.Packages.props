@@ -14,7 +14,7 @@
     <PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="9.0.0" />
     <PackageVersion Include="Aspire.Hosting.Redis" Version="9.0.0" />
     <PackageVersion Include="Aspire.Keycloak.Authentication" Version="9.0.0-preview.5.24551.3" />
-    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0" />
+    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.1.0" />
     <PackageVersion Include="Aspire.StackExchange.Redis" Version="9.1.0" />
     <PackageVersion Include="HotChocolate.Fusion.Aspire" Version="14.3.0" />
     <PackageVersion Include="HotChocolate.Fusion.SourceSchema" Version="14.3.0" />
@@ -31,7 +31,7 @@
     <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="$(OTelVersion)" />
     <PackageVersion Include="PracticalOtel.OtelCollector.Aspire" Version="0.9.6-rc" />
     <!-- EF Core -->
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -40,7 +40,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
     <!-- Hot Chocolate -->
     <PackageVersion Include="CookieCrumble" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="FairyBread" Version="11.0.0" />
