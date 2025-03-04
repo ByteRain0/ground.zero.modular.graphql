@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+echo 'Pre-commit git hook with Husky.Net'
+
+echo 'Format project'
+dotnet format

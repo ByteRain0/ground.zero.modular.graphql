@@ -8,6 +8,20 @@
         "Barista"
       ],
       "rollForward": false
+    },
+    "husky": {
+      "version": "0.7.2",
+      "commands": [
+        "husky"
+      ],
+      "rollForward": false
+    },
+    "dotnet-format": {
+      "version": "5.1.250801",
+      "commands": [
+        "dotnet-format"
+      ],
+      "rollForward": false
     }
   }
 }
