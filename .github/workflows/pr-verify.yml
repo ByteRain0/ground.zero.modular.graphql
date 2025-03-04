@@ -1,12 +1,10 @@
 name: "PR Verify"
-
 on:
-  pull_request:
-    
+  pull_request: 
     branches: [ "main" ]
-
+    
 jobs:
-  build-solution:
+  verify-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
