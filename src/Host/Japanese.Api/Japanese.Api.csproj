@@ -22,10 +22,4 @@
       <ProjectReference Include="..\..\Utils\Core\Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Include="..\..\..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
 </Project>
