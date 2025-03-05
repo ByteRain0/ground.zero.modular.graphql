@@ -19,8 +19,9 @@ var postgres = builder
 
 var defaultDb = postgres.AddDatabase("default-db");
 
-var migrationService = builder.AddProject<Projects.Japanese_Api_MigrationService>("migration-service")
-    .WithReference(defaultDb);
+var migrationService =
+    builder.AddProject<Projects.Japanese_Api_MigrationService>("migration-service")
+        .WithReference(defaultDb);
 
 var keycloak = builder
     .AddKeycloak(name: "keycloak", port: 8080)
