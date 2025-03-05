@@ -28,7 +28,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: ./src/host/japanese.api
-          file: ./src/host/japanese.api/Dockerfile
+          context: src/host/japanese.api
+          file: src/host/japanese.api/Dockerfile
           push: true
           tags: razorscream/japanese-api:latest
