@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    name: Build fusion gateway
+    name: Dockerize fusion gateway
     runs-on: ubuntu-latest
     steps:
       - run: echo "running"

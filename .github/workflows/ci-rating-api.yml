@@ -4,7 +4,7 @@ on:
 
 jobs:
   build:
-    name: Build fusion gateway
+    name: Dockerize rating.api
     runs-on: ubuntu-latest
     steps:
       - run: echo "running"

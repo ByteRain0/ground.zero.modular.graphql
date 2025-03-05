@@ -1,9 +1,6 @@
 name: Dockerize japanese.api
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
