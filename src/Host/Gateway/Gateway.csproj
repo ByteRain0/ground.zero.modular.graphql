@@ -2,7 +2,6 @@
 
     <PropertyGroup>
         <AssemblyName>Gateway</AssemblyName>
-        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
@@ -27,12 +26,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Utils\Core\Core.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="..\..\..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
     </ItemGroup>
 
 </Project>

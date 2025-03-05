@@ -9,5 +9,6 @@
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <TargetFramework>net9.0</TargetFramework>
         <NoWarn>$(NoWarn);NU1504;NU1505;NU1701;NU1008;NU1506;NU1605</NoWarn>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 </Project>
