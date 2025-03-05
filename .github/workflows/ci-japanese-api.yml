@@ -9,10 +9,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
         
-      - name: just a simple ls command
-        run: ls -la
-
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v3.1.11
+        with:
+          versionSpec: '6.0.x'
+        
+      - name: Determine Version
+        id: version_step # step id used as reference for output values
+        uses: gittools/actions/gitversion/execute@v3.1.11
+        
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -31,4 +39,4 @@ jobs:
           context: ./
           file: ./dockerfiles/japanese-api/Dockerfile
           push: true
-          tags: razorscream/japanese-api:latest
+          tags: razorscream/japanese-api:${{ env.fullSemVer }}
