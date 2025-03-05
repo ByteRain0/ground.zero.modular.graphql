@@ -39,4 +39,4 @@ jobs:
           context: ./
           file: ./dockerfiles/japanese-api/Dockerfile
           push: true
-          tags: razorscream/japanese-api:${{ env.SemVer }}
+          tags: razorscream/japanese-api:${{ steps.version_step.outputs.fullSemVer }}
