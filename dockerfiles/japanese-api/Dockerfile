@@ -7,8 +7,8 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /app
-COPY ["Directory.Build.props", "Directory.Build.props"]
-COPY ["Directory.Packages.props", "Directory.Packages.props"]
+COPY ["Directory.Build.props", "."]
+COPY ["Directory.Packages.props", "."]
 COPY ["src/Host/Japanese.Api/Japanese.Api.csproj", "src/Host/Japanese.Api/"]
 COPY ["src/Modules/Anime/Anime.GraphQL/Anime.GraphQL.csproj", "src/Modules/Anime/Anime.GraphQL/"]
 COPY ["src/Utils/Core/Core.csproj", "src/Utils/Core/"]
