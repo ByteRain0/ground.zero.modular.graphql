@@ -6,7 +6,9 @@ EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
+WORKDIR /app
+COPY ["Directory.Build.props", "."]
+COPY ["Directory.Packages.props", "."]
 COPY ["src/Host/Japanese.Api/Japanese.Api.csproj", "src/Host/Japanese.Api/"]
 COPY ["src/Modules/Anime/Anime.GraphQL/Anime.GraphQL.csproj", "src/Modules/Anime/Anime.GraphQL/"]
 COPY ["src/Utils/Core/Core.csproj", "src/Utils/Core/"]
@@ -18,7 +20,7 @@ COPY ["src/Modules/Manga/Manga.Contracts/Manga.Contracts.csproj", "src/Modules/M
 COPY ["src/Modules/Manga/Manga.Service/Manga.Service.csproj", "src/Modules/Manga/Manga.Service/"]
 RUN dotnet restore "src/Host/Japanese.Api/Japanese.Api.csproj"
 COPY . .
-WORKDIR "/src/src/Host/Japanese.Api"
+WORKDIR "/app/src/Host/Japanese.Api"
 RUN dotnet build "Japanese.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
