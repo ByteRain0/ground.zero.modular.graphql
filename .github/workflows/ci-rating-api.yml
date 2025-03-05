@@ -1,0 +1,12 @@
+name: "Build"
+on:
+  push:
+
+jobs:
+  build:
+    name: Build fusion gateway
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "running"
+        
+      
