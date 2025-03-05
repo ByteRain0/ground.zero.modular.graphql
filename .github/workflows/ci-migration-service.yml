@@ -1,7 +1,8 @@
 name: Dockerize migration service
 on:
   push:
-
+    branches: ["main"]
+    
 jobs:
   build:
     name: Dockerize migration service
@@ -39,4 +40,4 @@ jobs:
           context: ./
           file: ./dockerfiles/migration-service/Dockerfile
           push: true
-          tags: razorscream/cultural-migration-service:${{ steps.version_step.outputs.MajorMinorPatch }}.${{ steps.version_step.outputs.PreReleaseLabel }}.${{ steps.version_step.outputs.CommitsSinceVersionSource }}
+          tags: razorscream/cultural-migration-service:${{ steps.version_step.outputs.MajorMinorPatch }}.${{ steps.version_step.outputs.CommitsSinceVersionSource }}

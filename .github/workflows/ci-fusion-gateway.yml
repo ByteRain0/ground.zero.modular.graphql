@@ -1,6 +1,7 @@
 name: Dockerize fusion gateway
 on:
   push:
+    branches: ["main"]
 
 jobs:
   build:
@@ -39,4 +40,4 @@ jobs:
           context: ./
           file: ./dockerfiles/fusion-gateway/Dockerfile
           push: true
-          tags: razorscream/cultural-fusion-gateway:${{ steps.version_step.outputs.MajorMinorPatch }}.${{ steps.version_step.outputs.PreReleaseLabel }}.${{ steps.version_step.outputs.CommitsSinceVersionSource }}
+          tags: razorscream/cultural-fusion-gateway:${{ steps.version_step.outputs.MajorMinorPatch }}.${{ steps.version_step.outputs.CommitsSinceVersionSource }}
