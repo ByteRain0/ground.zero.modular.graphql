@@ -1,4 +1,4 @@
-name: "Build"
+name: Dockerize migration service
 on:
   push:
     branches: [ "main" ]
