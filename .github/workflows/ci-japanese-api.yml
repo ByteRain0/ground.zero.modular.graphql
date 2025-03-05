@@ -19,6 +19,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Build, tag, and push Docker image
+        run: |
+          IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/japanese-api
+          docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:${{ github.sha }} -f src/host/Japanese.Api/Dockerfile .
+          docker push --all-tags $IMAGE_NAME
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
