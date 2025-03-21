@@ -36,7 +36,13 @@ builder.Services
 builder.Services
     .AddFusionGatewayServer()
     .ConfigureFromFile("./gateway.fgp")
-    .AddServiceDiscoveryRewriter();
+    .AddServiceDiscoveryRewriter()
+    .CoreBuilder.ModifyCostOptions(opts =>
+    {
+        opts.MaxFieldCost = 3_000;
+        opts.MaxTypeCost = 3_000;
+    });
+
 
 var app = builder.Build();
 

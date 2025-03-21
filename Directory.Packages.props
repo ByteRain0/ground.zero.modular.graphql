@@ -60,7 +60,7 @@
     <PackageVersion Include="HotChocolate.Subscriptions" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Subscriptions.InMemory" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Types" Version="$(HotChocolateVersion)" />
-    <PackageVersion Include="HotChocolate.Types.Analyzers" Version="$(HotChocolateVersion)">
+    <PackageVersion Include="HotChocolate.Types.Analyzers" Version="15.1.1-p.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageVersion>
