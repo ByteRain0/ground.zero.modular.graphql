@@ -15,9 +15,10 @@ interface Node {
 
 type Anime implements Node {
   internalId: Int!
-  studio: Studio @cost(weight: "10")
   id: ID!
   title: String!
+  studioId: Int!
+  studio: Studio
   releaseDate: DateTime!
   synopsis: String!
   demographics: Demographics!
@@ -47,24 +48,6 @@ type AnimeEdge {
 type AnimeNotFoundError implements Error {
   message: String!
   idOrTitle: String
-}
-
-"A connection to a list of items."
-type AnimesConnection {
-  "Information to aid in pagination."
-  pageInfo: PageInfo!
-  "A list of edges."
-  edges: [AnimesEdge!]
-  "A flattened list of the nodes."
-  nodes: [Anime!]
-}
-
-"An edge in a connection."
-type AnimesEdge {
-  "A cursor for use in pagination."
-  cursor: String!
-  "The item at the end of the edge."
-  node: Anime!
 }
 
 type Author {
@@ -142,9 +125,10 @@ type Query {
 }
 
 type Studio implements Node {
-  animes("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: AnimeFilterInput @cost(weight: "10") order: [AnimeSortInput!] @cost(weight: "10")): AnimesConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
+  anime("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: AnimeFilterInput @cost(weight: "10") order: [AnimeSortInput!] @cost(weight: "10")): AnimeConnection @listSize(assumedSize: 50, slicingArguments: [ "first", "last" ], slicingArgumentDefaultValue: 10, sizedFields: [ "edges", "nodes" ], requireOneSlicingArgument: false) @cost(weight: "10")
   id: ID!
   name: String!
+  animes: [Anime!]!
 }
 
 "A connection to a list of items."

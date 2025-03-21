@@ -33,19 +33,6 @@ public static class WebApplicationBuilderExtensions
         return builder;
     }
 
-    public static IRequestExecutorBuilder AddGraphQLInfrastructure(
-        this IServiceCollection services) =>
-        services
-            .AddGraphQLServer()
-            .ModifyOptions(options =>
-            {
-                options.DefaultBindingBehavior = BindingBehavior.Explicit;
-                options.EnsureAllNodesCanBeResolved = true;
-            })
-            .AddAnimeGraphqlTypes()
-            .AddMangaGraphqlTypes()
-            .AddGraphQlConventions();
-
     public static IServiceCollection AddKeyCloakBasedAuth(this IServiceCollection services)
     {
         services.AddAuthorization();
@@ -72,10 +59,29 @@ public static class WebApplicationBuilderExtensions
         return builder;
     }
 
-    private static IRequestExecutorBuilder AddGraphQlConventions(
-        this IRequestExecutorBuilder builder)
+    public static IRequestExecutorBuilder AddGraphQLInfrastructure(
+        this IServiceCollection services)
     {
+        var builder = services.AddGraphQLServer();
+
+        // Add default settings
         builder
+            .AddInstrumentation()
+            .InitializeOnStartup()
+            .ModifyOptions(options =>
+            {
+                options.DefaultBindingBehavior = BindingBehavior.Explicit;
+                options.EnsureAllNodesCanBeResolved = true;
+            })
+            .ModifyRequestOptions(cfg =>
+            {
+                //Modify responses in case you need extensive error explanation on dev env.
+                cfg.IncludeExceptionDetails = AppHost.IsDevelopment();
+            });
+
+        // Add paging|filtering|sorting|projections
+        builder
+            .AddQueryContext()
             .AddProjections()
             .AddFiltering(cfg =>
             {
@@ -83,31 +89,29 @@ public static class WebApplicationBuilderExtensions
             })
             .AddSorting()
             .AddPagingArguments()
+            .ModifyPagingOptions(cfg =>
+            {
+                cfg.DefaultPageSize = 10;
+                cfg.MaxPageSize = 50;
+            });
+
+        // Add usage patterns
+        builder
             .AddGlobalObjectIdentification()
             .AddQueryConventions()
             .AddMutationConventions()
             .AddInMemorySubscriptions()
+            .AddFairyBread(opts => { opts.ThrowIfNoValidatorsFound = true; });
+
+        // Add error filters
+        builder
             .AddErrorFilter<GraphQLAuthExceptionFilter>()
-            .AddErrorFilter<BusinessValidationErrorFilter>()
-            .AddFairyBread(opts => { opts.ThrowIfNoValidatorsFound = true; })
-            .InitializeOnStartup()
-            .AddInstrumentation()
-            .AddQueryContext();
+            .AddErrorFilter<BusinessValidationErrorFilter>();
 
-        builder.ModifyPagingOptions(cfg =>
-        {
-            cfg.DefaultPageSize = 10;
-            cfg.MaxPageSize = 50;
-        });
-
-        if (AppHost.IsDevelopment())
-        {
-            builder.ModifyRequestOptions(cfg =>
-            {
-                //Modify responses in case you need extensive error explanation on dev env.
-                cfg.IncludeExceptionDetails = true;
-            });
-        }
+        // Add custom types
+        builder
+            .AddAnimeGraphqlTypes()
+            .AddMangaGraphqlTypes();
 
         return builder;
     }

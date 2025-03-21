@@ -25,7 +25,7 @@ public static class ApplicationBuilderExtensions
 
         builder.Services.AddFluentValidation([serviceAssembly, contractAssembly]);
 
-        builder.AddGraphQL().AddAnimeServiceTypes();
+        builder.Services.AddAnimeDataLoader();
 
         return builder;
     }

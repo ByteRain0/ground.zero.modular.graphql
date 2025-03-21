@@ -21,4 +21,3 @@ internal class GetAnimeQueryHandler(AnimeDbContext animeDbContext)
             .ToPageAsync(request.PagingArguments, cancellationToken: cancellationToken);
     }
 }
-

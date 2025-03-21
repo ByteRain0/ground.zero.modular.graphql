@@ -33,9 +33,4 @@
         <ProjectReference Include="..\Japanese.Api\Japanese.Api.csproj"/>
         <ProjectReference Include="..\Rating.Api\Rating.Api.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-        <PackageVersion Update="Microsoft.EntityFrameworkCore" Version="9.0.0"/>
-    </ItemGroup>
-
 </Project>
