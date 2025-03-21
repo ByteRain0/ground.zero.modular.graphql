@@ -2,7 +2,6 @@
   <ItemGroup>
     <PackageReference Include="HotChocolate.AspNetCore" />
     <PackageReference Include="HotChocolate.Data.EntityFramework" />
-<!--    <PackageReference Include="HotChocolate.Pagination.EntityFramework" />-->
     <PackageReference Include="HotChocolate.Types.Analyzers" />
   </ItemGroup>
   <ItemGroup>
