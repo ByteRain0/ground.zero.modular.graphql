@@ -78,7 +78,7 @@ public static class WebApplicationBuilderExtensions
                 //Modify responses in case you need extensive error explanation on dev env.
                 cfg.IncludeExceptionDetails = AppHost.IsDevelopment();
             });
-        
+
         // Add paging|filtering|sorting|projections
         builder
             .AddQueryContext()
@@ -107,12 +107,12 @@ public static class WebApplicationBuilderExtensions
         builder
             .AddErrorFilter<GraphQLAuthExceptionFilter>()
             .AddErrorFilter<BusinessValidationErrorFilter>();
-        
+
         // Add custom types
         builder
             .AddAnimeGraphqlTypes()
             .AddMangaGraphqlTypes();
-        
+
         return builder;
     }
 

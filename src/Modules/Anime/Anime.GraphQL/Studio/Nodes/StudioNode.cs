@@ -12,7 +12,7 @@ public static partial class StudioNode
     {
         descriptor.BindFieldsImplicitly();
     }
-    
+
     [UsePaging]
     [UseProjection]
     [UseFiltering]
