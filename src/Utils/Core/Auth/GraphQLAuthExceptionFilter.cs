@@ -13,10 +13,9 @@ public class GraphQLAuthExceptionFilter : IErrorFilter
     {
         if (error.Exception is ForbiddenException forbiddenException)
         {
-            error.WithMessage(forbiddenException.Message)
-                .WithCode("FORBIDDEN");
-
             return ErrorBuilder.FromError(error)
+                .SetCode("FORBIDDEN")
+                .SetMessage(forbiddenException.Message)
                 .SetTraceIdentifiers()
                 .Build();
         }

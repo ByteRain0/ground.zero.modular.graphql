@@ -1,6 +1,5 @@
 using Anime.Contracts.Services.Anime.Commands;
 using Anime.Contracts.Services.Anime.Queries;
-using GreenDonut.Data;
 using MediatR;
 
 namespace Anime.GraphQL.Anime.Mutations;
